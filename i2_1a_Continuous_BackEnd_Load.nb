@@ -1,0 +1,120 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4015,        112]
+NotebookOptionsPosition[      3725,         99]
+NotebookOutlinePosition[      4062,        114]
+CellTagsIndexPosition[      4019,        111]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{"initializeZoeData", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"runData", " ", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\</Users/plentz/Documents/Parallax621Project/experiment/Results/\
+iteration2/I2_1a_Test_08.csv\>\"", ",", " ", "\"\<CSV\>\""}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"smoothZoeDataSet", "[", 
+  RowBox[{"runData", ",", " ", "False"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A108DataSet", "=", " ", "filtered"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A108TimeDataSet", "=", " ", 
+  "timeAngleDataSet"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A108DataSetStartTime", " ", "=", "startTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A108DataSetEndTime", " ", "=", " ", "endTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"runData", " ", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\</Users/plentz/Documents/Parallax621Project/experiment/Results/\
+iteration2/I2_1a_Test_09.csv\>\"", ",", " ", "\"\<CSV\>\""}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"smoothZoeDataSet", "[", 
+  RowBox[{"runData", ",", " ", "False"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A109DataSet", "=", " ", "filtered"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A109TimeDataSet", "=", " ", 
+  "timeAngleDataSet"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A109DataSetStartTime", " ", "=", "startTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A109DataSetEndTime", " ", "=", " ", "endTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"runData", " ", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\</Users/plentz/Documents/Parallax621Project/experiment/Results/\
+iteration2/I2_1a_Test_10.csv\>\"", ",", " ", "\"\<CSV\>\""}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"smoothZoeDataSet", "[", 
+  RowBox[{"runData", ",", " ", "False"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A110DataSet", "=", " ", "filtered"}], "\[IndentingNewLine]", 
+ RowBox[{"I21A110TimeDataSet", "=", " ", 
+  "timeAngleDataSet"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A110DataSetStartTime", " ", "=", "startTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"I21A110DataSetEndTime", " ", "=", " ", "endTime"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"ListPlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "I21A108TimeDataSet", ",", " ", "I21A109TimeDataSet", ",", " ", 
+     "I21A110TimeDataSet"}], "}"}], ",", " ", 
+   RowBox[{"AxesLabel", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<time (seconds)\>\"", ",", " ", 
+      "\"\<detector deflection angle\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotLabels", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Gen8\>\"", ",", " ", "\"\<Gen9, Gen10\>\""}], "}"}]}], ",", 
+   
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"I21A108DataSetStartTime", ",", "I21A110DataSetEndTime"}], 
+       "}"}], ",", "Full"}], "}"}]}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8639909911460114`*^9, 3.863991089401718*^9}, {
+  3.863991127546843*^9, 
+  3.863991172703766*^9}},ExpressionUUID->"05dfebd2-029d-41e9-9497-\
+9fb223505206"]
+},
+WindowSize->{808, 749},
+WindowMargins->{{100, Automatic}, {0, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3163, 77, 682, "Input",ExpressionUUID->"05dfebd2-029d-41e9-9497-9fb223505206"]
+}
+]
+*)
+

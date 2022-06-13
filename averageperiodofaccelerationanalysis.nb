@@ -1,0 +1,4286 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    183052,       4278]
+NotebookOptionsPosition[    165008,       4045]
+NotebookOutlinePosition[    165344,       4060]
+CellTagsIndexPosition[    165301,       4057]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"Clear", "[", 
+  RowBox[{"n", ",", " ", "i"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Put energy equivalence equation in terms of c \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<Since (1/2)s^2 =  dVR VR - dVX VX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<substituting for VX gives...\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"1", "/", "2"}], ")"}], 
+      RowBox[{"sz", "^", "2"}]}], " ", "\[Equal]", " ", 
+     RowBox[{
+      RowBox[{"dVRz", " ", "VRz"}], " ", "-", " ", 
+      RowBox[{"dVXz", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"cz", "^", "2"}], " ", "-", " ", 
+          RowBox[{"VRz", "^", "2"}]}], ")"}], "^", ".5"}]}]}]}], ",", " ", 
+    "cz"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<cz\[Rule]\!\(\*FractionBox[\(sz \*SqrtBox[\(\((1/4)\)\\\ \
+\*SuperscriptBox[\(sz\), \(2\)] + \\\ \\\ \\\ VRz \((VRz\\\  - \\\ dVRz)\)\)]\
+\), \(dVXz\)]\)\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<where VRz(VRz - dVRz) = area of elipsis and/or geometric average\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Setup equations to evaluate change during acceleration frame\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<dVXp = (c Sin[i Pi/(2 n)]- c Sin[IntegerPart[i] Pi/(2 n)]) =  \>\"", 
+   ",", " ", 
+   RowBox[{"dVXp", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"c", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"i", " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], "-", " ", 
+      RowBox[{"c", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<dVXstatic = (c Sin[(IntegerPart[i] + 1) Pi/(2 n)]- c \
+Sin[IntegerPart[i] Pi/(2 n)]) =  \>\"", ",", " ", 
+   RowBox[{"dVXstatic", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"c", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerPart", "[", "i", "]"}], " ", "+", " ", "1"}], 
+          ")"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], "-", " ", 
+      RowBox[{"c", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{
+         RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<dVRp = (c Cos[IntegerPart[i] Pi/(2 n)]- c Cos[i Pi/(2 n)])  =  \>\"", 
+   ",", " ", 
+   RowBox[{"dVRp", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"c", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], "-", " ", 
+      RowBox[{"c", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{"i", " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<dVRstatic = (c Cos[IntegerPart[i] Pi/(2 n)]- c Cos[(IntegerPart[i] + \
+1) Pi/(2 n)]) =  \>\"", ",", " ", 
+   RowBox[{"dVRstatic", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"c", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], "-", " ", 
+      RowBox[{"c", " ", 
+       RowBox[{"Cos", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"IntegerPart", "[", "i", "]"}], " ", "+", " ", "1"}], 
+          ")"}], " ", 
+         RowBox[{"Pi", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<VXp = (c Sin[IntegerPart[i] Pi/(2 n)]) = \>\"", ",", " ", 
+   RowBox[{"VXp", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{"c", " ", 
+      RowBox[{"Sin", "[", 
+       RowBox[{
+        RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+        RowBox[{"Pi", "/", 
+         RowBox[{"(", 
+          RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<VRp = (c Cos[IntegerPart[i] Pi/(2 n)]) = \>\"", ",", " ", 
+   RowBox[{"VRp", " ", "=", " ", 
+    RowBox[{"(", 
+     RowBox[{"c", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{
+        RowBox[{"IntegerPart", "[", "i", "]"}], " ", 
+        RowBox[{"Pi", "/", 
+         RowBox[{"(", 
+          RowBox[{"2", " ", "n"}], ")"}]}]}], "]"}]}], ")"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<sp = (dVXp^2 + dVRp^2)^.5 = \>\"", ",", " ", 
+   RowBox[{"sp", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"dVXp", "^", "2"}], " ", "+", " ", 
+       RowBox[{"dVRp", "^", "2"}]}], ")"}], "^", ".5"}]}]}], " ", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"\"\<sstatic = (dVXstatic^2 + dVRstatic^2)^.5 = \>\"", ",", " ", 
+   RowBox[{"sstatic", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"dVXstatic", "^", "2"}], " ", "+", " ", 
+       RowBox[{"dVRstatic", "^", "2"}]}], ")"}], "^", ".5"}]}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<Perform sanity check on functions\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"start", " ", "=", "0"}], "\[IndentingNewLine]", 
+ RowBox[{"end", "  ", "=", "1"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"dVXstatic", ",", " ", "dVX", ",", " ", "dVXp"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"dVRstatic", ",", " ", "dVR", ",", " ", "dVRp"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"sstatic", ",", " ", "s", ",", " ", "sp"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Plot incremental change during accelerating frames\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "i", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"c", " ", "=", " ", 
+  RowBox[{"2.99792458", "*", 
+   RowBox[{"10", "^", "8"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"start", " ", "=", "0"}], "\[IndentingNewLine]", 
+ RowBox[{"end", "  ", "=", "n"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Evaluate how dVXp/dVXstatic ratio compares to dVRp/dVRstatic \
+ratio\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"dVXp", "/", "dVXstatic"}], ")"}], ",", " ", 
+     RowBox[{"(", 
+      RowBox[{"dVRp", "/", "dVRstatic"}], ")"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"i", "/", "end"}], ")"}], "^", "2"}], " ", "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"i", "/", "end"}], ")"}], "^", "2"}]}], ")"}], "^", ".5"}], 
+     ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"dVXp", "/", "dVXstatic"}], ")"}], "^", "2"}], "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"dVRp", "/", "dVRstatic"}], ")"}], "^", "2"}]}], ")"}], "^",
+       ".5"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Evaluate how the geometric-centripetal/dVXstatic compares to n\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"VRp", 
+              RowBox[{"(", 
+               RowBox[{"VRp", " ", "-", " ", "dVRstatic"}], ")"}]}], ")"}], 
+            " ", "+", " ", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"1", "/", "2"}], ")"}], "sstatic"}], ")"}], "^", 
+             "2"}]}], ")"}], "^", ".5"}], " ", ")"}], "/", "dVXstatic"}], 
+       ")"}], "-", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"2", "/", "Pi"}], ")"}], " ", "n"}]}], ")"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"a", "=", " ", 
+  RowBox[{
+   RowBox[{"Sum", "[", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"VRp", 
+               RowBox[{"(", 
+                RowBox[{"VRp", " ", "-", " ", "dVRstatic"}], ")"}]}], ")"}], 
+             " ", "+", " ", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"1", "/", "2"}], ")"}], "sstatic"}], ")"}], "^", 
+              "2"}]}], ")"}], "^", ".5"}], " ", ")"}], "/", "dVXstatic"}], 
+        ")"}], "-", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "/", "Pi"}], ")"}], " ", "n"}]}], ")"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "0", ",", " ", 
+       RowBox[{"n", "-", "1"}]}], "}"}]}], "]"}], "/", 
+   RowBox[{"(", 
+    RowBox[{"n", " ", "-", " ", "1"}], ")"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{
+  "\"\<\!\(\*FractionBox[SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(\
+sstaticz\), \(2\)], \(4\)] + VRpz\\\ \((\(-dVRstaticz\) + VRpz)\))\), \
+\(0.5`\)], \(dVXstaticz\)]\)-\!\(\*FractionBox[\(2\\\ nz\), \(\[Pi]\)]\) = \!\
+\(\*FractionBox[\(1\), \(2\)]\)\!\(\*FractionBox[\(1\), \
+\(6\)]\)\!\(\*FractionBox[\(\[Pi]\), \(\(\\\ \)\(4\\\ nz\)\)]\) = \>\"", ",", 
+   " ", 
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"1", "/", "2"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"1.0", "/", "6"}], ")"}], 
+    RowBox[{"(", 
+     RowBox[{"Pi", "/", 
+      RowBox[{"(", 
+       RowBox[{"4", "n"}], ")"}]}], ")"}]}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Rearrange to get 2nd order Reimann Zeta function using energy \
+equivalance\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<\!\(\*FractionBox[\(2  \[Pi] \
+\*SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)] \
++ VRp\\\ \((VRp - dVRstatic)\))\), \(0.5`\)]\), \(dVXstatic\)]\) - 4 n = \!\(\
+\*FractionBox[\(1\), \(6\)]\)\!\(\*FractionBox[SuperscriptBox[\(\[Pi]\), \
+\(2\)], \(\(\\\ \)\(4\\\ n\)\)]\)\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<\!\(\*FractionBox[SuperscriptBox[\(\[Pi]\), \(2\)], \(6\)]\) \
+=\!\(\*FractionBox[\(4\\\ n\\\ 2  \[Pi] \
+\*SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)] \
++ VRp\\\ \((VRp - dVRstatic)\))\), \(0.5`\)]\), \(dVXstatic\)]\) - (4 \
+n\!\(\*SuperscriptBox[\()\), \(2\)]\) \>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Since we know that dVX must discretely sum to the new radius we see \
+that\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<(\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \
+\[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)= \!\(\*FractionBox[\(4\\\ n\\\ \
+dVXstatic\), \(2\\\ \[Pi]\)]\)(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \
+\(2\)], \(4\)]\)+VRp (VRp-dVRstatic)\!\(\*SuperscriptBox[\()\), \(0.5\)]\)-\!\
+\(\*FractionBox[SuperscriptBox[\(\[Pi]\), \(2\)], \(6\)]\)(\!\(\*FractionBox[\
+\(dVXstatic\), \(2\\\ \[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<since surface area is 4 \[Pi] r^2, we can multiple both sides by 4 \
+\[Pi] to get\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<4 \[Pi](\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \[Pi]\)]\)\!\
+\(\*SuperscriptBox[\()\), \(2\)]\)= (4\[Pi]\!\(\*FractionBox[\(4\\\ n\\\ \
+dVXstatic\), \(2\\\ \[Pi]\)]\)(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \
+\(2\)], \(4\)]\)+VRp (VRp-dVRstatic)\!\(\*SuperscriptBox[\()\), \(0.5\)]\)-\!\
+\(\*FractionBox[SuperscriptBox[\(\[Pi]\), \(2\)], \
+\(6\)]\)((1/\[Pi])^.5dVXstatic\!\(\*SuperscriptBox[\()\), \(2\)]\))\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<where ((1/\[Pi])^.5 dVXstatic) equals the side of a discreet square \
+screen on the spherical surface\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<The equation suggests that the geometric centripetal surface loses a \
+screen's worth of surface area due to Lenz Law and the 2nd order Reimann Zeta \
+function's infinite sum Sum[1/i^2], reducing the radius and surface area to 4\
+\[Pi](\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \
+\[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"4", " ", "\[Pi]", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+         RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"]}], "-", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"4", "\[Pi]", 
+        FractionBox[
+         RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+         RowBox[{"2", " ", "\[Pi]"}]], 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{
+           FractionBox[
+            SuperscriptBox["sstatic", "2"], "4"], "+", 
+           RowBox[{"VRp", " ", 
+            RowBox[{"(", 
+             RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5"]}], 
+       "-", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["\[Pi]", "2"], "6"], 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "\[Pi]"}], ")"}], "^", ".5"}], "dVXstatic"}], 
+          ")"}], "2"]}]}], ")"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Rearrange to get 2nd order Reimann Zeta function using baseline \
+segment\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<(Pi /(2 n) c)^2 = (s^2 + ((3^.5/6)Pi/(2 n)s)^2) = s^2(1 + \
+((3^.5/6)Pi/(2 n))^2)\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"Pi", " ", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", " ", "n"}], ")"}]}], " ", "c"}], ")"}], ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"s", "^", "2"}], " ", "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"3", "^", ".5"}], "/", "6"}], ")"}], 
+           RowBox[{"Pi", "/", 
+            RowBox[{"(", 
+             RowBox[{"2", " ", "n"}], ")"}]}], "s"}], ")"}], "^", "2"}]}], 
+       ")"}], "^", ".5"}]}], " ", "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<centripetal = ((Pi /(2 n) c) - s) = (s^2 + ((3^.5/6)Pi/(2 n)s)^2)^.5 - \
+s\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Pi^2/6 s^2 = ((4 n s) (4 n centripetal) = ((4 n s) (4 n ((s^2 + \
+((3^.5/6)Pi/(2 n)s)^2)^.5 - s))\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"4", " ", "n"}], ")"}], "^", "2"}], " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"Pi", " ", "/", 
+          RowBox[{"(", 
+           RowBox[{"2", " ", "n"}], ")"}]}], " ", "c"}], ")"}], " ", "-", " ",
+        "s"}], ")"}], "/", "s"}]}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"Pi", "^", "2"}], "/", "6"}], " ", 
+      RowBox[{"s", "^", "2"}]}], " ", ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"4", " ", "n", " ", "s"}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"4", " ", "n", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"s", "^", "2"}], " ", "+", " ", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"3", "^", ".5"}], "/", "6"}], ")"}], 
+                RowBox[{"Pi", "/", 
+                 RowBox[{"(", 
+                  RowBox[{"2", " ", "n"}], ")"}]}], "s"}], ")"}], "^", 
+              "2"}]}], ")"}], "^", ".5"}], " ", "-", " ", "s"}], ")"}]}], 
+       ")"}]}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Equate s, dVR, dVX equation containing Reimann Zeta function\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************************\
+*\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<start with \!\(\*FractionBox[\(4\\\ n\\\ 2\\\ Pi\\\ c\), \
+\(sstatic\)]\) = \!\(\*FractionBox[\(4\\\ n\\\ 2  \[Pi] \
+\*SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)] \
++ VRp\\\ \((VRp - dVRstatic)\))\), \(0.5`\)]\), \(dVXstatic\)]\) \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<noting that 1 = \!\(\*FractionBox[\(\(cz\)\(\\\ \)\), \
+\(\((\*FractionBox[\((4  nz)\), \(2  \[Pi]\)] + \\\ \((1/2)\) \((1/6)\) \
+\*FractionBox[\(\[Pi]\), \(4\\\ nz\)])\) sstatic\)]\)\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<rearrange \!\(\*FractionBox[\(\(\\\ \)\(c\)\), \(sstatic\)]\) = \
+\!\(\*FractionBox[\(4\\\ n\), \(2\\\ \\\ \[Pi]\)]\) + \
+\!\(\*FractionBox[\(1\), \(12\)]\)\!\(\*FractionBox[\(\[Pi]\), \(\(\\\ \
+\)\(4\\\ n\)\)]\) = \
+\!\(\*FractionBox[SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \
+\(2\)], \(4\)] + VRp\\\ \((VRp - dVRstatic)\))\), \(0.5`\)], \(dVXstatic\)]\) \
+= \!\(\*FractionBox[SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\)\
+, \(2\)], \(4\)] + VXp\\\ \((VXp + dVXstatic)\))\), \(0.5`\)], \(dVRstatic\)]\
+\) \>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<relating in 3 dimensions: \!\(\*FractionBox[\(2\\\ \\\ \[Pi]\\\ c\), \
+\(4  n\\\ sstatic\)]\) = 1 + \!\(\*FractionBox[\(1\), \
+\(6\)]\)\!\(\*FractionBox[\(\(\\\ \)\*SuperscriptBox[\(\[Pi]\), \(2\)]\), \
+\(\(\\\ \)\*SuperscriptBox[\((4  n)\), \(2\)]\)]\) = \!\(\*FractionBox[\(2\\\ \
+\\\ \[Pi] \*SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \
+\(2\)], \(4\)] + VRp\\\ \((VRp - dVRstatic)\))\), \(0.5`\)]\), \(4\\\ n\\\ \
+dVXstatic\)]\) = \!\(\*FractionBox[\(2\\\ \\\ \[Pi] \
+\*SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)] \
++ VXp\\\ \((VXp + dVXstatic)\))\), \(0.5`\)]\), \(4\\\ n\\\ dVRstatic\)]\) \>\
+\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<squaring: (\!\(\*FractionBox[\(2\\\ \\\ \[Pi]\\\ c\), \(4  n\\\ \
+sstatic\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) = (1 + \!\(\*FractionBox[\(1\
+\), \(6\)]\)\!\(\*FractionBox[\(\(\\\ \)\*SuperscriptBox[\(\[Pi]\), \(2\)]\), \
+\(\(\\\ \)\*SuperscriptBox[\((4  n)\), \(2\)]\)]\)\!\(\*SuperscriptBox[\()\), \
+\(2\)]\) = \!\(\*FractionBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\
+\)], \(4\)] + VRp\\\ \((VRp - dVRstatic)\))\), \
+SuperscriptBox[\((\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \[Pi]\)])\
+\), \(2\)]]\) = \
+\!\(\*FractionBox[\((\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)] \
++ VXp\\\ \((VXp + dVXstatic)\))\), SuperscriptBox[\((\*FractionBox[\(4\\\ n\\\
+\ dVRstatic\), \(2\\\ \\\ \[Pi]\)])\), \(2\)]]\) \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Putting in terms of a riemann screen: (\!\(\*FractionBox[\(2\\\ \\\ \
+\[Pi]\\\ c\), \(4  n\\\ sstatic\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)(\!\(\
+\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)(\!\(\*FractionBox[\(4\\\ n\\\ \
+dVRstatic\), \(2\\\ \\\ \[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) = (1 + \
+\!\(\*FractionBox[\(1\), \(6\)]\)\!\(\*FractionBox[\(\(\\\ \
+\)\*SuperscriptBox[\(\[Pi]\), \(2\)]\), \(\(\\\ \)\*SuperscriptBox[\((4  \
+n)\), \(2\)]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)(\!\(\*FractionBox[\(4\\\
+\ n\\\ dVXstatic\), \(2\\\ \\\ \[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \
+\(2\)]\)(\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \[Pi]\)]\)\!\(\
+\*SuperscriptBox[\()\), \(2\)]\)= (\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \
+\(2\\\ \\\ \[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \
+\(2\)]\)(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)]\)+VRp \
+(VRp-dVRstatic)) = (\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \
+\(2\)]\)(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)]\)+VXp \
+(VXp+dVXstatic)) \>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<(\!\(\*FractionBox[\(c\), FractionBox[\(4\\\ n\\\ sstatic\), \(2\\\ \\\
+\ \[Pi]\)]]\))(\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \[Pi]\)]\
+\))(\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \[Pi]\)]\)) = (1 + \
+\!\(\*FractionBox[\(1\), \(6\)]\)\!\(\*FractionBox[\(\(\\\ \
+\)\*SuperscriptBox[\(\[Pi]\), \(2\)]\), \(\(\\\ \)\*SuperscriptBox[\((4  \
+n)\), \(2\)]\)]\))(\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))= (\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \
+\(4\)]\)+VRp (VRp-dVRstatic))^.5 = (\!\(\*FractionBox[\(4\\\ n\\\ \
+dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \
+\(4\)]\)+VXp (VXp+dVXstatic))^.5 \>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Finally showing that a force using a Reimann basis force makes up the \
+difference in surface area caused by the sstatic shortcut \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<(\!\(\*FractionBox[\(c\), FractionBox[\(4\\\ n\\\ sstatic\), \(2\\\ \\\
+\ \[Pi]\)]]\))(\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \[Pi]\)]\
+\))(\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \[Pi]\)]\)) = (\!\(\
+\*FractionBox[\(1\), \(6\)]\) \!\(\*SuperscriptBox[\(\[Pi]\), \
+\(2\)]\))(\!\(\*FractionBox[\(dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[\(dVRstatic\), \(2\\\ \\\ \[Pi]\)]\)) + \
+(\!\(\*FractionBox[\(\((4  n)\) dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[\(\((4  n)\) dVRstatic\), \(2\\\ \\\ \
+\[Pi]\)]\)) = (\!\(\*FractionBox[\(4\\\ n\\\ dVRstatic\), \(2\\\ \\\ \[Pi]\)]\
+\))(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \(4\)]\)+VRp \
+(VRp-dVRstatic))^.5 = (\!\(\*FractionBox[\(4\\\ n\\\ dVXstatic\), \(2\\\ \\\ \
+\[Pi]\)]\))(\!\(\*FractionBox[SuperscriptBox[\(sstatic\), \(2\)], \
+\(4\)]\)+VXp (VXp+dVXstatic))^.5 \>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        FractionBox["c", 
+         FractionBox[
+          RowBox[{"4", " ", "n", " ", "sstatic"}], 
+          RowBox[{"2", "  ", "\[Pi]"}]]], ")"}], "  ", "-", "1"}], ")"}], "/", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"1", "/", "2"}], ")"}], 
+         RowBox[{
+          RowBox[{"6", "^", ".5"}], "/", "3"}], 
+         RowBox[{"(", 
+          RowBox[{"Pi", "/", 
+           RowBox[{"(", 
+            RowBox[{"4", " ", "n"}], ")"}]}], ")"}]}], ")"}], "^", "2"}], 
+      ")"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", " ", "0", ",", " ", "n"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<showing that (((1/2)6^.5/3(Pi/(4 n)))^2) = ((\!\(\*FractionBox[\(c\), \
+FractionBox[\(4\\\ n\\\ sstatic\), \(2\\\ \\\ \[Pi]\)]]\))  - 1)\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", 
+   "\"\<showing that(6^.5/3\!\(\*FractionBox[\(\((1/2)\) sstatic\), \(\(\\\ \
+\)\(\[Pi]^ .5\)\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\) = \
+4\[Pi](\!\(\*FractionBox[\(4\\\ n\\\ sstatic\), \(2\\\ \\\ \[Pi]\)]\) c)  - 4\
+\[Pi](\!\(\*FractionBox[\(4\\\ n\\\ sstatic\), \(2\\\ \\\ \
+\[Pi]\)]\)\!\(\*SuperscriptBox[\()\), \(2\)]\)\>\"", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<Plot changes in dVXp relative to dVRp and sp\>\"",
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<since dVRp = (dVXp(VXp + dVXp)/(VRp - dVRp))\>\"",
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<sp^2 = dVXp^2 + (dVXp(VXp + dVXp)/(VRp - dVRp))^2 = dVXp^2(1 + ((VXp + \
+dVXp)/(VRp - dVRp))^2) = (dVXp^2/(VRp - dVRp)^2) c^2 \>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<and sp = dVXp/(VRp - dVRp) c\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"dVXp", "^", "2"}], " ", ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"dVXp", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"VXp", " ", "+", " ", "dVXp"}], ")"}], "/", 
+         RowBox[{"(", 
+          RowBox[{"VRp", " ", "-", " ", "dVRp"}], ")"}]}]}], ")"}], "^", 
+      "2"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"dVXp", "^", "2"}], " ", "+", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"dVXp", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"VXp", " ", "+", " ", "dVXp"}], ")"}], "/", 
+          RowBox[{"(", 
+           RowBox[{"VRp", " ", "-", " ", "dVRp"}], ")"}]}]}], ")"}], "^", 
+       "2"}]}], ")"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Analyze geometric centripetal, discrete, mean, and geometric average \
+radii differences side by side\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", 
+   "\"\<***********************************************************\>\"", 
+   "]"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["sstatic", "2"], "4"], "+", 
+        RowBox[{"VRp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5"], ",", 
+     RowBox[{"(", 
+      RowBox[{"4", " ", "n", " ", 
+       RowBox[{"dVXstatic", "/", 
+        RowBox[{"(", 
+         RowBox[{"2", "Pi"}], ")"}]}]}], ")"}], ",", 
+     RowBox[{"(", 
+      RowBox[{"VRp", " ", "-", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], "dVRstatic"}]}], ")"}], ",", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"VRp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}], ")"}], "^", ".5"}]}], 
+    "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Analyze changes in area relative to particle radius from a variety of \
+baselines to determine hypotenuse distance across square\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal vs discrete)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           FractionBox[
+            SuperscriptBox["sstatic", "2"], "4"], "+", 
+           RowBox[{"VRp", " ", 
+            RowBox[{"(", 
+             RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"4", " ", "n", " ", 
+            RowBox[{"dVXstatic", "/", 
+             RowBox[{"(", 
+              RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}]}], ")"}],
+        "^", ".5"}], "/", "dVXstatic"}], ",", " ", 
+     RowBox[{
+      RowBox[{"3", "^", ".5"}], "/", "6"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<3^.5/6 = (geometric centripetal vs discrete)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(discrete - mean)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"4", " ", "n", " ", 
+           RowBox[{"dVXstatic", "/", 
+            RowBox[{"(", 
+             RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"VRp", " ", "-", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "2"}], ")"}], "dVRstatic"}]}], ")"}], "^", 
+         "2"}]}], ")"}], "^", ".5"}], "/", "dVXstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<6^.5/6 = 3^.5/3 * 2^.5/2 = (discrete - mean)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal - mean)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VRp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"VRp", " ", "-", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "2"}], ")"}], "dVRstatic"}]}], ")"}], "^", 
+         "2"}]}], ")"}], "^", ".5"}], "/", "dVXstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<1/2 = (geometric centripetal - mean)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(mean - geometric)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"VRp", " ", "-", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "/", "2"}], ")"}], "dVRstatic"}]}], ")"}], "^", 
+        "2"}], "-", 
+       RowBox[{"VRp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+    "/", "dVRstatic"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<1/2 = (mean - geometric)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VRp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{"VRp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+     "/", "sstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<1/2 = geometric centripetal - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(discrete - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"4", " ", "n", " ", 
+            RowBox[{"dVXstatic", "/", 
+             RowBox[{"(", 
+              RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}], "-", 
+         " ", 
+         RowBox[{"VRp", " ", 
+          RowBox[{"(", 
+           RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+      "/", "s"}], ",", " ", 
+     RowBox[{"1", "/", "2"}], ",", " ", 
+     RowBox[{
+      RowBox[{"6", "^", ".5"}], "/", "6"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<6^.5/6 to 1/2 = (discrete - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<Analyze changes in area relative to particles velocity space from a \
+variety of baselines to determine hypotenuse distance across square\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<***********************************************************\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal vs discrete)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"4", " ", "n", " ", 
+           RowBox[{"dVRstatic", "/", 
+            RowBox[{"(", 
+             RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}]}], ")"}], 
+      "^", ".5"}], "/", "dVRstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<3^.5/6 = (geometric centripetal vs discrete)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(discrete - mean)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"4", " ", "n", " ", 
+           RowBox[{"dVRstatic", "/", 
+            RowBox[{"(", 
+             RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"VXp", " ", "+", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "2"}], ")"}], "dVXstatic"}]}], ")"}], "^", 
+         "2"}]}], ")"}], "^", ".5"}], "/", "dVRstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<6^.5/6 = 3^.5/3 * 2^.5/2 = (discrete - mean)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal - mean)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"VXp", " ", "+", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"1", "/", "2"}], ")"}], "dVXstatic"}]}], ")"}], "^", 
+         "2"}]}], ")"}], "^", ".5"}], "/", "dVRstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<1/2 = (geometric centripetal - mean)^.5 divided by dVR\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(mean - geometric)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"VXp", " ", "+", " ", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"1", "/", "2"}], ")"}], "dVXstatic"}]}], ")"}], "^", 
+        "2"}], "-", 
+       RowBox[{"VXp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+    "/", "dVXstatic"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<1/2 = (mean - geometric)^.5 divided by dVX\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<**(geometric centripetal - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{"VXp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+     "/", "sstatic"}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  "\"\<1/2 = geometric centripetal - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<**(discrete - geometric)^.5 divided by s\>\"", 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "\"\<\>\"", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Plot", "[", " ", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"4", " ", "n", " ", 
+            RowBox[{"dVRstatic", "/", 
+             RowBox[{"(", 
+              RowBox[{"2", " ", "Pi"}], ")"}]}]}], ")"}], "^", "2"}], "-", 
+         " ", 
+         RowBox[{"VXp", " ", 
+          RowBox[{"(", 
+           RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "^", ".5"}], 
+      "/", "s"}], ",", " ", 
+     RowBox[{"1", "/", "2"}], ",", " ", 
+     RowBox[{
+      RowBox[{"6", "^", ".5"}], "/", "6"}]}], "}"}], ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", " ", "end"}], "}"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+  "Print", "[", 
+   "\"\<6^.5/6 to 1/2 = (discrete - geometric)^.5 divided by s\>\"", "]"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.845049348254758*^9, 3.8450495444688997`*^9}, {
+   3.845049679831151*^9, 3.84504983238913*^9}, {3.845049903273591*^9, 
+   3.845049963103286*^9}, {3.8450500169917192`*^9, 3.8450500275049953`*^9}, {
+   3.845111186521904*^9, 3.845111288094593*^9}, {3.8451113295175333`*^9, 
+   3.845111329620796*^9}, {3.845111360649486*^9, 3.8451114279316263`*^9}, {
+   3.845111464998425*^9, 3.84511155688658*^9}, {3.8451115974304447`*^9, 
+   3.845111646675899*^9}, {3.8451116881881943`*^9, 3.8451118056773376`*^9}, {
+   3.8451168466986227`*^9, 3.845116901718196*^9}, {3.8451169318738213`*^9, 
+   3.845117087114757*^9}, {3.8451171225664988`*^9, 3.84511725130801*^9}, {
+   3.84511729702878*^9, 3.845117369948773*^9}, {3.845117424102707*^9, 
+   3.8451174944117823`*^9}, {3.845117532448477*^9, 3.84511753432265*^9}, {
+   3.845117579525704*^9, 3.845117693878664*^9}, {3.845130066767612*^9, 
+   3.845130077335699*^9}, {3.84513012556391*^9, 3.8451301363839817`*^9}, {
+   3.8451301928714027`*^9, 3.8451302415613194`*^9}, {3.845130470738096*^9, 
+   3.845130492341155*^9}, {3.845130525171142*^9, 3.845130533913548*^9}, {
+   3.84513085918598*^9, 3.845130985373069*^9}, {3.845193416467319*^9, 
+   3.8451934687081614`*^9}, {3.845193717208631*^9, 3.845193717738058*^9}, {
+   3.8451940008407297`*^9, 3.8451940018909483`*^9}, {3.845196293517289*^9, 
+   3.845196407475189*^9}, {3.8451964937340612`*^9, 3.845196809957213*^9}, {
+   3.845209998655262*^9, 3.84521000291321*^9}, {3.8452100769579697`*^9, 
+   3.8452100783980217`*^9}, {3.845210169567637*^9, 3.8452101772737837`*^9}, {
+   3.8452102206752577`*^9, 3.845210221044087*^9}, {3.8452106423011208`*^9, 
+   3.8452106462567463`*^9}, {3.845210702524228*^9, 3.845210807369452*^9}, {
+   3.845210848442503*^9, 3.845210856523106*^9}, {3.845210916410604*^9, 
+   3.845210931538662*^9}, {3.845210965474728*^9, 3.8452109682671423`*^9}, {
+   3.845211040646037*^9, 3.8452111194823303`*^9}, {3.84521116156219*^9, 
+   3.8452111699328213`*^9}, {3.845211260084981*^9, 3.845211506760346*^9}, {
+   3.845211544968484*^9, 3.845211669748287*^9}, {3.8452117203984423`*^9, 
+   3.845211725498003*^9}, {3.8452117947100477`*^9, 3.845211882413125*^9}, {
+   3.84521192995163*^9, 3.845211933108624*^9}, 3.845211989209866*^9, {
+   3.8452120952781553`*^9, 3.845212099377749*^9}, {3.845212132926859*^9, 
+   3.845212134106617*^9}, {3.84521216682318*^9, 3.845212285597013*^9}, 
+   3.845212323363435*^9, {3.8452123731594973`*^9, 3.845212408791091*^9}, {
+   3.8452124424395523`*^9, 3.845212531801878*^9}, {3.845212572194673*^9, 
+   3.845212572837109*^9}, {3.845212678812223*^9, 3.845212858859274*^9}, {
+   3.845219779034865*^9, 3.845219871358493*^9}, {3.845219925184758*^9, 
+   3.845220014861918*^9}, {3.8452201054314623`*^9, 3.8452201593868723`*^9}, {
+   3.84522019734485*^9, 3.845220269373707*^9}, {3.845284225392527*^9, 
+   3.845284300566177*^9}, {3.845284405246416*^9, 3.845284473269701*^9}, {
+   3.845284549100395*^9, 3.8452845525559483`*^9}, {3.845284591960711*^9, 
+   3.845284722318228*^9}, {3.845284789237502*^9, 3.845284826218645*^9}, {
+   3.8452848594542027`*^9, 3.845284863909236*^9}, {3.845285134275485*^9, 
+   3.845285135197063*^9}, {3.8452851865899887`*^9, 3.845285189325655*^9}, {
+   3.845285233763825*^9, 3.845285310038515*^9}, {3.8452856844005623`*^9, 
+   3.8452858796088333`*^9}, {3.845286052631733*^9, 3.845286135503881*^9}, {
+   3.8452861745275917`*^9, 3.845286196306683*^9}, {3.845286240092643*^9, 
+   3.845286308295981*^9}, {3.845286342243061*^9, 3.84528634278649*^9}, {
+   3.845286374963889*^9, 3.8452864737078953`*^9}, {3.8452865057874193`*^9, 
+   3.845286637031994*^9}, {3.8452866722217627`*^9, 3.845286911383617*^9}, {
+   3.845286971628933*^9, 3.8452870019427443`*^9}, {3.845287057516335*^9, 
+   3.845287078971449*^9}, {3.845287122251251*^9, 3.845287169852216*^9}, {
+   3.845288713788395*^9, 3.845288826952895*^9}, {3.845288877155966*^9, 
+   3.8452888935618896`*^9}, {3.8452890099007263`*^9, 3.845289010083774*^9}, {
+   3.845289052239011*^9, 3.845289053170257*^9}, {3.8452890864567223`*^9, 
+   3.845289093418704*^9}, {3.845289136234755*^9, 3.845289140441476*^9}, {
+   3.8452891849123163`*^9, 3.845289308899209*^9}, {3.845289372595862*^9, 
+   3.845289413565287*^9}, {3.845289469476475*^9, 3.845289479753067*^9}, {
+   3.84528951833185*^9, 3.8452895188120527`*^9}, {3.845289559303411*^9, 
+   3.8452895648355083`*^9}, {3.845289595407448*^9, 3.845289659382038*^9}, {
+   3.8452897177298107`*^9, 3.8452897335143948`*^9}, {3.8452897715645514`*^9, 
+   3.845289807094557*^9}, {3.845289840960578*^9, 3.8452898446765127`*^9}, {
+   3.84528989377573*^9, 3.845290032021456*^9}, {3.845290063556281*^9, 
+   3.845290074525297*^9}, {3.8452901284757643`*^9, 3.845290323738181*^9}, {
+   3.845290359924711*^9, 3.845290415431526*^9}, {3.8452904770267057`*^9, 
+   3.8452905162495823`*^9}, {3.845290605390637*^9, 3.845290627169405*^9}, {
+   3.845290658044087*^9, 3.845290892589232*^9}, {3.845290976608827*^9, 
+   3.8452910131010847`*^9}, {3.845291067981676*^9, 3.845291078682845*^9}, {
+   3.845291139806178*^9, 3.845291258618661*^9}, {3.845310898647053*^9, 
+   3.845310903270975*^9}, {3.845310939159008*^9, 3.8453109649172087`*^9}, {
+   3.8453110209404507`*^9, 3.845311110016152*^9}, {3.845311187723262*^9, 
+   3.845311188442922*^9}, {3.845311227715169*^9, 3.8453112551517277`*^9}, {
+   3.8453112913554*^9, 3.845311295858591*^9}, {3.845311329912023*^9, 
+   3.845311342126315*^9}, {3.845311386001678*^9, 3.845311443873839*^9}, {
+   3.845311510426235*^9, 3.845311510839837*^9}, {3.845311567971572*^9, 
+   3.845311578351053*^9}, {3.845311610014707*^9, 3.8453116296185427`*^9}, {
+   3.84531166253712*^9, 3.845311673267617*^9}, {3.8453117098638067`*^9, 
+   3.845311713391979*^9}, {3.845311869772603*^9, 3.845311908578991*^9}, {
+   3.8453119402043858`*^9, 3.845311982550551*^9}, 3.84531202516185*^9, 
+   3.8453120595638866`*^9, {3.845312091732026*^9, 3.845312093030942*^9}, {
+   3.845312134607386*^9, 3.84531214676518*^9}, {3.8453121836186867`*^9, 
+   3.84531218672709*^9}, {3.845312255942725*^9, 3.845312328817231*^9}, {
+   3.845312372814702*^9, 3.845312380766609*^9}, {3.845313922782683*^9, 
+   3.845313957922944*^9}, {3.8453140327969103`*^9, 3.845314131988546*^9}, {
+   3.845314182269086*^9, 3.845314189058393*^9}, {3.845314316109874*^9, 
+   3.845314373585087*^9}, 3.845314483381771*^9, {3.845314558657127*^9, 
+   3.845314560142479*^9}, {3.845314627704191*^9, 3.8453146640620728`*^9}, {
+   3.845314696370346*^9, 3.84531481812379*^9}, {3.8453149832656918`*^9, 
+   3.845314986218071*^9}, {3.845315018710018*^9, 3.845315021944303*^9}, {
+   3.8453150575896597`*^9, 3.84531506076737*^9}, {3.845315096058276*^9, 
+   3.8453151120976686`*^9}, {3.8453152178840017`*^9, 3.845315320553749*^9}, {
+   3.845315397408086*^9, 3.845315408659037*^9}, {3.845315474978644*^9, 
+   3.8453154755216703`*^9}, {3.845315509238317*^9, 3.845315658740592*^9}, {
+   3.845315704477923*^9, 3.8453157049144917`*^9}, 3.84531575702134*^9, {
+   3.845315826415797*^9, 3.845315883328944*^9}, {3.8453696791477213`*^9, 
+   3.845369736434222*^9}, {3.8453698044700613`*^9, 3.845369838060055*^9}, {
+   3.845369868358151*^9, 3.845370022716242*^9}, {3.8453700534769087`*^9, 
+   3.845370200241188*^9}, {3.845370232179908*^9, 3.845370297627899*^9}, {
+   3.845370336407961*^9, 3.845370337762121*^9}, {3.845370369367193*^9, 
+   3.845370424399809*^9}, {3.8453705696779013`*^9, 3.845370584449885*^9}, 
+   3.845370614810999*^9, {3.845370651560933*^9, 3.845371091357759*^9}, {
+   3.845372118034589*^9, 3.8453722299044933`*^9}, {3.8453723355489807`*^9, 
+   3.845372360237596*^9}, {3.845372424003504*^9, 3.84537243303568*^9}, {
+   3.845373516255381*^9, 3.845373575741098*^9}, {3.8453736180414467`*^9, 
+   3.845373678874055*^9}, {3.845373742621705*^9, 3.84537386185541*^9}, {
+   3.84537404841936*^9, 3.845374076959545*^9}, {3.8453741112132483`*^9, 
+   3.84537411696703*^9}, {3.845374159154776*^9, 3.845374159820133*^9}, {
+   3.8453742338702183`*^9, 3.8453743114047203`*^9}, {3.845374365600148*^9, 
+   3.8453743810581417`*^9}, {3.84537446732614*^9, 3.845374470405437*^9}, {
+   3.8453808475910273`*^9, 3.8453808513211603`*^9}, {3.845381030748414*^9, 
+   3.845381063342854*^9}, {3.84538109535942*^9, 3.845381104033711*^9}, {
+   3.845381183633312*^9, 3.8453812110870943`*^9}, {3.8453812840124407`*^9, 
+   3.845381284357189*^9}, {3.845381359108316*^9, 3.845381363116544*^9}, {
+   3.845381402527454*^9, 3.845381415933498*^9}, {3.8453814599718113`*^9, 
+   3.845381462448678*^9}, {3.845390518995907*^9, 3.845390522982408*^9}, {
+   3.845390596613735*^9, 3.8453906775941067`*^9}, {3.845390711185072*^9, 
+   3.845390711974903*^9}, {3.845390943294697*^9, 3.845390981987471*^9}, {
+   3.8453910507148123`*^9, 3.8453910619447927`*^9}, {3.845391133572563*^9, 
+   3.845391151832679*^9}, {3.845391316978465*^9, 3.8453913626581173`*^9}, {
+   3.845396528423686*^9, 3.845396552239934*^9}, {3.845396584801153*^9, 
+   3.8453965891104507`*^9}, {3.845396732254868*^9, 3.8453967546884813`*^9}, {
+   3.845396825244529*^9, 3.845396826313674*^9}, {3.845396866652358*^9, 
+   3.845396896672482*^9}, {3.8453972841333714`*^9, 3.845397287493586*^9}, {
+   3.845399170691568*^9, 3.845399172531172*^9}, {3.845399251899502*^9, 
+   3.845399277213649*^9}, {3.8453993634587803`*^9, 3.845399364053426*^9}, {
+   3.845399394905924*^9, 3.845399502058483*^9}, {3.8453995680095043`*^9, 
+   3.845399573146427*^9}, {3.845400843481206*^9, 3.845400875126343*^9}, {
+   3.845401125269559*^9, 3.8454011374098787`*^9}, 3.845401178939825*^9, {
+   3.845401220763805*^9, 3.845401298422599*^9}, {3.845401338991272*^9, 
+   3.845401388212675*^9}, {3.8454014225734367`*^9, 3.84540143451933*^9}, {
+   3.845410787176241*^9, 3.845410869306728*^9}, {3.8454109309284782`*^9, 
+   3.84541093234306*^9}, {3.845411046550761*^9, 3.845411071264039*^9}, {
+   3.8454111219548597`*^9, 3.8454111328149137`*^9}, {3.845411279328348*^9, 
+   3.845411283557778*^9}, {3.845411326192032*^9, 3.8454113792925034`*^9}, {
+   3.845411762285796*^9, 3.845411837164043*^9}, {3.845411888134471*^9, 
+   3.845411904676252*^9}, 3.845411937873726*^9, {3.845412025930808*^9, 
+   3.84541209919125*^9}, {3.845412154335638*^9, 3.845412200710503*^9}, {
+   3.8454122525837517`*^9, 3.8454122540751467`*^9}, {3.845412302469697*^9, 
+   3.845412391892645*^9}, {3.845412437386385*^9, 3.845412450216*^9}, {
+   3.84541250996132*^9, 3.845412510591935*^9}, {3.845412553545105*^9, 
+   3.845412557156151*^9}, {3.845461806326882*^9, 3.845461815539589*^9}, {
+   3.845461851640215*^9, 3.845461918324201*^9}, {3.845462029575552*^9, 
+   3.845462060270102*^9}, {3.845462173052945*^9, 3.8454621925977373`*^9}, {
+   3.84546223198316*^9, 3.845462232546041*^9}, {3.845462264724881*^9, 
+   3.84546260660646*^9}, {3.845462751438334*^9, 3.845462941356586*^9}, {
+   3.8454629982951508`*^9, 3.8454630546669292`*^9}, {3.84546318168108*^9, 
+   3.8454632107447767`*^9}, {3.8454645418457613`*^9, 3.845464624766267*^9}, {
+   3.845464657338127*^9, 3.845464659568449*^9}, 3.84546472636178*^9, {
+   3.845464848829962*^9, 3.845464861461527*^9}, {3.8454716610511913`*^9, 
+   3.845471717574193*^9}, {3.8454754172479877`*^9, 3.845475423810719*^9}, {
+   3.8454754768799458`*^9, 3.845475567619569*^9}, {3.845475817798748*^9, 
+   3.845475860807901*^9}, {3.8454759256266193`*^9, 3.8454759530469933`*^9}, {
+   3.845476045336442*^9, 3.845476296801736*^9}, {3.8454765704787073`*^9, 
+   3.845476580891*^9}, {3.845560294923586*^9, 3.845560306591318*^9}, {
+   3.845635477581977*^9, 3.8456355050511007`*^9}, {3.845635536749743*^9, 
+   3.845635784284433*^9}, {3.845636017420223*^9, 3.845636081143406*^9}, {
+   3.845647401107421*^9, 3.845647452975967*^9}, {3.845647500872373*^9, 
+   3.8456475037132196`*^9}, {3.8456478202217693`*^9, 3.845647829461187*^9}, {
+   3.845654765668085*^9, 3.84565476621832*^9}, {3.845978064358776*^9, 
+   3.845978168369741*^9}, {3.845978625894594*^9, 3.845978632811872*^9}, {
+   3.845978765249359*^9, 3.845978776230349*^9}, {3.8459789968137817`*^9, 
+   3.845979080958919*^9}, {3.845979141949031*^9, 3.845979235417211*^9}, {
+   3.845981254592846*^9, 3.8459812674808493`*^9}, {3.845981374951272*^9, 
+   3.845981375455987*^9}, {3.845981457239213*^9, 3.845981483028801*^9}, {
+   3.845981580707293*^9, 3.8459815878961573`*^9}, {3.845981645579514*^9, 
+   3.845981661399085*^9}, {3.8459817884858007`*^9, 3.84598184126563*^9}, {
+   3.845984960446395*^9, 3.8459849733746147`*^9}, {3.845985014458671*^9, 
+   3.845985082271983*^9}, {3.845994321674162*^9, 3.845994335542591*^9}, {
+   3.845994399374387*^9, 3.8459944003603783`*^9}, {3.845994518413486*^9, 
+   3.8459945930399303`*^9}, {3.8459946305292177`*^9, 3.8459947459185*^9}, {
+   3.845994781274242*^9, 3.8459948207805643`*^9}, {3.8459948573963737`*^9, 
+   3.8459951010517817`*^9}, {3.84650304087772*^9, 3.846503046674822*^9}, {
+   3.846605617540635*^9, 3.846605656935166*^9}, {3.846605690847925*^9, 
+   3.846605816733552*^9}, {3.846605860347642*^9, 3.8466059402041407`*^9}, {
+   3.846605999731686*^9, 3.8466060702986097`*^9}, {3.846606172236714*^9, 
+   3.8466062073563347`*^9}, {3.8466063110574217`*^9, 
+   3.8466063906019087`*^9}, {3.846606673017123*^9, 3.846606690778345*^9}, {
+   3.846606729496871*^9, 3.846606733176813*^9}, {3.846606790915682*^9, 
+   3.8466067926210814`*^9}, {3.846606863770522*^9, 3.84660687093396*^9}, {
+   3.846606918526217*^9, 3.8466069190593977`*^9}, {3.846606998003572*^9, 
+   3.84660703705617*^9}, {3.846607134620014*^9, 3.846607136148209*^9}, {
+   3.846607184597207*^9, 3.846607184876429*^9}, {3.846607321840218*^9, 
+   3.8466073420551558`*^9}, {3.846607395815733*^9, 3.846607418394992*^9}, {
+   3.846607526960656*^9, 3.846607570097145*^9}, {3.846607621224812*^9, 
+   3.846607625212305*^9}, {3.846608120188116*^9, 3.846608132571293*^9}, {
+   3.846608170164604*^9, 3.8466082190944853`*^9}, {3.846608259667412*^9, 
+   3.846608260030007*^9}, {3.846608293909937*^9, 3.8466085868545837`*^9}, {
+   3.846661178662648*^9, 3.8466611829228783`*^9}, {3.847280904934565*^9, 
+   3.847280905868092*^9}, {3.849603015622108*^9, 3.849603016205945*^9}, {
+   3.849702538609316*^9, 3.849702543442161*^9}, {3.849702577851417*^9, 
+   3.849702580555348*^9}},
+ CellLabel->
+  "In[350]:=",ExpressionUUID->"838d685f-26f8-4aab-8a31-56a393f1f239"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923187498*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"a991bbb2-efe2-4852-b0a8-48e0632d7264"],
+
+Cell[BoxData["\<\"Put energy equivalence equation in terms of c \"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349231884336`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e5cb66e5-c741-4e37-aecf-739a9e153a0b"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349231893263`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"3ca454f7-974d-46bc-ad9f-18131ab4f99d"],
+
+Cell[BoxData["\<\"Since (1/2)s^2 =  dVR VR - dVX VX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349231899147`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"219f202c-ac00-4da2-a560-1cd3f17304d3"],
+
+Cell[BoxData["\<\"substituting for VX gives...\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923190536*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b9eb93df-3d6d-4634-85f4-b70c8d36255e"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Solve","ifun",
+   "\"Inverse functions are being used by \
+\\!\\(\\*RowBox[{\\\"Solve\\\"}]\\), so some solutions may not be found; use \
+Reduce for complete solution information.\"",2,356,1,23539491993919122857,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349232023907`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e9905d2d-efbe-4bca-bda8-702a941506f4"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"cz", "\[Rule]", 
+     RowBox[{"-", 
+      FractionBox[
+       RowBox[{"1.`", " ", 
+        SqrtBox[
+         RowBox[{
+          RowBox[{"0.25`", " ", 
+           SuperscriptBox["sz", "4"]}], "-", 
+          RowBox[{"1.`", " ", "dVRz", " ", 
+           SuperscriptBox["sz", "2"], " ", "VRz"}], "+", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"1.`", " ", 
+              SuperscriptBox["dVRz", "2"]}], "+", 
+             RowBox[{"1.`", " ", 
+              SuperscriptBox["dVXz", "2"]}]}], ")"}], " ", 
+           SuperscriptBox["VRz", "2"]}]}]]}], "dVXz"]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"cz", "\[Rule]", 
+     FractionBox[
+      SqrtBox[
+       RowBox[{
+        RowBox[{"0.25`", " ", 
+         SuperscriptBox["sz", "4"]}], "-", 
+        RowBox[{"1.`", " ", "dVRz", " ", 
+         SuperscriptBox["sz", "2"], " ", "VRz"}], "+", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"1.`", " ", 
+            SuperscriptBox["dVRz", "2"]}], "+", 
+           RowBox[{"1.`", " ", 
+            SuperscriptBox["dVXz", "2"]}]}], ")"}], " ", 
+         SuperscriptBox["VRz", "2"]}]}]], "dVXz"]}], "}"}]}], "}"}]], "Output",\
+
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923226625*^9},
+ CellLabel->
+  "Out[356]=",ExpressionUUID->"e2142c10-1b27-45e7-bd7c-c8e43eea5064"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"cz\[Rule]\\!\\(\\*FractionBox[\\(sz \
+\\*SqrtBox[\\(\\((1/4)\\)\\\\ \\*SuperscriptBox[\\(sz\\), \\(2\\)] + \\\\ \
+\\\\ \\\\ VRz \\((VRz\\\\  - \\\\ dVRz)\\)\\)]\\), \\(dVXz\\)]\\)\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923227646*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"49cfb7c8-1363-40cc-a37f-5e071f99a8f3"],
+
+Cell[BoxData["\<\"where VRz(VRz - dVRz) = area of elipsis and/or geometric \
+average\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349232291193`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"76bb60ac-b43d-42b1-bb8f-eaab42eaa6b4"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923230453*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d34c423b-650f-46f1-9bd9-3488a52521dd"],
+
+Cell[BoxData["\<\"Setup equations to evaluate change during acceleration \
+frame\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923231071*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"1376109c-7e77-40af-896d-caaa623b1620"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349232317133`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"68c6000f-10a2-4daa-b5f1-4a3a03e478e4"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"dVXp = (c Sin[i Pi/(2 n)]- c Sin[IntegerPart[i] Pi/(2 n)]) =  \
+\"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Sin", "[", 
+      FractionBox[
+       RowBox[{"i", " ", "\[Pi]"}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}], "-", 
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Sin", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}]}]}],
+  SequenceForm[
+  "dVXp = (c Sin[i Pi/(2 n)]- c Sin[IntegerPart[i] Pi/(2 n)]) =  ", 
+   2.99792458*^8 Sin[Rational[1, 2] $CellContext`i $CellContext`n^(-1) Pi] - 
+   2.99792458*^8 
+   Sin[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923232438*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"0fc8a7d5-fed8-4851-9ab0-d5c0d8900885"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"dVXstatic = (c Sin[(IntegerPart[i] + 1) Pi/(2 n)]- c \
+Sin[IntegerPart[i] Pi/(2 n)]) =  \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "2.99792458`*^8"}], " ", 
+     RowBox[{"Sin", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}], "+", 
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Sin", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"IntegerPart", "[", "i", "]"}]}], ")"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}]}]}],
+  SequenceForm[
+  "dVXstatic = (c Sin[(IntegerPart[i] + 1) Pi/(2 n)]- c Sin[IntegerPart[i] \
+Pi/(2 n)]) =  ", (-2.99792458*^8) 
+    Sin[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]] + 
+   2.99792458*^8 
+    Sin[Rational[1, 2] $CellContext`n^(-1) 
+      Pi (1 + IntegerPart[$CellContext`i])]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923233346*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e6ee80d9-83ab-42e2-ab76-64952cb501cd"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"dVRp = (c Cos[IntegerPart[i] Pi/(2 n)]- c Cos[i Pi/(2 n)])  =  \
+\"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "2.99792458`*^8"}], " ", 
+     RowBox[{"Cos", "[", 
+      FractionBox[
+       RowBox[{"i", " ", "\[Pi]"}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}], "+", 
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Cos", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}]}]}],
+  SequenceForm[
+  "dVRp = (c Cos[IntegerPart[i] Pi/(2 n)]- c Cos[i Pi/(2 n)])  =  ", \
+(-2.99792458*^8) Cos[Rational[1, 2] $CellContext`i $CellContext`n^(-1) Pi] + 
+   2.99792458*^8 
+    Cos[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923234188*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"afe82fcf-7c4c-42d7-ad43-64c6aa3edf12"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"dVRstatic = (c Cos[IntegerPart[i] Pi/(2 n)]- c \
+Cos[(IntegerPart[i] + 1) Pi/(2 n)]) =  \"\>", "\[InvisibleSpace]", 
+   RowBox[{
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Cos", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}], "-", 
+    RowBox[{"2.99792458`*^8", " ", 
+     RowBox[{"Cos", "[", 
+      FractionBox[
+       RowBox[{"\[Pi]", " ", 
+        RowBox[{"(", 
+         RowBox[{"1", "+", 
+          RowBox[{"IntegerPart", "[", "i", "]"}]}], ")"}]}], 
+       RowBox[{"2", " ", "n"}]], "]"}]}]}]}],
+  SequenceForm[
+  "dVRstatic = (c Cos[IntegerPart[i] Pi/(2 n)]- c Cos[(IntegerPart[i] + 1) \
+Pi/(2 n)]) =  ", 
+   2.99792458*^8 
+    Cos[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]] - 
+   2.99792458*^8 
+   Cos[Rational[1, 2] $CellContext`n^(-1) 
+     Pi (1 + IntegerPart[$CellContext`i])]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923235004*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"65735598-c5b7-4f9b-9364-4f0894ccd392"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"VXp = (c Sin[IntegerPart[i] Pi/(2 n)]) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"2.99792458`*^8", " ", 
+    RowBox[{"Sin", "[", 
+     FractionBox[
+      RowBox[{"\[Pi]", " ", 
+       RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+      RowBox[{"2", " ", "n"}]], "]"}]}]}],
+  SequenceForm[
+  "VXp = (c Sin[IntegerPart[i] Pi/(2 n)]) = ", 2.99792458*^8 
+   Sin[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403492323577*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"f5ce5284-a216-4a91-b8aa-c5853090d4c6"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"VRp = (c Cos[IntegerPart[i] Pi/(2 n)]) = \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"2.99792458`*^8", " ", 
+    RowBox[{"Cos", "[", 
+     FractionBox[
+      RowBox[{"\[Pi]", " ", 
+       RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+      RowBox[{"2", " ", "n"}]], "]"}]}]}],
+  SequenceForm[
+  "VRp = (c Cos[IntegerPart[i] Pi/(2 n)]) = ", 2.99792458*^8 
+   Cos[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923236462*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"8ecf707b-d3e3-4608-ac47-8b1d507d3918"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"sp = (dVXp^2 + dVRp^2)^.5 = \"\>", "\[InvisibleSpace]", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2.99792458`*^8"}], " ", 
+          RowBox[{"Cos", "[", 
+           FractionBox[
+            RowBox[{"i", " ", "\[Pi]"}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}], "+", 
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Cos", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}]}], ")"}], "2"], "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"i", " ", "\[Pi]"}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}], "-", 
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}]}], ")"}], "2"]}], ")"}], 
+    "0.5`"]}],
+  SequenceForm[
+  "sp = (dVXp^2 + dVRp^2)^.5 = ", (((-2.99792458*^8) 
+       Cos[Rational[1, 2] $CellContext`i $CellContext`n^(-1) Pi] + 
+      2.99792458*^8 
+       Cos[Rational[1, 2] $CellContext`n^(-1) Pi 
+         IntegerPart[$CellContext`i]])^2 + (
+      2.99792458*^8 Sin[Rational[1, 2] $CellContext`i $CellContext`n^(-1) Pi] - 
+      2.99792458*^8 
+      Sin[Rational[1, 2] $CellContext`n^(-1) Pi 
+        IntegerPart[$CellContext`i]])^2)^0.5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349232373447`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"34c28b9a-944f-4001-ae26-04254c6228bc"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"sstatic = (dVXstatic^2 + dVRstatic^2)^.5 = \"\>", 
+   "\[InvisibleSpace]", 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Cos", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}], "-", 
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Cos", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"(", 
+              RowBox[{"1", "+", 
+               RowBox[{"IntegerPart", "[", "i", "]"}]}], ")"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}]}], ")"}], "2"], "+", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", "2.99792458`*^8"}], " ", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"IntegerPart", "[", "i", "]"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}], "+", 
+         RowBox[{"2.99792458`*^8", " ", 
+          RowBox[{"Sin", "[", 
+           FractionBox[
+            RowBox[{"\[Pi]", " ", 
+             RowBox[{"(", 
+              RowBox[{"1", "+", 
+               RowBox[{"IntegerPart", "[", "i", "]"}]}], ")"}]}], 
+            RowBox[{"2", " ", "n"}]], "]"}]}]}], ")"}], "2"]}], ")"}], 
+    "0.5`"]}],
+  SequenceForm[
+  "sstatic = (dVXstatic^2 + dVRstatic^2)^.5 = ", ((
+      2.99792458*^8 
+       Cos[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]] - 
+      2.99792458*^8 
+      Cos[Rational[1, 2] $CellContext`n^(-1) 
+        Pi (1 + IntegerPart[$CellContext`i])])^2 + ((-2.99792458*^8) 
+       Sin[Rational[1, 2] $CellContext`n^(-1) Pi IntegerPart[$CellContext`i]] + 
+      2.99792458*^8 
+       Sin[Rational[1, 2] $CellContext`n^(-1) 
+         Pi (1 + IntegerPart[$CellContext`i])])^2)^0.5],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403492323842*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b3994099-75ad-4738-b68b-814c130ffd49"],
+
+Cell[BoxData["\<\"Perform sanity check on functions\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349232392817`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"860085f6-cdae-4f12-9bcf-7d598e365e77"]
+}, Open  ]],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923239909*^9},
+ CellLabel->
+  "Out[371]=",ExpressionUUID->"b2e27868-2c8b-46d9-9b60-8cb4a5b53140"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923241527*^9},
+ CellLabel->
+  "Out[372]=",ExpressionUUID->"99fee511-08c9-43a6-9d85-89a03a264f35"],
+
+Cell[BoxData[
+ GraphicsBox[{GraphicsComplexBox[CompressedData["
+1:eJxTTMoPSmViYGAwAmIQPQpGwSjADQD2ewHg
+    "], {}], {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1}, {0., 1.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923364559*^9},
+ CellLabel->
+  "Out[373]=",ExpressionUUID->"a17bf99d-53d2-49ab-884c-d91c49026bd6"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1}, {0., 0.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923399329*^9},
+ CellLabel->
+  "Out[374]=",ExpressionUUID->"6e6f90c0-dd8a-4684-bec2-1d47bf4f993d"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImagePadding->All,
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, 
+    "DefaultGraphicsInteraction" -> {
+     "Version" -> 1.2, "TrackMousePosition" -> {True, False}, 
+      "Effects" -> {
+       "Highlight" -> {"ratio" -> 2}, "HighlightPoint" -> {"ratio" -> 2}, 
+        "Droplines" -> {
+         "freeformCursorMode" -> True, 
+          "placement" -> {"x" -> "All", "y" -> "None"}}}}, "DefaultMeshStyle" -> 
+    AbsolutePointSize[6], "ScalingFunctions" -> None, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        (Identity[#]& )[
+         Part[#, 1]], 
+        (Identity[#]& )[
+         Part[#, 2]]}& )}},
+  PlotRange->{{0, 1}, {0., 0.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.85403492343188*^9},
+ CellLabel->
+  "Out[375]=",ExpressionUUID->"6db9a95e-2da4-4b3b-8a61-c0a8c7766095"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923434964*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6a7c0ba0-bc8b-4385-8c53-7463fd937a4e"],
+
+Cell[BoxData["\<\"Plot incremental change during accelerating frames\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923436067*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d1bb400e-e531-4315-b210-58e2da2a408f"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349234375896`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"143ab476-1640-49e6-a8ae-320a097efb75"]
+}, Open  ]],
+
+Cell[BoxData["2.99792458`*^8"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923438217*^9},
+ CellLabel->
+  "Out[380]=",ExpressionUUID->"0996e22d-1fa0-47b5-8f97-b3d8798d73f6"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923439769*^9},
+ CellLabel->
+  "Out[381]=",ExpressionUUID->"66a06873-7001-49c5-8449-5bf37dae09d9"],
+
+Cell[BoxData["n"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923440844*^9},
+ CellLabel->
+  "Out[382]=",ExpressionUUID->"244f25f5-c64f-4ae3-a883-c4606685f7bd"],
+
+Cell[BoxData["\<\"Evaluate how dVXp/dVXstatic ratio compares to \
+dVRp/dVRstatic ratio\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034923441965*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"c9245dea-2a82-42d7-8176-41541438055e"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,384,2,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034923443082*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"2ccaf9ea-5a00-40c2-a748-109f553286fc"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox["dVXp", "dVXstatic"], ",", 
+     FractionBox["dVRp", "dVRstatic"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.8540349234469624`*^9},
+ CellLabel->
+  "Out[384]=",ExpressionUUID->"c7d9d7b5-7534-4d19-aaf5-9ceaf29c8c9f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,385,3,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349234477167`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"c358b901-0bb3-4f87-af24-dab1ac7d2833"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["i", "end"], ")"}], "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["i", "end"], ")"}], "2"]}], ")"}], "0.5`"], ",", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["dVXp", "dVXstatic"], ")"}], "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox["dVRp", "dVRstatic"], ")"}], "2"]}], ")"}], "0.5`"]}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923451572*^9},
+ CellLabel->
+  "Out[385]=",ExpressionUUID->"c00b31a7-2bf9-4507-968f-3461aa8df103"],
+
+Cell[BoxData["\<\"Evaluate how the geometric-centripetal/dVXstatic compares \
+to n\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349234523897`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"448b2722-1a20-43e3-a61a-9ae2336d009f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,387,4,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034923453546*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9ba8e6c0-8754-454f-bb4c-f5e4267762c4"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"VRp", " ", 
+          RowBox[{"(", 
+           RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}], "+", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           FractionBox["sstatic", "2"], ")"}], "2"]}], ")"}], "0.5`"], 
+      "dVXstatic"], "-", 
+     FractionBox[
+      RowBox[{"2", " ", "n"}], "\[Pi]"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034923457082*^9},
+ CellLabel->
+  "Out[387]=",ExpressionUUID->"103fef1a-84b6-49cc-95e5-da1b4d16286a"],
+
+Cell[BoxData["$Aborted"], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.85403493672444*^9},
+ CellLabel->
+  "Out[388]=",ExpressionUUID->"dbb2ba2a-2fb1-47a4-92da-454d983d9a39"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\\!\\(\\*FractionBox[SuperscriptBox[\\((\\*FractionBox[\
+SuperscriptBox[\\(sstaticz\\), \\(2\\)], \\(4\\)] + VRpz\\\\ \
+\\((\\(-dVRstaticz\\) + VRpz)\\))\\), \\(0.5`\\)], \
+\\(dVXstaticz\\)]\\)-\\!\\(\\*FractionBox[\\(2\\\\ nz\\), \\(\[Pi]\\)]\\) = \
+\\!\\(\\*FractionBox[\\(1\\), \\(2\\)]\\)\\!\\(\\*FractionBox[\\(1\\), \
+\\(6\\)]\\)\\!\\(\\*FractionBox[\\(\[Pi]\\), \\(\\(\\\\ \\)\\(4\\\\ nz\\)\\)]\
+\\) = \"\>", "\[InvisibleSpace]", 
+   FractionBox["0.06544984694978735`", "n"]}],
+  SequenceForm[
+  "\!\(\*FractionBox[SuperscriptBox[\((\*FractionBox[SuperscriptBox[\(\
+sstaticz\), \(2\)], \(4\)] + VRpz\\ \((\(-dVRstaticz\) + VRpz)\))\), \
+\(0.5`\)], \(dVXstaticz\)]\)-\!\(\*FractionBox[\(2\\ nz\), \(\[Pi]\)]\) = \
+\!\(\*FractionBox[\(1\), \(2\)]\)\!\(\*FractionBox[\(1\), \
+\(6\)]\)\!\(\*FractionBox[\(\[Pi]\), \(\(\\ \)\(4\\ nz\)\)]\) = ", 
+   0.06544984694978735/$CellContext`n],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367260838`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e9fdac9c-82f5-4018-a1b6-9e590c6fea21"],
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936727866*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"380b4130-c2c3-4fa0-a791-55253db6be00"],
+
+Cell[BoxData["\<\"Rearrange to get 2nd order Reimann Zeta function using \
+energy equivalance\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936729424*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"abc268ed-9fd2-4127-b644-c4c605e01b64"],
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936730051*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"785d3988-8c9e-4878-bc44-6d65c260ef76"],
+
+Cell[BoxData["\<\"\\!\\(\\*FractionBox[\\(2  \[Pi] \
+\\*SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), \\(0.5`\\)]\\), \
+\\(dVXstatic\\)]\\) - 4 n = \\!\\(\\*FractionBox[\\(1\\), \
+\\(6\\)]\\)\\!\\(\\*FractionBox[SuperscriptBox[\\(\[Pi]\\), \\(2\\)], \
+\\(\\(\\\\ \\)\\(4\\\\ n\\)\\)]\\)\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936730653*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ae826c45-766d-4f55-af98-6129a86e23b5"],
+
+Cell[BoxData["\<\"\\!\\(\\*FractionBox[SuperscriptBox[\\(\[Pi]\\), \\(2\\)], \
+\\(6\\)]\\) =\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ 2  \[Pi] \
+\\*SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), \\(0.5`\\)]\\), \
+\\(dVXstatic\\)]\\) - (4 n\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) \
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936731702*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9bd48ea9-5abd-4933-86ea-72fa525302b0"],
+
+Cell[BoxData["\<\"Since we know that dVX must discretely sum to the new \
+radius we see that\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936732716*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"66023706-5157-4560-9db9-bdc8df1addb6"],
+
+Cell[BoxData["\<\"(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\)= \
+\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \
+\[Pi]\\)]\\)(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VRp (VRp-dVRstatic)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(0.5\\)]\\)-\\!\\(\\*FractionBox[SuperscriptBox[\\(\[Pi]\\), \\(2\\)], \\(6\
+\\)]\\)(\\!\\(\\*FractionBox[\\(dVXstatic\\), \\(2\\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\)\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367334213`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9a3b4e51-1064-4684-a2da-4af573a27a44"],
+
+Cell[BoxData["\<\"since surface area is 4 \[Pi] r^2, we can multiple both \
+sides by 4 \[Pi] to get\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936734531*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d0800000-1081-4928-bc6b-147089ed4133"],
+
+Cell[BoxData["\<\"4 \[Pi](\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \
+\\(2\\\\ \[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\)= (4\[Pi]\\!\
+\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \
+\[Pi]\\)]\\)(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VRp (VRp-dVRstatic)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(0.5\\)]\\)-\\!\\(\\*FractionBox[SuperscriptBox[\\(\[Pi]\\), \\(2\\)], \\(6\
+\\)]\\)((1/\[Pi])^.5dVXstatic\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\))\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367351913`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"60a57f16-f53a-4a84-be66-3b318adc1880"],
+
+Cell[BoxData["\<\"where ((1/\[Pi])^.5 dVXstatic) equals the side of a \
+discreet square screen on the spherical surface\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367362843`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"3ad141c1-36c5-4c2c-95ab-9f0ce8c1dad4"],
+
+Cell[BoxData["\<\"The equation suggests that the geometric centripetal \
+surface loses a screen's worth of surface area due to Lenz Law and the 2nd \
+order Reimann Zeta function's infinite sum Sum[1/i^2], reducing the radius \
+and surface area to 4\[Pi](\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \
+\\(2\\\\ \[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) \"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936736965*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"72c4b821-22f9-4980-8361-ffe7cb1bdae3"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,401,5,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936737832*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"a19fd8f8-8d98-4bcb-97da-347124fde9ca"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"4", " ", "\[Pi]", " ", 
+      SuperscriptBox[
+       RowBox[{"(", 
+        FractionBox[
+         RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+         RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"]}], "-", 
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"4", " ", "\[Pi]", " ", 
+         RowBox[{"(", 
+          RowBox[{"4", " ", "n", " ", "dVXstatic"}], ")"}], " ", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           RowBox[{
+            FractionBox[
+             SuperscriptBox["sstatic", "2"], "4"], "+", 
+            RowBox[{"VRp", " ", 
+             RowBox[{"(", 
+              RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5`"]}], 
+        
+        RowBox[{"2", " ", "\[Pi]"}]], "-", 
+       RowBox[{
+        FractionBox["1", "6"], " ", 
+        SuperscriptBox["\[Pi]", "2"], " ", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{
+           SuperscriptBox[
+            RowBox[{"(", 
+             FractionBox["1", "\[Pi]"], ")"}], "0.5`"], " ", "dVXstatic"}], 
+          ")"}], "2"]}]}], ")"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936742288*^9},
+ CellLabel->
+  "Out[401]=",ExpressionUUID->"1000f25b-22d6-44a0-9caa-fb4859806ae2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367431583`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7bbf4200-b3dd-4f19-b511-c21e9874f48f"],
+
+Cell[BoxData["\<\"Rearrange to get 2nd order Reimann Zeta function using \
+baseline segment\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367442713`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"60f12900-13ae-4c8d-871b-fc6eaf02768e"],
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493674579*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"c3ab54a4-ae0f-4c80-80aa-ac9308e2dd93"],
+
+Cell[BoxData["\<\"(Pi /(2 n) c)^2 = (s^2 + ((3^.5/6)Pi/(2 n)s)^2) = s^2(1 + \
+((3^.5/6)Pi/(2 n))^2)\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367464*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"70208fdd-1e10-43c0-b644-6bc77c03e1ef"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,406,6,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936747143*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"8a68d4b6-602b-4cc8-9584-18b3aab8d069"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"\[Pi]", " ", "c"}], 
+      RowBox[{"2", " ", "n"}]], ",", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox["s", "2"], "+", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{
+            SuperscriptBox["3", "0.5`"], " ", "\[Pi]", " ", "s"}], 
+           RowBox[{"6", " ", 
+            RowBox[{"(", 
+             RowBox[{"2", " ", "n"}], ")"}]}]], ")"}], "2"]}], ")"}], 
+      "0.5`"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936751625*^9},
+ CellLabel->
+  "Out[406]=",ExpressionUUID->"0de18a8e-3bf9-470b-9c2e-bb16c2a2830d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"centripetal = ((Pi /(2 n) c) - s) = (s^2 + ((3^.5/6)Pi/(2 \
+n)s)^2)^.5 - s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936752365*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7867ae99-ce62-4f7b-9899-9ed882bb7062"],
+
+Cell[BoxData["\<\"Pi^2/6 s^2 = ((4 n s) (4 n centripetal) = ((4 n s) (4 n \
+((s^2 + ((3^.5/6)Pi/(2 n)s)^2)^.5 - s))\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936753484*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e47f2004-739f-4fcd-b4b4-5e8fba775c0d"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,409,7,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349367550697`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b650beed-d830-4cc0-b333-f3f5c55a2a64"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   FractionBox[
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"4", " ", "n"}], ")"}], "2"], " ", 
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox[
+        RowBox[{"\[Pi]", " ", "c"}], 
+        RowBox[{"2", " ", "n"}]], "-", "s"}], ")"}]}], "s"], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936759263*^9},
+ CellLabel->
+  "Out[409]=",ExpressionUUID->"c44d07f7-261a-4f6b-b595-30bca0acc5f5"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,410,8,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936759995*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9bb0169c-bb61-48d6-a6f1-1a3e616cbb17"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[Pi]", "2"], " ", 
+       SuperscriptBox["s", "2"]}], "6"], ",", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"4", " ", "n", " ", "s"}], ")"}], " ", 
+      RowBox[{"(", 
+       RowBox[{"4", " ", "n", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{"(", 
+            RowBox[{
+             SuperscriptBox["s", "2"], "+", 
+             SuperscriptBox[
+              RowBox[{"(", 
+               FractionBox[
+                RowBox[{
+                 SuperscriptBox["3", "0.5`"], " ", "\[Pi]", " ", "s"}], 
+                RowBox[{"6", " ", 
+                 RowBox[{"(", 
+                  RowBox[{"2", " ", "n"}], ")"}]}]], ")"}], "2"]}], ")"}], 
+           "0.5`"], "-", "s"}], ")"}]}], ")"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.85403493676363*^9},
+ CellLabel->
+  "Out[410]=",ExpressionUUID->"60942479-4072-47ab-af6d-cf68f659d945"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936764402*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"a9cca63b-732f-4a84-b578-2e3f1d49270d"],
+
+Cell[BoxData["\<\"Equate s, dVR, dVX equation containing Reimann Zeta \
+function\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936765486*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"fb4a51a1-8b75-4f5c-a0be-61eddfeff748"],
+
+Cell[BoxData["\<\"************************************************************\
+************\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493676698*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"172c8c0e-b778-432a-945e-7f0b35a1afae"],
+
+Cell[BoxData["\<\"start with \\!\\(\\*FractionBox[\\(4\\\\ n\\\\ 2\\\\ Pi\\\\ \
+c\\), \\(sstatic\\)]\\) = \\!\\(\\*FractionBox[\\(4\\\\ n\\\\ 2  \[Pi] \
+\\*SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), \\(0.5`\\)]\\), \
+\\(dVXstatic\\)]\\) \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936767605*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"cef7e0b8-2e49-4d9e-92cf-8348019e9af9"],
+
+Cell[BoxData["\<\"noting that 1 = \\!\\(\\*FractionBox[\\(\\(cz\\)\\(\\\\ \\)\
+\\), \\(\\((\\*FractionBox[\\((4  nz)\\), \\(2  \[Pi]\\)] + \\\\ \\((1/2)\\) \
+\\((1/6)\\) \\*FractionBox[\\(\[Pi]\\), \\(4\\\\ nz\\)])\\) \
+sstatic\\)]\\)\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936768556*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"76b0d121-70e8-42ae-88e3-f83a82f0c66e"],
+
+Cell[BoxData["\<\"rearrange \\!\\(\\*FractionBox[\\(\\(\\\\ \\)\\(c\\)\\), \
+\\(sstatic\\)]\\) = \\!\\(\\*FractionBox[\\(4\\\\ n\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\) + \\!\\(\\*FractionBox[\\(1\\), \
+\\(12\\)]\\)\\!\\(\\*FractionBox[\\(\[Pi]\\), \\(\\(\\\\ \\)\\(4\\\\ n\\)\\)]\
+\\) = \\!\\(\\*FractionBox[SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\\
+(sstatic\\), \\(2\\)], \\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), \
+\\(0.5`\\)], \\(dVXstatic\\)]\\) = \
+\\!\\(\\*FractionBox[SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(\
+sstatic\\), \\(2\\)], \\(4\\)] + VXp\\\\ \\((VXp + dVXstatic)\\))\\), \\(0.5`\
+\\)], \\(dVRstatic\\)]\\) \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936769425*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"728dc2b4-ae74-4398-b611-ea86d32d14d4"],
+
+Cell[BoxData["\<\"relating in 3 dimensions: \\!\\(\\*FractionBox[\\(2\\\\ \
+\\\\ \[Pi]\\\\ c\\), \\(4  n\\\\ sstatic\\)]\\) = 1 + \
+\\!\\(\\*FractionBox[\\(1\\), \\(6\\)]\\)\\!\\(\\*FractionBox[\\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\), \\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\((4  n)\\), \\(2\\)]\\)]\\) = \
+\\!\\(\\*FractionBox[\\(2\\\\ \\\\ \[Pi] \
+\\*SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), \\(0.5`\\)]\\), \\(4\\\\ \
+n\\\\ dVXstatic\\)]\\) = \\!\\(\\*FractionBox[\\(2\\\\ \\\\ \[Pi] \
+\\*SuperscriptBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)] + VXp\\\\ \\((VXp + dVXstatic)\\))\\), \\(0.5`\\)]\\), \\(4\\\\ \
+n\\\\ dVRstatic\\)]\\) \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936770666*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d07301d0-92b3-4645-aadd-608b8eb6fcf8"],
+
+Cell[BoxData["\<\"squaring: (\\!\\(\\*FractionBox[\\(2\\\\ \\\\ \[Pi]\\\\ \
+c\\), \\(4  n\\\\ sstatic\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) \
+= (1 + \\!\\(\\*FractionBox[\\(1\\), \\(6\\)]\\)\\!\\(\\*FractionBox[\\(\\(\\\
+\\ \\)\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\), \\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\((4  n)\\), \
+\\(2\\)]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) = \
+\\!\\(\\*FractionBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \
+\\(2\\)], \\(4\\)] + VRp\\\\ \\((VRp - dVRstatic)\\))\\), SuperscriptBox[\\((\
+\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \\\\ \[Pi]\\)])\\), \\(2\
+\\)]]\\) = \
+\\!\\(\\*FractionBox[\\((\\*FractionBox[SuperscriptBox[\\(sstatic\\), \
+\\(2\\)], \\(4\\)] + VXp\\\\ \\((VXp + dVXstatic)\\))\\), SuperscriptBox[\\((\
+\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\\ \[Pi]\\)])\\), \\(2\
+\\)]]\\) \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936772089*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"f2cb69b6-c524-4cdf-a844-2ddbdfba28e6"],
+
+Cell[BoxData["\<\"Putting in terms of a riemann screen: \
+(\\!\\(\\*FractionBox[\\(2\\\\ \\\\ \[Pi]\\\\ c\\), \\(4  n\\\\ \
+sstatic\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) = (1 + \
+\\!\\(\\*FractionBox[\\(1\\), \\(6\\)]\\)\\!\\(\\*FractionBox[\\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\), \\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\((4  n)\\), \
+\\(2\\)]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\)= \
+(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]\\)\
+\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \\(4\
+\\)]\\)+VRp (VRp-dVRstatic)) = (\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVXstatic\
+\\), \\(2\\\\ \\\\ \[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \
+\\(2\\)]\\)(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \\(4\
+\\)]\\)+VXp (VXp+dVXstatic)) \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936773601*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ea084268-9da8-4e78-9063-809bc688a400"],
+
+Cell[BoxData["\<\"(\\!\\(\\*FractionBox[\\(c\\), FractionBox[\\(4\\\\ n\\\\ \
+sstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]]\\))(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVXstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]\\))(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVRstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]\\)) = (1 + \
+\\!\\(\\*FractionBox[\\(1\\), \\(6\\)]\\)\\!\\(\\*FractionBox[\\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\(\[Pi]\\), \\(2\\)]\\), \\(\\(\\\\ \
+\\)\\*SuperscriptBox[\\((4  n)\\), \\(2\\)]\\)]\\))(\\!\\(\\*FractionBox[\\(4\
+\\\\ n\\\\ dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))= (\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ dVRstatic\\), \\(2\\\\ \\\
+\\ \[Pi]\\)]\\))(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VRp (VRp-dVRstatic))^.5 = (\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VXp (VXp+dVXstatic))^.5 \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936775318*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"aa4b2807-47da-43e6-8eb7-823e215b24aa"],
+
+Cell[BoxData["\<\"Finally showing that a force using a Reimann basis force \
+makes up the difference in surface area caused by the sstatic shortcut \
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936776762*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"93ebed70-72ed-4aa8-90be-3ec830d80dee"],
+
+Cell[BoxData["\<\"(\\!\\(\\*FractionBox[\\(c\\), FractionBox[\\(4\\\\ n\\\\ \
+sstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]]\\))(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVXstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]\\))(\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVRstatic\\), \\(2\\\\ \\\\ \[Pi]\\)]\\)) = (\\!\\(\\*FractionBox[\\(1\\), \
+\\(6\\)]\\) \\!\\(\\*SuperscriptBox[\\(\[Pi]\\), \
+\\(2\\)]\\))(\\!\\(\\*FractionBox[\\(dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))(\\!\\(\\*FractionBox[\\(dVRstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\)) + (\\!\\(\\*FractionBox[\\(\\((4  n)\\) dVXstatic\\), \\(2\\\\ \
+\\\\ \[Pi]\\)]\\))(\\!\\(\\*FractionBox[\\(\\((4  n)\\) dVRstatic\\), \
+\\(2\\\\ \\\\ \[Pi]\\)]\\)) = (\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVRstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VRp (VRp-dVRstatic))^.5 = (\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ \
+dVXstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\))(\\!\\(\\*FractionBox[SuperscriptBox[\\(sstatic\\), \\(2\\)], \
+\\(4\\)]\\)+VXp (VXp+dVXstatic))^.5 \"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936777444*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b5af2ce8-8b40-4fd7-a439-abf1dff8e576"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,423,9,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936778925*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ee5b7eaa-dfb2-42ac-8d4a-b5def929866b"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     RowBox[{
+      FractionBox["c", 
+       FractionBox[
+        RowBox[{"4", " ", "n", " ", "sstatic"}], 
+        RowBox[{"2", " ", "\[Pi]"}]]], "-", "1"}], 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{
+         SuperscriptBox["6", "0.5`"], " ", "\[Pi]"}], 
+        RowBox[{"2", " ", "3", " ", 
+         RowBox[{"(", 
+          RowBox[{"4", " ", "n"}], ")"}]}]], ")"}], "2"]], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "0", ",", "n"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936782939*^9},
+ CellLabel->
+  "Out[423]=",ExpressionUUID->"f42a17cc-11cf-4e69-847a-ee8d74640c32"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"showing that (((1/2)6^.5/3(Pi/(4 n)))^2) = \
+((\\!\\(\\*FractionBox[\\(c\\), FractionBox[\\(4\\\\ n\\\\ sstatic\\), \\(2\\\
+\\ \\\\ \[Pi]\\)]]\\))  - 1)\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936783846*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"45c52d23-c167-4c41-8cc3-49af2fce9a51"],
+
+Cell[BoxData["\<\"showing that(6^.5/3\\!\\(\\*FractionBox[\\(\\((1/2)\\) \
+sstatic\\), \\(\\(\\\\ \\)\\(\[Pi]^ \
+.5\\)\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\) = \
+4\[Pi](\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ sstatic\\), \\(2\\\\ \\\\ \
+\[Pi]\\)]\\) c)  - 4\[Pi](\\!\\(\\*FractionBox[\\(4\\\\ n\\\\ sstatic\\), \
+\\(2\\\\ \\\\ \[Pi]\\)]\\)\\!\\(\\*SuperscriptBox[\\()\\), \\(2\\)]\\)\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493678507*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"a79251f8-3a8b-468d-a657-f7f95f3ac30c"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936786949*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"096ba549-3c9c-4606-bb8c-08bda22c21b7"],
+
+Cell[BoxData["\<\"Plot changes in dVXp relative to dVRp and sp\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936787611*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ee8d8d5a-2983-4175-97ed-0caf6c865f38"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349367882223`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"1546f76b-0191-4bd8-b460-cc6d55ecbf3c"],
+
+Cell[BoxData["\<\"since dVRp = (dVXp(VXp + dVXp)/(VRp - dVRp))\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936788836*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6a3075c2-3594-44cc-9f24-147742ce75d3"],
+
+Cell[BoxData["\<\"sp^2 = dVXp^2 + (dVXp(VXp + dVXp)/(VRp - dVRp))^2 = \
+dVXp^2(1 + ((VXp + dVXp)/(VRp - dVRp))^2) = (dVXp^2/(VRp - dVRp)^2) c^2 \
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936789456*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b31bb178-1400-4912-8c95-93a47aa89a6d"],
+
+Cell[BoxData["\<\"and sp = dVXp/(VRp - dVRp) c\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936790134*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"57b6ac80-8af8-4fb7-8737-1cd0f72bf2c7"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,432,10,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936790759*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"5d92e9fc-ef0f-4216-acde-39ac37e819b4"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["dVXp", "2"], ",", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{"dVXp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", "dVXp"}], ")"}]}], 
+        RowBox[{"VRp", "-", "dVRp"}]], ")"}], "2"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.8540349367947702`*^9},
+ CellLabel->
+  "Out[432]=",ExpressionUUID->"2effc108-f212-4777-a97e-7749125fe6b2"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,433,11,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936795496*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7affc850-430a-450d-accc-2e706208b844"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox["dVXp", "2"], "+", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       FractionBox[
+        RowBox[{"dVXp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", "dVXp"}], ")"}]}], 
+        RowBox[{"VRp", "-", "dVRp"}]], ")"}], "2"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936799193*^9},
+ CellLabel->
+  "Out[433]=",ExpressionUUID->"02434b7d-3110-4aea-a944-a37f54ecdf55"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936799951*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"713428b8-4acc-420d-ac22-02ae5ac388c8"],
+
+Cell[BoxData["\<\"Analyze geometric centripetal, discrete, mean, and \
+geometric average radii differences side by side\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936801046*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ca5087e0-f781-416c-a4dd-23e492a7196f"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936802557*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"af0e7c9c-246f-4619-a23c-ed4490a897b4"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,437,12,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936803177*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"813c67f1-33c6-4216-a246-b5c5cc0c6b05"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox["sstatic", "2"], "4"], "+", 
+        RowBox[{"VRp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5`"], ",", 
+     FractionBox[
+      RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+      RowBox[{"2", " ", "\[Pi]"}]], ",", 
+     RowBox[{"VRp", "-", 
+      FractionBox["dVRstatic", "2"]}], ",", 
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{"VRp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}], ")"}], "0.5`"]}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.8540349368070087`*^9},
+ CellLabel->
+  "Out[437]=",ExpressionUUID->"b90e9e1a-7c23-4ad5-ad50-508b782de2d4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936807777*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"f09279ab-6e52-41f7-a154-6a7f35c2e3a6"],
+
+Cell[BoxData["\<\"Analyze changes in area relative to particle radius from a \
+variety of baselines to determine hypotenuse distance across square\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936808856*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"78a57a3e-1548-44fd-9c23-27763bf4692a"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368103724`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"ccab98f0-18b0-4b89-9372-de1c2683e6a9"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936810988*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"1c6d8118-b419-4e2a-bdef-99fbb9b9569e"],
+
+Cell[BoxData["\<\"**(geometric centripetal vs discrete)^.5 divided by \
+dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936811574*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"adb4ac59-c34d-405a-a29e-536d7c7bd1aa"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493681219*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"75a5ea7c-a9b4-4fa0-a5d6-01e79e9dd423"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,444,13,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349368127832`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"b747e135-cce6-49db-8c9c-3c060f5b8f80"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           FractionBox[
+            SuperscriptBox["sstatic", "2"], "4"], "+", 
+           RowBox[{"VRp", " ", 
+            RowBox[{"(", 
+             RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+         SuperscriptBox[
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+            RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"]}], ")"}], "0.5`"], 
+      "dVXstatic"], ",", 
+     FractionBox[
+      SuperscriptBox["3", "0.5`"], "6"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.85403493681658*^9},
+ CellLabel->
+  "Out[444]=",ExpressionUUID->"f55ee023-0c5c-407f-8e6e-d63233633004"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"3^.5/6 = (geometric centripetal vs discrete)^.5 divided by \
+dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936817379*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"408ad2f7-2157-4e68-b8ff-057b246bba1b"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936818475*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"bdeb9244-61a8-4bac-bb03-678f1dd97a34"],
+
+Cell[BoxData["\<\"**(discrete - mean)^.5 divided by dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936819936*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"94eb50fd-ed90-44b9-ad03-37ceb593c6ed"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936820551*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"98ee48dc-a5ad-4269-97bc-c56be8fb9475"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,449,14,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936821163*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"2b0aa4ea-1e7d-482f-8a46-214ce8de537f"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+           RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"], "-", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", 
+           FractionBox["dVRstatic", "2"]}], ")"}], "2"]}], ")"}], "0.5`"], 
+     "dVXstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936824923*^9},
+ CellLabel->
+  "Out[449]=",ExpressionUUID->"966309c0-0554-430a-bb34-4371fc9bd6ce"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"6^.5/6 = 3^.5/3 * 2^.5/2 = (discrete - mean)^.5 divided by \
+dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936825686*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"a3a1864e-54ec-4d9f-93c4-ab5e155119f6"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493682677*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"0af9ca96-fcc4-4758-962d-9a4a370760f2"],
+
+Cell[BoxData["\<\"**(geometric centripetal - mean)^.5 divided by dVX\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936828237*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"8535cf71-cc45-4730-ad9f-871b2083f75e"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936828857*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"13153cee-f157-4608-b053-d26456368fa0"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,454,15,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936829458*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"02ac828b-eb7f-4c4b-8bfa-c7fc55d8cbc9"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VRp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", 
+           FractionBox["dVRstatic", "2"]}], ")"}], "2"]}], ")"}], "0.5`"], 
+     "dVXstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936833255*^9},
+ CellLabel->
+  "Out[454]=",ExpressionUUID->"7426be5c-1228-460e-9ca1-7b2250badb81"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = (geometric centripetal - mean)^.5 divided by \
+dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368340073`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"10d0ff68-a0db-438a-974f-479ea2003b5b"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936835087*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"84e55c36-4de1-4b55-9c26-b3bb2a9f6a70"],
+
+Cell[BoxData["\<\"**(mean - geometric)^.5 divided by dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368365507`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9b98641d-faa0-443e-b17c-39d136e74d0d"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368371696`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d7e3d2fb-f497-4869-8e36-5ca84daf46bb"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,459,16,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936837776*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"2e0c74c3-7605-4ecb-8e09-386bef74dc98"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   FractionBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"VRp", "-", 
+          FractionBox["dVRstatic", "2"]}], ")"}], "2"], "-", 
+       RowBox[{"VRp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5`"], 
+    "dVRstatic"], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936841537*^9},
+ CellLabel->
+  "Out[459]=",ExpressionUUID->"c87c3f51-3229-4b52-a920-261f76e965a1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = (mean - geometric)^.5 divided by dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936842271*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"782d05a4-f979-438c-aedb-0710a7445a29"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368433523`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7fc4087e-f896-4cad-a9d7-2092a95b66da"],
+
+Cell[BoxData["\<\"**(geometric centripetal - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936844841*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d89f4b1d-01f5-444d-92bd-024d2007e509"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493684547*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"1d6cd295-665c-4b0c-a16b-c28dd5a9632e"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,464,17,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936846086*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"2b7bd115-67ad-45e4-bee3-01574acbbd2d"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VRp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{"VRp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5`"], 
+     "sstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.8540349368500233`*^9},
+ CellLabel->
+  "Out[464]=",ExpressionUUID->"0a9ba4d0-5824-42d0-b59f-4b8ff5b2bdb1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = geometric centripetal - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936850789*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d6ddf36c-2db8-4095-8116-e63b5a92646c"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936851893*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"3522a71c-5deb-4acc-b123-a7a15041f619"],
+
+Cell[BoxData["\<\"**(discrete - geometric)^.5 divided by s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368534*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"648e1523-302f-4865-a540-ae8a30ed8cd8"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368540287`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"74f2736d-4ddd-4405-8721-a7a3c0143445"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,469,18,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936854648*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6ec9640c-1f89-4bf0-b2dd-39aaeffdeea6"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"4", " ", "n", " ", "dVXstatic"}], 
+            RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"], "-", 
+         RowBox[{"VRp", " ", 
+          RowBox[{"(", 
+           RowBox[{"VRp", "-", "dVRstatic"}], ")"}]}]}], ")"}], "0.5`"], "s"],
+      ",", 
+     FractionBox["1", "2"], ",", 
+     FractionBox[
+      SuperscriptBox["6", "0.5`"], "6"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936858398*^9},
+ CellLabel->
+  "Out[469]=",ExpressionUUID->"2a30001c-2dbe-4c19-90b4-6e73bba5c49a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"6^.5/6 to 1/2 = (discrete - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936859191*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"266a41a1-5d0e-4872-91a3-52bd46954e48"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936860291*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7bc0ceb6-ce1b-435e-b51e-6da69110d41c"],
+
+Cell[BoxData["\<\"Analyze changes in area relative to particles velocity \
+space from a variety of baselines to determine hypotenuse distance across \
+square\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936861878*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"da9948e3-1f52-4307-a7ab-1c76bf6b6480"],
+
+Cell[BoxData["\<\"***********************************************************\
+\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936862534*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"239210d9-ffb2-444d-adf7-1e38a7df59df"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936863185*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"38e9b439-c109-4385-8b90-acdae83db8d7"],
+
+Cell[BoxData["\<\"**(geometric centripetal vs discrete)^.5 divided by \
+dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936863779*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"3d6a8579-9e5a-4c59-ab48-9dc535dc403d"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368644*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7c408848-9c6b-4185-a520-a9dc8431db1f"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,477,19,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349368650093`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"3f50a898-f904-4e0b-8485-f104c5112680"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{"4", " ", "n", " ", "dVRstatic"}], 
+           RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"]}], ")"}], "0.5`"], 
+     "dVRstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.8540349368687563`*^9},
+ CellLabel->
+  "Out[477]=",ExpressionUUID->"f4181fd0-77c6-452f-b754-bee658aa9cdb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"3^.5/6 = (geometric centripetal vs discrete)^.5 divided by \
+dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936869596*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"cc943979-1fe4-4217-968a-2a7654d149e4"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368707037`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"1a804de4-ed8a-478b-aa08-7cfaba4d4696"],
+
+Cell[BoxData["\<\"**(discrete - mean)^.5 divided by dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936872188*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d8ff5ec0-6584-480a-bbcb-8d6b1d87b55f"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493687282*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6113e7a6-f6b2-4734-a628-8c1c01f47d6c"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,482,20,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936873445*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"03f05625-a63b-4c05-b427-f23d63cfef44"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        SuperscriptBox[
+         RowBox[{"(", 
+          FractionBox[
+           RowBox[{"4", " ", "n", " ", "dVRstatic"}], 
+           RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"], "-", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", 
+           FractionBox["dVXstatic", "2"]}], ")"}], "2"]}], ")"}], "0.5`"], 
+     "dVRstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936877252*^9},
+ CellLabel->
+  "Out[482]=",ExpressionUUID->"0389cbee-2e17-4342-a594-2ed7b392a7ad"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"6^.5/6 = 3^.5/3 * 2^.5/2 = (discrete - mean)^.5 divided by \
+dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936878024*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"505a4e49-3ffe-4766-b8ae-23a1d6b5fe5d"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936879159*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6b19bbca-bb21-443d-a49e-9fdf08c8850e"],
+
+Cell[BoxData["\<\"**(geometric centripetal - mean)^.5 divided by dVR\"\>"], \
+"Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936880645*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"028e49a9-668c-4d55-851a-eda1c0a6cc8e"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349368812723`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6c90bb4a-9153-4ec4-b843-720add2e8ecd"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,487,21,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349368818903`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"987adb06-0bb2-4aa8-98df-eb80c718aa46"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        SuperscriptBox[
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", 
+           FractionBox["dVXstatic", "2"]}], ")"}], "2"]}], ")"}], "0.5`"], 
+     "dVRstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936885766*^9},
+ CellLabel->
+  "Out[487]=",ExpressionUUID->"70eb4fdd-5659-43b7-9736-c06faa260281"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = (geometric centripetal - mean)^.5 divided by \
+dVR\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936886559*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"4ae85587-f863-4796-b5a4-6f054110af78"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936887663*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e474a486-eceb-4a4b-a496-c87e4a9a6e78"],
+
+Cell[BoxData["\<\"**(mean - geometric)^.5 divided by dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936889154*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"7568e5a8-5c06-42a0-a84f-b0e04984df4f"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936889772*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"0b2f8086-d5fb-4e1d-ab93-3335151432fc"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,492,22,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.854034936890388*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"afe8d4e8-ed3f-4b7e-9196-d33d1aba43f1"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   FractionBox[
+    SuperscriptBox[
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{"(", 
+         RowBox[{"VXp", "+", 
+          FractionBox["dVXstatic", "2"]}], ")"}], "2"], "-", 
+       RowBox[{"VXp", " ", 
+        RowBox[{"(", 
+         RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "0.5`"], 
+    "dVXstatic"], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.85403493689427*^9},
+ CellLabel->
+  "Out[492]=",ExpressionUUID->"1b75f3c9-a9d9-4024-b05f-718046209548"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = (mean - geometric)^.5 divided by dVX\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936895019*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"9d673304-0fe3-40c8-9e9a-a6b2388daa2b"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936896126*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"883d81d4-2975-4317-b5ef-2ca9b55060f2"],
+
+Cell[BoxData["\<\"**(geometric centripetal - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936897624*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"572f47bf-e4fd-4177-ac27-d6f6b852f25c"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936898264*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"d9da1db9-2c2d-4b2d-b4cc-29a65d654578"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,497,23,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349368988867`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"45691459-dc14-4811-ad24-855d81ccbc0f"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    FractionBox[
+     SuperscriptBox[
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox["sstatic", "2"], "4"], "+", 
+          RowBox[{"VXp", " ", 
+           RowBox[{"(", 
+            RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "-", 
+        RowBox[{"VXp", " ", 
+         RowBox[{"(", 
+          RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "0.5`"], 
+     "sstatic"], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936902803*^9},
+ CellLabel->
+  "Out[497]=",ExpressionUUID->"cef67f40-1111-4503-93f3-3e0dd8da1ae4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"1/2 = geometric centripetal - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936903585*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"81862f13-bfa1-421f-b3a7-082de600a335"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936904695*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"72bc04b6-fa3c-4639-9777-da9147b3f231"],
+
+Cell[BoxData["\<\"**(discrete - geometric)^.5 divided by s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.854034936906228*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"740bb195-3d5d-4977-9eb9-7da6a014195b"],
+
+Cell[BoxData["\<\"\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.8540349369068813`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"e6baf8d8-421c-44ed-a9f8-6ff629d291d8"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","plln",
+   "\"Limiting value \\!\\(\\*RowBox[{\\\"n\\\"}]\\) in \
+\\!\\(\\*RowBox[{\\\"{\\\", RowBox[{\\\"i\\\", \\\",\\\", \\\"0\\\", \
+\\\",\\\", \\\"n\\\"}], \\\"}\\\"}]\\) is not a machine-sized real number.\"",
+   2,502,24,23539491993919122857,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.849602979723856*^9, 3.849603147758646*^9, 
+  3.849702548420495*^9, 3.849702581532669*^9, 3.850899600857553*^9, 
+  3.8540349369075117`*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"033f4af4-96a3-4a30-9785-81d4b3a1552b"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{"(", 
+           FractionBox[
+            RowBox[{"4", " ", "n", " ", "dVRstatic"}], 
+            RowBox[{"2", " ", "\[Pi]"}]], ")"}], "2"], "-", 
+         RowBox[{"VXp", " ", 
+          RowBox[{"(", 
+           RowBox[{"VXp", "+", "dVXstatic"}], ")"}]}]}], ")"}], "0.5`"], "s"],
+      ",", 
+     FractionBox["1", "2"], ",", 
+     FractionBox[
+      SuperscriptBox["6", "0.5`"], "6"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"i", ",", "start", ",", "end"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{3.8472809069863653`*^9, 3.849602979796687*^9, 
+  3.849603147839308*^9, 3.849702548473502*^9, 3.849702581592723*^9, 
+  3.850899600908881*^9, 3.854034936911429*^9},
+ CellLabel->
+  "Out[502]=",ExpressionUUID->"d8047186-e449-473b-a7ab-b3b5ba80114e"],
+
+Cell[BoxData["\<\"6^.5/6 to 1/2 = (discrete - geometric)^.5 divided by \
+s\"\>"], "Print",
+ CellChangeTimes->{3.847280906972332*^9, 3.849602979679655*^9, 
+  3.84960314774927*^9, 3.849702548380199*^9, 3.849702581523765*^9, 
+  3.850899600838044*^9, 3.85403493691224*^9},
+ CellLabel->
+  "During evaluation of \
+In[350]:=",ExpressionUUID->"6d3606e9-0c6e-434b-9920-053b7dc5ffee"]
+}, Open  ]]
+},
+WindowSize->{808, 614},
+WindowMargins->{{19, Automatic}, {0, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 58863, 1346, 5924, "Input",ExpressionUUID->"838d685f-26f8-4aab-8a31-56a393f1f239"],
+Cell[CellGroupData[{
+Cell[59468, 1372, 380, 7, 24, "Print",ExpressionUUID->"a991bbb2-efe2-4852-b0a8-48e0632d7264"],
+Cell[59851, 1381, 369, 7, 24, "Print",ExpressionUUID->"e5cb66e5-c741-4e37-aecf-739a9e153a0b"],
+Cell[60223, 1390, 382, 7, 24, "Print",ExpressionUUID->"3ca454f7-974d-46bc-ad9f-18131ab4f99d"],
+Cell[60608, 1399, 354, 6, 24, "Print",ExpressionUUID->"219f202c-ac00-4da2-a560-1cd3f17304d3"],
+Cell[60965, 1407, 347, 6, 24, "Print",ExpressionUUID->"b9eb93df-3d6d-4634-85f4-b70c8d36255e"]
+}, Open  ]],
+Cell[61327, 1416, 564, 13, 42, "Message",ExpressionUUID->"e9905d2d-efbe-4bca-bda8-702a941506f4"],
+Cell[61894, 1431, 1530, 44, 111, "Output",ExpressionUUID->"e2142c10-1b27-45e7-bd7c-c8e43eea5064"],
+Cell[CellGroupData[{
+Cell[63449, 1479, 500, 9, 49, "Print",ExpressionUUID->"49cfb7c8-1363-40cc-a37f-5e071f99a8f3"],
+Cell[63952, 1490, 387, 7, 24, "Print",ExpressionUUID->"76bb60ac-b43d-42b1-bb8f-eaab42eaa6b4"],
+Cell[64342, 1499, 380, 7, 24, "Print",ExpressionUUID->"d34c423b-650f-46f1-9bd9-3488a52521dd"],
+Cell[64725, 1508, 381, 7, 24, "Print",ExpressionUUID->"1376109c-7e77-40af-896d-caaa623b1620"],
+Cell[65109, 1517, 382, 7, 24, "Print",ExpressionUUID->"68c6000f-10a2-4daa-b5f1-4a3a03e478e4"],
+Cell[65494, 1526, 1099, 27, 60, "Print",ExpressionUUID->"0fc8a7d5-fed8-4851-9ab0-d5c0d8900885"],
+Cell[66596, 1555, 1306, 33, 60, "Print",ExpressionUUID->"e6ee80d9-83ab-42e2-ab76-64952cb501cd"],
+Cell[67905, 1590, 1124, 28, 60, "Print",ExpressionUUID->"afe82fcf-7c4c-42d7-ad43-64c6aa3edf12"],
+Cell[69032, 1620, 1284, 33, 60, "Print",ExpressionUUID->"65735598-c5b7-4f9b-9364-4f0894ccd392"],
+Cell[70319, 1655, 790, 19, 41, "Print",ExpressionUUID->"f5ce5284-a216-4a91-b8aa-c5853090d4c6"],
+Cell[71112, 1676, 791, 19, 41, "Print",ExpressionUUID->"8ecf707b-d3e3-4608-ac47-8b1d507d3918"],
+Cell[71906, 1697, 1982, 52, 84, "Print",ExpressionUUID->"34c28b9a-944f-4001-ae26-04254c6228bc"],
+Cell[73891, 1751, 2299, 60, 106, "Print",ExpressionUUID->"b3994099-75ad-4738-b68b-814c130ffd49"],
+Cell[76193, 1813, 354, 6, 24, "Print",ExpressionUUID->"860085f6-cdae-4f12-9bcf-7d598e365e77"]
+}, Open  ]],
+Cell[76562, 1822, 293, 5, 34, "Output",ExpressionUUID->"b2e27868-2c8b-46d9-9b60-8cb4a5b53140"],
+Cell[76858, 1829, 293, 5, 34, "Output",ExpressionUUID->"99fee511-08c9-43a6-9d85-89a03a264f35"],
+Cell[77154, 1836, 1836, 49, 239, "Output",ExpressionUUID->"a17bf99d-53d2-49ab-884c-d91c49026bd6"],
+Cell[78993, 1887, 1752, 47, 231, "Output",ExpressionUUID->"6e6f90c0-dd8a-4684-bec2-1d47bf4f993d"],
+Cell[80748, 1936, 1751, 47, 231, "Output",ExpressionUUID->"6db9a95e-2da4-4b3b-8a61-c0a8c7766095"],
+Cell[CellGroupData[{
+Cell[82524, 1987, 380, 7, 24, "Print",ExpressionUUID->"6a7c0ba0-bc8b-4385-8c53-7463fd937a4e"],
+Cell[82907, 1996, 371, 7, 24, "Print",ExpressionUUID->"d1bb400e-e531-4315-b210-58e2da2a408f"],
+Cell[83281, 2005, 382, 7, 24, "Print",ExpressionUUID->"143ab476-1640-49e6-a8ae-320a097efb75"]
+}, Open  ]],
+Cell[83678, 2015, 306, 5, 34, "Output",ExpressionUUID->"0996e22d-1fa0-47b5-8f97-b3d8798d73f6"],
+Cell[83987, 2022, 293, 5, 34, "Output",ExpressionUUID->"66a06873-7001-49c5-8449-5bf37dae09d9"],
+Cell[84283, 2029, 293, 5, 34, "Output",ExpressionUUID->"244f25f5-c64f-4ae3-a883-c4606685f7bd"],
+Cell[84579, 2036, 387, 7, 24, "Print",ExpressionUUID->"c9245dea-2a82-42d7-8176-41541438055e"],
+Cell[84969, 2045, 600, 13, 24, "Message",ExpressionUUID->"2ccaf9ea-5a00-40c2-a748-109f553286fc"],
+Cell[85572, 2060, 532, 13, 52, "Output",ExpressionUUID->"c7d9d7b5-7534-4d19-aaf5-9ceaf29c8c9f"],
+Cell[86107, 2075, 602, 13, 24, "Message",ExpressionUUID->"c358b901-0bb3-4f87-af24-dab1ac7d2833"],
+Cell[86712, 2090, 1017, 30, 51, "Output",ExpressionUUID->"c00b31a7-2bf9-4507-968f-3461aa8df103"],
+Cell[87732, 2122, 385, 7, 24, "Print",ExpressionUUID->"448b2722-1a20-43e3-a61a-9ae2336d009f"],
+Cell[88120, 2131, 600, 13, 24, "Message",ExpressionUUID->"9ba8e6c0-8754-454f-bb4c-f5e4267762c4"],
+Cell[88723, 2146, 845, 24, 61, "Output",ExpressionUUID->"103fef1a-84b6-49cc-95e5-da1b4d16286a"],
+Cell[89571, 2172, 299, 5, 34, "Output",ExpressionUUID->"dbb2ba2a-2fb1-47a4-92da-454d983d9a39"],
+Cell[CellGroupData[{
+Cell[89895, 2181, 1253, 23, 55, "Print",ExpressionUUID->"e9fdac9c-82f5-4018-a1b6-9e590c6fea21"],
+Cell[91151, 2206, 393, 7, 24, "Print",ExpressionUUID->"380b4130-c2c3-4fa0-a791-55253db6be00"],
+Cell[91547, 2215, 394, 7, 24, "Print",ExpressionUUID->"abc268ed-9fd2-4127-b644-c4c605e01b64"],
+Cell[91944, 2224, 393, 7, 24, "Print",ExpressionUUID->"785d3988-8c9e-4878-bc44-6d65c260ef76"],
+Cell[92340, 2233, 665, 11, 54, "Print",ExpressionUUID->"ae826c45-766d-4f55-af98-6129a86e23b5"],
+Cell[93008, 2246, 658, 11, 54, "Print",ExpressionUUID->"9bd48ea9-5abd-4933-86ea-72fa525302b0"],
+Cell[93669, 2259, 393, 7, 24, "Print",ExpressionUUID->"66023706-5157-4560-9db9-bdc8df1addb6"],
+Cell[94065, 2268, 838, 13, 44, "Print",ExpressionUUID->"9a3b4e51-1064-4684-a2da-4af573a27a44"],
+Cell[94906, 2283, 400, 7, 24, "Print",ExpressionUUID->"d0800000-1081-4928-bc6b-147089ed4133"],
+Cell[95309, 2292, 815, 13, 44, "Print",ExpressionUUID->"60a57f16-f53a-4a84-be66-3b318adc1880"],
+Cell[96127, 2307, 422, 7, 24, "Print",ExpressionUUID->"3ad141c1-36c5-4c2c-95ab-9f0ce8c1dad4"],
+Cell[96552, 2316, 675, 11, 80, "Print",ExpressionUUID->"72c4b821-22f9-4980-8361-ffe7cb1bdae3"]
+}, Open  ]],
+Cell[97242, 2330, 600, 13, 24, "Message",ExpressionUUID->"a19fd8f8-8d98-4bcb-97da-347124fde9ca"],
+Cell[97845, 2345, 1515, 43, 151, "Output",ExpressionUUID->"1000f25b-22d6-44a0-9caa-fb4859806ae2"],
+Cell[CellGroupData[{
+Cell[99385, 2392, 395, 7, 24, "Print",ExpressionUUID->"7bbf4200-b3dd-4f19-b511-c21e9874f48f"],
+Cell[99783, 2401, 394, 7, 24, "Print",ExpressionUUID->"60f12900-13ae-4c8d-871b-fc6eaf02768e"],
+Cell[100180, 2410, 392, 7, 24, "Print",ExpressionUUID->"c3ab54a4-ae0f-4c80-80aa-ac9308e2dd93"],
+Cell[100575, 2419, 398, 7, 24, "Print",ExpressionUUID->"70208fdd-1e10-43c0-b644-6bc77c03e1ef"]
+}, Open  ]],
+Cell[100988, 2429, 600, 13, 24, "Message",ExpressionUUID->"8a68d4b6-602b-4cc8-9584-18b3aab8d069"],
+Cell[101591, 2444, 935, 27, 56, "Output",ExpressionUUID->"0de18a8e-3bf9-470b-9c2e-bb16c2a2830d"],
+Cell[CellGroupData[{
+Cell[102551, 2475, 393, 7, 24, "Print",ExpressionUUID->"7867ae99-ce62-4f7b-9899-9ed882bb7062"],
+Cell[102947, 2484, 416, 7, 24, "Print",ExpressionUUID->"e47f2004-739f-4fcd-b4b4-5e8fba775c0d"]
+}, Open  ]],
+Cell[103378, 2494, 602, 13, 24, "Message",ExpressionUUID->"b650beed-d830-4cc0-b333-f3f5c55a2a64"],
+Cell[103983, 2509, 681, 19, 57, "Output",ExpressionUUID->"c44d07f7-261a-4f6b-b595-30bca0acc5f5"],
+Cell[104667, 2530, 600, 13, 24, "Message",ExpressionUUID->"9bb0169c-bb61-48d6-a6f1-1a3e616cbb17"],
+Cell[105270, 2545, 1245, 35, 56, "Output",ExpressionUUID->"60942479-4072-47ab-af6d-cf68f659d945"],
+Cell[CellGroupData[{
+Cell[106540, 2584, 393, 7, 24, "Print",ExpressionUUID->"a9cca63b-732f-4a84-b578-2e3f1d49270d"],
+Cell[106936, 2593, 381, 7, 24, "Print",ExpressionUUID->"fb4a51a1-8b75-4f5c-a0be-61eddfeff748"],
+Cell[107320, 2602, 392, 7, 24, "Print",ExpressionUUID->"172c8c0e-b778-432a-945e-7f0b35a1afae"],
+Cell[107715, 2611, 619, 10, 54, "Print",ExpressionUUID->"cef7e0b8-2e49-4d9e-92cf-8348019e9af9"],
+Cell[108337, 2623, 535, 9, 48, "Print",ExpressionUUID->"76b0d121-70e8-42ae-88e3-f83a82f0c66e"],
+Cell[108875, 2634, 946, 15, 93, "Print",ExpressionUUID->"728dc2b4-ae74-4398-b611-ea86d32d14d4"],
+Cell[109824, 2651, 1065, 17, 100, "Print",ExpressionUUID->"d07301d0-92b3-4645-aadd-608b8eb6fcf8"],
+Cell[110892, 2670, 1181, 19, 113, "Print",ExpressionUUID->"f2cb69b6-c524-4cdf-a844-2ddbdfba28e6"],
+Cell[112076, 2691, 1674, 27, 127, "Print",ExpressionUUID->"ea084268-9da8-4e78-9063-809bc688a400"],
+Cell[113753, 2720, 1303, 20, 139, "Print",ExpressionUUID->"aa4b2807-47da-43e6-8eb7-823e215b24aa"],
+Cell[115059, 2742, 451, 8, 44, "Print",ExpressionUUID->"93ebed70-72ed-4aa8-90be-3ec830d80dee"],
+Cell[115513, 2752, 1348, 21, 135, "Print",ExpressionUUID->"b5af2ce8-8b40-4fd7-a439-abf1dff8e576"]
+}, Open  ]],
+Cell[116876, 2776, 600, 13, 24, "Message",ExpressionUUID->"ee5b7eaa-dfb2-42ac-8d4a-b5def929866b"],
+Cell[117479, 2791, 854, 24, 82, "Output",ExpressionUUID->"f42a17cc-11cf-4e69-847a-ee8d74640c32"],
+Cell[CellGroupData[{
+Cell[118358, 2819, 471, 8, 48, "Print",ExpressionUUID->"45c52d23-c167-4c41-8cc3-49af2fce9a51"],
+Cell[118832, 2829, 693, 12, 42, "Print",ExpressionUUID->"a79251f8-3a8b-468d-a657-f7f95f3ac30c"],
+Cell[119528, 2843, 380, 7, 24, "Print",ExpressionUUID->"096ba549-3c9c-4606-bb8c-08bda22c21b7"],
+Cell[119911, 2852, 363, 6, 24, "Print",ExpressionUUID->"ee8d8d5a-2983-4175-97ed-0caf6c865f38"],
+Cell[120277, 2860, 382, 7, 24, "Print",ExpressionUUID->"1546f76b-0191-4bd8-b460-cc6d55ecbf3c"],
+Cell[120662, 2869, 363, 6, 24, "Print",ExpressionUUID->"6a3075c2-3594-44cc-9f24-147742ce75d3"],
+Cell[121028, 2877, 447, 8, 44, "Print",ExpressionUUID->"b31bb178-1400-4912-8c95-93a47aa89a6d"],
+Cell[121478, 2887, 347, 6, 24, "Print",ExpressionUUID->"57b6ac80-8af8-4fb7-8737-1cd0f72bf2c7"]
+}, Open  ]],
+Cell[121840, 2896, 601, 13, 24, "Message",ExpressionUUID->"5d92e9fc-ef0f-4216-acde-39ac37e819b4"],
+Cell[122444, 2911, 704, 19, 53, "Output",ExpressionUUID->"2effc108-f212-4777-a97e-7749125fe6b2"],
+Cell[123151, 2932, 601, 13, 24, "Message",ExpressionUUID->"7affc850-430a-450d-accc-2e706208b844"],
+Cell[123755, 2947, 702, 19, 53, "Output",ExpressionUUID->"02434b7d-3110-4aea-a944-a37f54ecdf55"],
+Cell[CellGroupData[{
+Cell[124482, 2970, 380, 7, 24, "Print",ExpressionUUID->"713428b8-4acc-420d-ac22-02ae5ac388c8"],
+Cell[124865, 2979, 420, 7, 44, "Print",ExpressionUUID->"ca5087e0-f781-416c-a4dd-23e492a7196f"],
+Cell[125288, 2988, 380, 7, 24, "Print",ExpressionUUID->"af0e7c9c-246f-4619-a23c-ed4490a897b4"]
+}, Open  ]],
+Cell[125683, 2998, 601, 13, 24, "Message",ExpressionUUID->"813c67f1-33c6-4216-a246-b5c5cc0c6b05"],
+Cell[126287, 3013, 1054, 30, 96, "Output",ExpressionUUID->"b90e9e1a-7c23-4ad5-ad50-508b782de2d4"],
+Cell[CellGroupData[{
+Cell[127366, 3047, 380, 7, 24, "Print",ExpressionUUID->"f09279ab-6e52-41f7-a154-6a7f35c2e3a6"],
+Cell[127749, 3056, 449, 8, 44, "Print",ExpressionUUID->"78a57a3e-1548-44fd-9c23-27763bf4692a"],
+Cell[128201, 3066, 382, 7, 24, "Print",ExpressionUUID->"ccab98f0-18b0-4b89-9372-de1c2683e6a9"],
+Cell[128586, 3075, 319, 6, 24, "Print",ExpressionUUID->"1c6d8118-b419-4e2a-bdef-99fbb9b9569e"],
+Cell[128908, 3083, 376, 7, 24, "Print",ExpressionUUID->"adb4ac59-c34d-405a-a29e-536d7c7bd1aa"],
+Cell[129287, 3092, 318, 6, 24, "Print",ExpressionUUID->"75a5ea7c-a9b4-4fa0-a5d6-01e79e9dd423"]
+}, Open  ]],
+Cell[129620, 3101, 603, 13, 24, "Message",ExpressionUUID->"b747e135-cce6-49db-8c9c-3c060f5b8f80"],
+Cell[130226, 3116, 1063, 30, 63, "Output",ExpressionUUID->"f55ee023-0c5c-407f-8e6e-d63233633004"],
+Cell[CellGroupData[{
+Cell[131314, 3150, 383, 7, 24, "Print",ExpressionUUID->"408ad2f7-2157-4e68-b8ff-057b246bba1b"],
+Cell[131700, 3159, 319, 6, 24, "Print",ExpressionUUID->"bdeb9244-61a8-4bac-bb03-678f1dd97a34"],
+Cell[132022, 3167, 356, 6, 24, "Print",ExpressionUUID->"94eb50fd-ed90-44b9-ad03-37ceb593c6ed"],
+Cell[132381, 3175, 319, 6, 24, "Print",ExpressionUUID->"98ee48dc-a5ad-4269-97bc-c56be8fb9475"]
+}, Open  ]],
+Cell[132715, 3184, 601, 13, 24, "Message",ExpressionUUID->"2b0aa4ea-1e7d-482f-8a46-214ce8de537f"],
+Cell[133319, 3199, 863, 24, 62, "Output",ExpressionUUID->"966309c0-0554-430a-bb34-4371fc9bd6ce"],
+Cell[CellGroupData[{
+Cell[134207, 3227, 383, 7, 24, "Print",ExpressionUUID->"a3a1864e-54ec-4d9f-93c4-ab5e155119f6"],
+Cell[134593, 3236, 318, 6, 24, "Print",ExpressionUUID->"0af9ca96-fcc4-4758-962d-9a4a370760f2"],
+Cell[134914, 3244, 371, 7, 24, "Print",ExpressionUUID->"8535cf71-cc45-4730-ad9f-871b2083f75e"],
+Cell[135288, 3253, 319, 6, 24, "Print",ExpressionUUID->"13153cee-f157-4608-b053-d26456368fa0"]
+}, Open  ]],
+Cell[135622, 3262, 601, 13, 24, "Message",ExpressionUUID->"02ac828b-eb7f-4c4b-8bfa-c7fc55d8cbc9"],
+Cell[136226, 3277, 923, 26, 63, "Output",ExpressionUUID->"7426be5c-1228-460e-9ca1-7b2250badb81"],
+Cell[CellGroupData[{
+Cell[137174, 3307, 377, 7, 24, "Print",ExpressionUUID->"10d0ff68-a0db-438a-974f-479ea2003b5b"],
+Cell[137554, 3316, 319, 6, 24, "Print",ExpressionUUID->"84e55c36-4de1-4b55-9c26-b3bb2a9f6a70"],
+Cell[137876, 3324, 359, 6, 24, "Print",ExpressionUUID->"9b98641d-faa0-443e-b17c-39d136e74d0d"],
+Cell[138238, 3332, 321, 6, 24, "Print",ExpressionUUID->"d7e3d2fb-f497-4869-8e36-5ca84daf46bb"]
+}, Open  ]],
+Cell[138574, 3341, 601, 13, 24, "Message",ExpressionUUID->"2e0c74c3-7605-4ecb-8e09-386bef74dc98"],
+Cell[139178, 3356, 754, 21, 61, "Output",ExpressionUUID->"c87c3f51-3229-4b52-a920-261f76e965a1"],
+Cell[CellGroupData[{
+Cell[139957, 3381, 361, 6, 24, "Print",ExpressionUUID->"782d05a4-f979-438c-aedb-0710a7445a29"],
+Cell[140321, 3389, 321, 6, 24, "Print",ExpressionUUID->"7fc4087e-f896-4cad-a9d7-2092a95b66da"],
+Cell[140645, 3397, 374, 7, 24, "Print",ExpressionUUID->"d89f4b1d-01f5-444d-92bd-024d2007e509"],
+Cell[141022, 3406, 318, 6, 24, "Print",ExpressionUUID->"1d6cd295-665c-4b0c-a16b-c28dd5a9632e"]
+}, Open  ]],
+Cell[141355, 3415, 601, 13, 24, "Message",ExpressionUUID->"2b7bd115-67ad-45e4-bee3-01574acbbd2d"],
+Cell[141959, 3430, 894, 25, 63, "Output",ExpressionUUID->"0a9ba4d0-5824-42d0-b59f-4b8ff5b2bdb1"],
+Cell[CellGroupData[{
+Cell[142878, 3459, 377, 7, 24, "Print",ExpressionUUID->"d6ddf36c-2db8-4095-8116-e63b5a92646c"],
+Cell[143258, 3468, 319, 6, 24, "Print",ExpressionUUID->"3522a71c-5deb-4acc-b123-a7a15041f619"],
+Cell[143580, 3476, 357, 6, 24, "Print",ExpressionUUID->"648e1523-302f-4865-a540-ae8a30ed8cd8"],
+Cell[143940, 3484, 321, 6, 24, "Print",ExpressionUUID->"74f2736d-4ddd-4405-8721-a7a3c0143445"]
+}, Open  ]],
+Cell[144276, 3493, 601, 13, 24, "Message",ExpressionUUID->"6ec9640c-1f89-4bf0-b2dd-39aaeffdeea6"],
+Cell[144880, 3508, 952, 27, 62, "Output",ExpressionUUID->"2a30001c-2dbe-4c19-90b4-6e73bba5c49a"],
+Cell[CellGroupData[{
+Cell[145857, 3539, 375, 7, 24, "Print",ExpressionUUID->"266a41a1-5d0e-4872-91a3-52bd46954e48"],
+Cell[146235, 3548, 380, 7, 24, "Print",ExpressionUUID->"7bc0ceb6-ce1b-435e-b51e-6da69110d41c"],
+Cell[146618, 3557, 458, 8, 44, "Print",ExpressionUUID->"da9948e3-1f52-4307-a7ab-1c76bf6b6480"],
+Cell[147079, 3567, 380, 7, 24, "Print",ExpressionUUID->"239210d9-ffb2-444d-adf7-1e38a7df59df"],
+Cell[147462, 3576, 319, 6, 24, "Print",ExpressionUUID->"38e9b439-c109-4385-8b90-acdae83db8d7"],
+Cell[147784, 3584, 376, 7, 24, "Print",ExpressionUUID->"3d6a8579-9e5a-4c59-ab48-9dc535dc403d"],
+Cell[148163, 3593, 317, 6, 24, "Print",ExpressionUUID->"7c408848-9c6b-4185-a520-a9dc8431db1f"]
+}, Open  ]],
+Cell[148495, 3602, 603, 13, 24, "Message",ExpressionUUID->"3f50a898-f904-4e0b-8485-f104c5112680"],
+Cell[149101, 3617, 969, 27, 63, "Output",ExpressionUUID->"f4181fd0-77c6-452f-b754-bee658aa9cdb"],
+Cell[CellGroupData[{
+Cell[150095, 3648, 383, 7, 24, "Print",ExpressionUUID->"cc943979-1fe4-4217-968a-2a7654d149e4"],
+Cell[150481, 3657, 321, 6, 24, "Print",ExpressionUUID->"1a804de4-ed8a-478b-aa08-7cfaba4d4696"],
+Cell[150805, 3665, 356, 6, 24, "Print",ExpressionUUID->"d8ff5ec0-6584-480a-bbcb-8d6b1d87b55f"],
+Cell[151164, 3673, 318, 6, 24, "Print",ExpressionUUID->"6113e7a6-f6b2-4734-a628-8c1c01f47d6c"]
+}, Open  ]],
+Cell[151497, 3682, 601, 13, 24, "Message",ExpressionUUID->"03f05625-a63b-4c05-b427-f23d63cfef44"],
+Cell[152101, 3697, 863, 24, 62, "Output",ExpressionUUID->"0389cbee-2e17-4342-a594-2ed7b392a7ad"],
+Cell[CellGroupData[{
+Cell[152989, 3725, 383, 7, 24, "Print",ExpressionUUID->"505a4e49-3ffe-4766-b8ae-23a1d6b5fe5d"],
+Cell[153375, 3734, 319, 6, 24, "Print",ExpressionUUID->"6b19bbca-bb21-443d-a49e-9fdf08c8850e"],
+Cell[153697, 3742, 371, 7, 24, "Print",ExpressionUUID->"028e49a9-668c-4d55-851a-eda1c0a6cc8e"],
+Cell[154071, 3751, 321, 6, 24, "Print",ExpressionUUID->"6c90bb4a-9153-4ec4-b843-720add2e8ecd"]
+}, Open  ]],
+Cell[154407, 3760, 603, 13, 24, "Message",ExpressionUUID->"987adb06-0bb2-4aa8-98df-eb80c718aa46"],
+Cell[155013, 3775, 923, 26, 63, "Output",ExpressionUUID->"70eb4fdd-5659-43b7-9736-c06faa260281"],
+Cell[CellGroupData[{
+Cell[155961, 3805, 375, 7, 24, "Print",ExpressionUUID->"4ae85587-f863-4796-b5a4-6f054110af78"],
+Cell[156339, 3814, 319, 6, 24, "Print",ExpressionUUID->"e474a486-eceb-4a4b-a496-c87e4a9a6e78"],
+Cell[156661, 3822, 357, 6, 24, "Print",ExpressionUUID->"7568e5a8-5c06-42a0-a84f-b0e04984df4f"],
+Cell[157021, 3830, 319, 6, 24, "Print",ExpressionUUID->"0b2f8086-d5fb-4e1d-ab93-3335151432fc"]
+}, Open  ]],
+Cell[157355, 3839, 601, 13, 24, "Message",ExpressionUUID->"afe8d4e8-ed3f-4b7e-9196-d33d1aba43f1"],
+Cell[157959, 3854, 753, 21, 61, "Output",ExpressionUUID->"1b75f3c9-a9d9-4024-b05f-718046209548"],
+Cell[CellGroupData[{
+Cell[158737, 3879, 361, 6, 24, "Print",ExpressionUUID->"9d673304-0fe3-40c8-9e9a-a6b2388daa2b"],
+Cell[159101, 3887, 319, 6, 24, "Print",ExpressionUUID->"883d81d4-2975-4317-b5ef-2ca9b55060f2"],
+Cell[159423, 3895, 374, 7, 24, "Print",ExpressionUUID->"572f47bf-e4fd-4177-ac27-d6f6b852f25c"],
+Cell[159800, 3904, 319, 6, 24, "Print",ExpressionUUID->"d9da1db9-2c2d-4b2d-b4cc-29a65d654578"]
+}, Open  ]],
+Cell[160134, 3913, 603, 13, 24, "Message",ExpressionUUID->"45691459-dc14-4811-ad24-855d81ccbc0f"],
+Cell[160740, 3928, 892, 25, 63, "Output",ExpressionUUID->"cef67f40-1111-4503-93f3-3e0dd8da1ae4"],
+Cell[CellGroupData[{
+Cell[161657, 3957, 377, 7, 24, "Print",ExpressionUUID->"81862f13-bfa1-421f-b3a7-082de600a335"],
+Cell[162037, 3966, 319, 6, 24, "Print",ExpressionUUID->"72bc04b6-fa3c-4639-9777-da9147b3f231"],
+Cell[162359, 3974, 359, 6, 24, "Print",ExpressionUUID->"740bb195-3d5d-4977-9eb9-7da6a014195b"],
+Cell[162721, 3982, 321, 6, 24, "Print",ExpressionUUID->"e6baf8d8-421c-44ed-a9f8-6ff629d291d8"]
+}, Open  ]],
+Cell[163057, 3991, 603, 13, 24, "Message",ExpressionUUID->"033f4af4-96a3-4a30-9785-81d4b3a1552b"],
+Cell[163663, 4006, 952, 27, 62, "Output",ExpressionUUID->"d8047186-e449-473b-a7ab-b3b5ba80114e"],
+Cell[164618, 4035, 374, 7, 24, "Print",ExpressionUUID->"6d3606e9-0c6e-434b-9920-053b7dc5ffee"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,1998 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     90197,       1990]
+NotebookOptionsPosition[     89902,       1977]
+NotebookOutlinePosition[     90239,       1992]
+CellTagsIndexPosition[     90196,       1989]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"convertDegreesToRadians", "[", "degrees_", "]"}], " ", ":=", 
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{"Pi", "/", 
+     RowBox[{"(", "180", ")"}]}], ")"}], " ", 
+   "degrees"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"centerOfMassAdjustmentToXComponent", "[", 
+   RowBox[{
+   "distanceToPendulumMassCenter_", ",", "dXOffset_", ",", "dYOffset_", ",", 
+    "dZOffset_", ",", "mass_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"dXOffset", "+", "distanceToPendulumMassCenter"}], ")"}], "/", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"dXOffset", "+", "distanceToPendulumMassCenter"}], ")"}], 
+        "^", "2"}], "+", 
+       RowBox[{"dZOffset", "^", "2"}], " ", "+", " ", 
+       RowBox[{"dYOffset", "^", "2"}]}], ")"}], "^", ".5"}]}], " ", 
+   "mass"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"axialCenterOfMassAdjustmentToXComponent", "[", 
+   RowBox[{
+   "leverArm_", ",", "dXOffset_", ",", "dYOffset_", ",", "dZOffset_", ",", 
+    "mass_"}], "]"}], ":=", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"(", "dYOffset", ")"}], "/", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"dXOffset", "^", "2"}], "+", 
+          RowBox[{"dZOffset", "^", "2"}], " ", "+", " ", 
+          RowBox[{"dYOffset", "^", "2"}]}], ")"}], "^", ".5"}]}], ")"}], "/", 
+     
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"leverArm", "^", "2"}], " ", "+", " ", 
+        RowBox[{"dYOffset", "^", "2"}]}], ")"}], "^", ".5"}]}], " ", "mass"}],
+    ")"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"initializeZoeData", "[", "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "All", " ", "values", " ", "are", " ", "in", " ", "standard", " ", 
+     "international", " ", "units"}], " ", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"gEarthsSurface", " ", "=", " ", "9.80665"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"G", " ", "=", " ", 
+     RowBox[{"(", 
+      RowBox[{"6.674", "*", 
+       RowBox[{"10", "^", 
+        RowBox[{"\[Minus]", "11"}]}]}], ")"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"c", " ", "=", " ", 
+     RowBox[{"2.99792458", "*", 
+      RowBox[{"10", "^", "8"}]}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"tungstenAlloyMassDensity", " ", "=", " ", "17000"}], ";", " ", 
+    "\[IndentingNewLine]", 
+    RowBox[{"pendulumMass", "=", ".0383"}], ";", " ", "\[IndentingNewLine]", 
+    RowBox[{"pendulumMassRadius", "=", ".00955"}], ";", " ", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"pendulumMassRadius", "=", ".00955"}], ";", " ", 
+      RowBox[{
+       RowBox[{"-", " ", "page"}], " ", "9"}]}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", " ", 
+     RowBox[{
+      RowBox[{"pendulumMassRadius", "=", ".00474"}], ";", " ", 
+      RowBox[{"laser", " ", "scanner"}]}], " ", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"pendulumMassRadius", "=", ".00819"}], ";", " ", 
+      RowBox[{
+       RowBox[{"-", " ", "page"}], " ", "3"}]}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"ribbonLength", " ", "=", " ", ".260"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"leverArmAxisToPendulumMassCenter", "=", ".05"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"pendulumMassCenterOfMassZOffset", "=", "0"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"pendulumMassCenterOfMassXOffset", "=", "0.05"}], ";", 
+    RowBox[{"pendulumMassCenterOfMassYOffset", "=", "0"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"testSphere1Mass", "=", "1.719"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"testSphere1Mass", "=", "1.719"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"testSphere2Mass", "=", "1.500"}], ";"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"testSphereRadius", " ", "=", "0.02712"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"testSphereRadius", " ", "=", "0.0276"}], ";"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"testSphereAssemblyCenterOfMassZOffset", "=", "0"}], ";", 
+    RowBox[{"testSphereAssemblyCenterOfMassXOffset", "=", "0.05"}], ";", 
+    RowBox[{"testSphereAssemblyCenterOfMassYOffset", "=", 
+     RowBox[{"-", "0.042"}]}], ";", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"sphereCenterDistancetoPendulumMassCenterXAxis", "=", ".0422"}],
+       ";"}], "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"sphereCenterDistancetoPendulumMassCenterXAxis", "=", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{".06708", "^", "2"}], " ", "-", " ", 
+        RowBox[{"leverArmAxisToPendulumMassCenter", "^", "2"}]}], ")"}], "^", 
+      ".5"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"testSphere1EffectiveMass", "=", 
+     RowBox[{"centerOfMassAdjustmentToXComponent", "[", 
+      RowBox[{
+      "sphereCenterDistancetoPendulumMassCenterXAxis", ",", 
+       "testSphereAssemblyCenterOfMassXOffset", ",", 
+       "testSphereAssemblyCenterOfMassYOffset", ",", 
+       "testSphereAssemblyCenterOfMassZOffset", ",", "testSphere1Mass"}], 
+      "]"}]}], ";", 
+    RowBox[{"testSphere2EffectiveMass", "=", 
+     RowBox[{"centerOfMassAdjustmentToXComponent", "[", 
+      RowBox[{
+      "sphereCenterDistancetoPendulumMassCenterXAxis", ",", 
+       "testSphereAssemblyCenterOfMassXOffset", ",", 
+       "testSphereAssemblyCenterOfMassYOffset", ",", 
+       "testSphereAssemblyCenterOfMassZOffset", ",", "testSphere2Mass"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"bearing1", "=", ".001385"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"bearing2", "=", ".001385"}], ";", 
+    RowBox[{"towerAssembly1Mass", "=", "1.713"}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"motor", ",", "tower", ",", "coupler", ",", "bearings"}], "*)"}],
+     "\[IndentingNewLine]", 
+    RowBox[{"towerAssembly2Mass", "=", "1.715"}], ";", 
+    RowBox[{"towerAssemblyCenterOfMassZOffset", "=", 
+     RowBox[{"-", "0.042"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"motor", ",", "tower", ",", "coupler", ",", "bearings"}], "*)"}], 
+    RowBox[{"towerAssemblyCenterOfMassXOffset", "=", "0.063"}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"motor", ",", "tower", ",", "coupler", ",", "bearings"}], "*)"}], 
+    RowBox[{"towerAssemblyCenterOfMassYOffset", "=", 
+     RowBox[{"-", "0.053"}]}], ";", " ", 
+    RowBox[{"(*", 
+     RowBox[{"motor", ",", "tower", ",", "coupler", ",", "bearings"}], "*)"}], 
+    RowBox[{
+    "towerAssemblyCenterDistancetoPendulumMassCenterXAxis", "=", ".0422"}], 
+    ";", 
+    RowBox[{"towerAssembly1EffectiveMass", "=", 
+     RowBox[{"centerOfMassAdjustmentToXComponent", "[", 
+      RowBox[{
+      "towerAssemblyCenterDistancetoPendulumMassCenterXAxis", ",", " ", 
+       "towerAssemblyCenterOfMassXOffset", ",", " ", 
+       "towerAssemblyCenterOfMassYOffset", ",", " ", 
+       "towerAssemblyCenterOfMassZOffset", ",", "  ", "towerAssembly1Mass"}], 
+      "]"}]}], " ", ";", 
+    RowBox[{"(*", "Computed", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"towerAssembly2EffectiveMass", "=", 
+     RowBox[{"centerOfMassAdjustmentToXComponent", "[", 
+      RowBox[{
+      "towerAssemblyCenterDistancetoPendulumMassCenterXAxis", ",", " ", 
+       "towerAssemblyCenterOfMassXOffset", ",", " ", 
+       "towerAssemblyCenterOfMassYOffset", ",", " ", 
+       "towerAssemblyCenterOfMassZOffset", ",", "  ", "towerAssembly2Mass"}], 
+      "]"}]}], ";", " ", 
+    RowBox[{"(*", "Computed", "*)"}], 
+    RowBox[{"scannerMount1Mass", "=", ".210"}], ";", 
+    RowBox[{"scannerMount2Mass", "=", ".216"}], ";", 
+    RowBox[{"scannerMountCenterOfMassZOffset", "=", " ", 
+     RowBox[{"-", "0.055"}]}], ";", 
+    RowBox[{"scannerMountCenterOfMassXOffset", "=", " ", "0"}], ";", 
+    RowBox[{"scannerMountCenterOfMassYOffset", "=", 
+     RowBox[{"-", "0.201"}]}], ";", 
+    RowBox[{
+    "scannerMountEffectiveMassCenterDistancetoPendulumMassCenterXAxis", "=", 
+     " ", "Null"}], ";", 
+    RowBox[{"scannerMount1EffectiveMass", "=", "3"}], ";", " ", 
+    RowBox[{"(*", "Computed", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"scannerMount2EffectiveMass", "=", "3"}], ";", " ", 
+    RowBox[{"(*", "Computed", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"scannerIndexPlateMass", "=", "0.041"}], ";", 
+    RowBox[{"scannerIndexPlateCenterOfMassZOffset", "=", "0.044"}], ";", 
+    RowBox[{"scannerIndexPlateCenterOfMassXOffset", "=", "0"}], ";", 
+    RowBox[{"scannerIndexPlateCenterOfMassYOffset", "=", 
+     RowBox[{"-", "0.207"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"scannerMass", "=", ".379"}], ";", 
+    RowBox[{"scannerCenterOfMassZOffset", "=", " ", "0.071"}], ";", 
+    RowBox[{"scannerCenterOfMassXOffset", "=", " ", "0"}], ";", 
+    RowBox[{"scannerCenterOfMassYOffset", "=", 
+     RowBox[{"-", "0.207"}]}], ";", 
+    RowBox[{"scannerDistancetoMirror", "=", " ", ".050198"}], ";", 
+    RowBox[{"scannerEffectiveMass", "=", ".97"}], " ", ";", 
+    RowBox[{"(*", "Computed", "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"pendulumHousingVSScannerVariance", " ", "=", " ", 
+     RowBox[{"convertDegreesToRadians", "[", 
+      RowBox[{"-", "0.4"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<pendulum arc at maximum = \>\"", ",", " ", 
+      RowBox[{"leverArmAxisToPendulumMassCenter", " ", "*", " ", 
+       RowBox[{"convertDegreesToRadians", "[", 
+        RowBox[{"-", "1.7"}], "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"pendulumMomentOfInertia", " ", "=", " ", 
+     RowBox[{"2", " ", "pendulumMass", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"leverArmAxisToPendulumMassCenter", "^", "2"}], " ", "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "/", "5"}], ")"}], 
+         RowBox[{"pendulumMassRadius", "^", "2"}]}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"success", " ", "=", " ", "\"\<Initialization Complete\>\""}]}], 
+   "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"evaluateVirtualContributingMass", "[", 
+   RowBox[{
+   "nearSphereAngleDisplacementFromSpringEquilibrium_", ",", " ", 
+    "nearSpherePeriod_"}], "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", "\"\<Evaluate Mass Distribution As a Virtual Sphere\>\"", 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<[1] Let period = 2 \
+\[Pi](\!\(\*FractionBox[\(contributingGravitationalMass\), \(k\)]\))^.5\>\"", 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<[2] since \!\(\*FractionBox[\(contributingGravitationalMass\), \
+\(k\)]\) = \
+\!\(\*FractionBox[\(nearSphereEquilibriumDisplacementDueToLargeSphere\), \
+\(g\)]\)\>\"", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Then substituting [2] into [1]\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<[3] period = 2 \
+\[Pi](\!\(\*FractionBox[\(nearSphereEquilibriumDisplacementDueToLargeSphere\),\
+ \(g\)]\))^.5\>\"", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<[4] Let g = 2(\!\(\*FractionBox[\(G\\\ \
+contributingGravitationalMass\), \
+\(sphereCenterDistancetoPendulumMassCenterXAxis^2\)]\))\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<Then substituting [4] into [3]\>\"", "]"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Print", "[", 
+      "\"\<[5] nearSpherePeriod = 2 \
+\[Pi](\!\(\*FractionBox[\(nearSphereEquilibriumDisplacementDueToLargeSphere\),\
+ \(2 \((\*FractionBox[\(G\\\ contributingGravitationalMass\), \
+\(sphereCenterDistancetoPendulumMassCenterXAxis^2\)])\)\)]\))^.5\>\"", 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Finally, solving for testMass\>\"", "]"}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<[6] contributingGravitationalMass = \!\(\*FractionBox[\(\(\\\ \
+\)\(\*SuperscriptBox[\((2\\\ \[Pi])\), \(2\)] \
+nearSphereEquilibriumDisplacementDueToLargeSphere\\\ \
+\*SuperscriptBox[\(distance\), \(2\)]\)\), \(2  G\\\ \
+\*SuperscriptBox[\(nearSpherePeriod\), \(2\)]\)]\)\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<nearSphereEquilibriumDisplacementDueToLargeSphere = \
+nearSphereAngleDisplacementFromSpringEquilibrium * \
+leverArmAxisToPendulumMassCenter = \>\"", ",", 
+      RowBox[{
+      "nearSphereEquilibriumDisplacementDueToLargeSphere", " ", "=", " ", 
+       RowBox[{
+       "nearSphereAngleDisplacementFromSpringEquilibrium", " ", "*", " ", 
+        "leverArmAxisToPendulumMassCenter"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<nearSphereGravitationAcceleration = 2 G m2 \
+/(sphereCenterDistancetoPendulumMassCenterXAxis^2) = \>\"", ",", " ", 
+      RowBox[{"nearSphereGravitationAcceleration", " ", "=", " ", 
+       RowBox[{"2", "G", " ", 
+        RowBox[{"m2", " ", "/", 
+         RowBox[{"(", 
+          RowBox[{"sphereCenterDistancetoPendulumMassCenterXAxis", "^", "2"}],
+           ")"}]}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<contributingGravitationalMass = \!\(\*FractionBox[\(\(\\\ \
+\)\(\*SuperscriptBox[\((\[Pi])\), \(2\)] 2  \
+nearSphereAngleDisplacementFromSpringEquilibrium\\\ \
+\*SuperscriptBox[\(distance\), \(2\)]\)\), \(G\\\ \
+\*SuperscriptBox[\(nearSpherePeriod\), \(2\)]\)]\) = \>\"", ",", "  ", 
+      RowBox[{"contributingGravitationalMass", " ", "=", " ", 
+       RowBox[{
+        FractionBox["1", 
+         RowBox[{"G", " ", 
+          SuperscriptBox["nearSpherePeriod", "2"]}]], " ", 
+        SuperscriptBox[
+         RowBox[{"(", "\[Pi]", ")"}], "2"], "2", 
+        "nearSphereEquilibriumDisplacementDueToLargeSphere", " ", 
+        SuperscriptBox["sphereCenterDistancetoPendulumMassCenterXAxis", 
+         "2"]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Contributing Mass VS Test Mass Ratio = \!\(\*FractionBox[\(\(\\\ \)\
+\(contributingMass\)\), \(\(\\\ \)\(\((testSphere1Mass\\\  + \\\ \
+testSphere2Mass)\)/2\)\)]\) = \>\"", ",", 
+      FractionBox["contributingGravitationalMass", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"testSphere1Mass", " ", "+", " ", "testSphere2Mass"}], ")"}],
+         "/", "2"}]]}], " ", "]"}], ";", "\[IndentingNewLine]", 
+    "contributingGravitationalMass"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"computeDistantSpherePeriod", "[", 
+   RowBox[{
+   "distantSphereAngleDisplacementFromSpringEquilibrium_", ",", " ", 
+    "contributingGravitationalMass_"}], "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", "\"\<Evaluate Period Induced By Distant Test Sphere\>\"", 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"m2", " ", "=", " ", "contributingGravitationalMass"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<distantSphereEquilibriumDisplacementDueToLargeSphere = \
+distantSphereAngleDisplacementFromSpringEquilibrium * \
+leverArmAxisToPendulumMassCenter = \>\"", ",", " ", 
+      RowBox[{
+      "distantSphereEquilibriumDisplacementDueToLargeSphere", " ", "=", " ", 
+       RowBox[{
+       "distantSphereAngleDisplacementFromSpringEquilibrium", " ", "*", " ", 
+        "leverArmAxisToPendulumMassCenter"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<\[IndentingNewLine]distantSphereGravitationAcceleration = 2 G m2 \
+/((((2 leverArmAxisToPendulumMassCenter)^2 + (2 \
+distantSphereEquilibriumDisplacementDueToLargeSphere)^2)^.5)^2) * (2 \
+distantSphereEquilibriumDisplacementDueToLargeSphere/((\
+2leverArmAxisToPendulumMassCenter)^2 + (2 \
+distantSphereEquilibriumDisplacementDueToLargeSphere)^2)^.5) = \>\"", ",", 
+      " ", 
+      RowBox[{"distantSphereGravitationAcceleration", " ", "=", " ", 
+       RowBox[{"2", "G", " ", 
+        RowBox[{"m2", " ", "/", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"2", "leverArmAxisToPendulumMassCenter"}], ")"}], 
+                "^", "2"}], " ", "+", " ", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                 "2", "distantSphereEquilibriumDisplacementDueToLargeSphere"}]\
+, ")"}], "^", "2"}]}], ")"}], "^", ".5"}], ")"}], "^", "2"}], ")"}]}], " ", 
+        "*", " ", 
+        RowBox[{"(", 
+         RowBox[{"2", 
+          RowBox[{"distantSphereEquilibriumDisplacementDueToLargeSphere", "/", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"2", "leverArmAxisToPendulumMassCenter"}], ")"}], "^",
+                "2"}], " ", "+", " ", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                "2", "distantSphereEquilibriumDisplacementDueToLargeSphere"}],
+                 ")"}], "^", "2"}]}], ")"}], "^", ".5"}]}]}], ")"}]}]}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<distantSpherePeriod = 2 Pi \
+(distantSphereEquilibriumDisplacementDueToLargeSphere/\
+distantSphereGravitationAcceleration)^.5\>\"", ",", 
+      RowBox[{"distantSpherePeriod", "=", " ", 
+       RowBox[{"Pi", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"distantSphereEquilibriumDisplacementDueToLargeSphere", "/", 
+           RowBox[{"(", "distantSphereGravitationAcceleration", ")"}]}], 
+          ")"}], "^", ".5"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    "distantSpherePeriod"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"smoothZoeDataSet", "[", 
+   RowBox[{"runData_", ",", " ", "yInterceptFlag_"}], "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"length", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Length", "[", "runData", "]"}], "-", "2"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"length", " ", "=", "970428"}], ";"}], "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{"angle", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"savedSmoothedAngle", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"yIntercept", "=", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"savedSmoothedyIntercept", "=", " ", 
+        RowBox[{"Table", "[", 
+         RowBox[{"0", ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}]}], ",", "Null"}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"time", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<separate elements\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"startTime", " ", "=", 
+     RowBox[{"runData", "[", 
+      RowBox[{"[", 
+       RowBox[{"3", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"endTime", " ", "=", 
+     RowBox[{"runData", "[", 
+      RowBox[{"[", 
+       RowBox[{
+        RowBox[{"length", " ", "+", " ", "2"}], ",", " ", "1"}], "]"}], 
+      "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<=", "length"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"time", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+         RowBox[{"runData", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"i", " ", "+", " ", "2"}], ",", " ", "1"}], "]"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"angle", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+         RowBox[{"runData", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"i", " ", "+", " ", "2"}], ",", " ", "2"}], "]"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"yIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+           RowBox[{"runData", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"i", " ", "+", " ", "2"}], ",", " ", "3"}], "]"}], 
+            "]"}]}], ",", "Null"}], "]"}], ";"}], "\[IndentingNewLine]", 
+       "}"}]}], "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Process Bilateral Smoothing\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"filtered", " ", "=", " ", 
+     RowBox[{"BilateralFilter", "[", 
+      RowBox[{"angle", ",", "100", ",", "1"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{"filteredyIntercept", " ", "=", " ", 
+       RowBox[{"BilateralFilter", "[", 
+        RowBox[{"yIntercept", ",", "100", ",", "1"}], "]"}]}], ",", "Null"}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"recombinedBiLateralTable", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "3"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Recombine BiLateral Elements\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<=", "length"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"recombinedBiLateralTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "1"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"time", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"recombinedBiLateralTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"filtered", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"recombinedBiLateralTable", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "3"}], "]"}], "]"}], " ", "=", 
+           RowBox[{"filteredyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "Null"}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"savedSmoothedAngle", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+         RowBox[{"filtered", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"savedSmoothedyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+           RowBox[{"filteredyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "Null"}], "]"}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"(*", "            ", 
+     RowBox[{"Second", " ", "Iteration"}], "           ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<Perform Second BiLateral Smoothing of Original BiLateral Table\>\"",
+      "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"filtered", " ", "=", " ", 
+     RowBox[{"BilateralFilter", "[", 
+      RowBox[{"savedSmoothedAngle", ",", "100", ",", "1"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{"filteredyIntercept", " ", "=", " ", 
+       RowBox[{"BilateralFilter", "[", 
+        RowBox[{"savedSmoothedyIntercept", ",", "100", ",", "1"}], "]"}]}], 
+      ",", "Null"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"recombinedSecondBiLateralTable", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "3"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Recombine Bilateral Elements\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<=", "length"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"recombinedSecondBiLateralTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "1"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"time", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"recombinedSecondBiLateralTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"filtered", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"recombinedSecondBiLateralTable", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "3"}], "]"}], "]"}], " ", "=", 
+           RowBox[{"filteredyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "Null"}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"savedSmoothedAngle", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+         RowBox[{"filtered", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"savedSmoothedyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}], " ", "=", " ", 
+           RowBox[{"filteredyIntercept", "[", 
+            RowBox[{"[", "i", "]"}], "]"}]}], ",", "Null"}], "]"}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{"(*", "            ", 
+     RowBox[{"Third", " ", "Iteration"}], "           ", "*)"}], 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<Perform Third BiLateral Smoothing of Second BiLateral Table\>\"", 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"filtered", " ", "=", " ", 
+     RowBox[{"BilateralFilter", "[", 
+      RowBox[{"savedSmoothedAngle", ",", "100", ",", "1"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{"filteredyIntercept", " ", "=", " ", 
+       RowBox[{"BilateralFilter", "[", 
+        RowBox[{"savedSmoothedyIntercept", ",", "100", ",", "1"}], "]"}]}], 
+      ",", "Null"}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<Perform Moving Median Smoothing of third BiLateral list\>\"", "]"}],
+     ";", "\[IndentingNewLine]", 
+    RowBox[{"filtered", " ", "=", " ", 
+     RowBox[{"MovingMedian", "[", 
+      RowBox[{"filtered", ",", "10000"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{"filteredyIntercept", " ", "=", " ", 
+       RowBox[{"MovingMedian", "[", 
+        RowBox[{"filteredyIntercept", ",", "10000"}], "]"}]}], ",", "Null"}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"recombinedFinalSmoothedTable", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "filtered", "]"}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{"recombinedyInterceptFinalSmoothedTable", " ", "=", " ", 
+       RowBox[{"Table", "[", 
+        RowBox[{"0", ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", 
+           RowBox[{"Length", "[", "filtered", "]"}]}], "}"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ",", "Null"}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Recombine Moving Median Elements\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", 
+       RowBox[{"Length", "[", "filtered", "]"}]}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"recombinedFinalSmoothedTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "1"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"time", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"recombinedFinalSmoothedTable", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"filtered", "[", 
+          RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"recombinedyInterceptFinalSmoothedTable", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "1"}], "]"}], "]"}], " ", "=", 
+            RowBox[{"time", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"recombinedyInterceptFinalSmoothedTable", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", "2"}], "]"}], "]"}], " ", "=", 
+            RowBox[{"filteredyIntercept", "[", 
+             RowBox[{"[", "i", "]"}], "]"}]}]}], ",", "Null"}], "]"}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "timeAngleDataSet", " ", "=", " ", "recombinedFinalSmoothedTable"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{"yInterceptFlag", ",", "\[IndentingNewLine]", 
+      RowBox[{
+      "timeyInterceptDataSet", " ", "=", " ", 
+       "recombinedyInterceptFinalSmoothedTable"}], ",", "Null"}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"records", " ", "=", " ", 
+     RowBox[{"Length", "[", "filtered", "]"}]}]}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"evaluateChangeInYVSChangeInRadial", "[", 
+   RowBox[{"timeyInterceptDataSet_", ",", " ", "timeAngleDataSet_"}], "]"}], 
+  " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<evaluateChangeInYVSChangeInRadial\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"localLength", " ", "=", " ", 
+     RowBox[{"Length", "[", "timeAngleDataSet", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"changeInYVSChangeInRadialDataSet", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "localLength"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"localStartTime", " ", "=", 
+       RowBox[{"timeyInterceptDataSet", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"localEndTime", " ", "=", 
+       RowBox[{"timeyInterceptDataSet", "[", 
+        RowBox[{"[", 
+         RowBox[{"localLength", ",", " ", "1"}], "]"}], "]"}]}], ";"}], 
+     "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "<=", "localLength"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"changeInYVSChangeInRadialDataSet", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+         RowBox[{
+          RowBox[{"convertDegreesToRadians", "[", 
+           RowBox[{"timeAngleDataSet", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", " ", "2"}], "]"}], "]"}], "]"}], " ", "*", " ",
+           "leverArmAxisToPendulumMassCenter"}]}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", "localLength"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"getCrestsAndTroughs", "[", "dataSet_", "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<analyzeZOEDataSet\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<length = Length[dataSet] = \>\"", ",", " ", 
+      RowBox[{"length", " ", "=", " ", 
+       RowBox[{"Length", "[", "dataSet", "]"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", "\"\<Separate time and angle from data set\>\"", "]"}], ";",
+     "\[IndentingNewLine]", 
+    RowBox[{"value", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"time", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", "length"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"time", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+         RowBox[{"dataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"value", "[", 
+          RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+         RowBox[{"dataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "2"}], "]"}], "]"}]}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", 
+     "\"\<Use GaussianFilter to Create Envelope for FindPeaks\>\"", "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"gaussianPlot", " ", "=", 
+     RowBox[{"ListLinePlot", "[", 
+      RowBox[{"{", 
+       RowBox[{"value", ",", 
+        RowBox[{"env", " ", "=", 
+         RowBox[{"GaussianFilter", "[", 
+          RowBox[{
+           RowBox[{"MaxFilter", "[", 
+            RowBox[{"value", ",", "60000"}], "]"}], ",", "60000"}], "]"}]}]}],
+        "}"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Find Peaks\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"peaksAndIndex", "=", " ", 
+     RowBox[{"FindPeaks", "[", 
+      RowBox[{"env", ",", " ", "30000"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Peaks = \>\"", ",", " ", "peaksAndIndex"}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"startingPeakIndex", " ", "=", " ", "1"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"peaksAndTime", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{"Length", "[", "peaksAndIndex", "]"}]}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"troughsAndTime", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", 
+         RowBox[{
+          RowBox[{"Length", "[", "peaksAndIndex", "]"}], "-", "1"}]}], "}"}], 
+       ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Number of peaks = \>\"", ",", " ", 
+      RowBox[{"Length", "[", "peaksAndIndex", "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+    "Print", "[", "\"\<Recombine peaks and associated time\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"indexWaveLength", " ", "=", "0"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"troughIndex", " ", "=", " ", "0"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "startingPeakIndex"}], ",", 
+      RowBox[{"i", "\[LessEqual]", 
+       RowBox[{"Length", "[", "peaksAndIndex", "]"}]}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"index", " ", "=", 
+         RowBox[{"IntegerPart", "[", 
+          RowBox[{
+           RowBox[{"peaksAndIndex", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], "*", "1.0"}], 
+          "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"peaksAndTime", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "1"}], "]"}], "]"}], " ", "=", " ", 
+         RowBox[{"time", "[", 
+          RowBox[{"[", "index", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"peaksAndTime", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "2"}], "]"}], "]"}], " ", "=", " ", 
+         RowBox[{"value", "[", 
+          RowBox[{"[", "index", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"i", " ", ">", " ", "startingPeakIndex"}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"index1", " ", "=", 
+            RowBox[{"IntegerPart", "[", 
+             RowBox[{
+              RowBox[{"peaksAndIndex", "[", 
+               RowBox[{"[", 
+                RowBox[{
+                 RowBox[{"i", " ", "-", "1"}], ",", " ", "1"}], "]"}], "]"}], 
+              "*", " ", "1.0"}], "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"index2", " ", "=", 
+            RowBox[{"IntegerPart", "[", 
+             RowBox[{
+              RowBox[{"peaksAndIndex", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], "*", "1.0"}], 
+             "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"indexWaveLength", " ", "=", " ", 
+            RowBox[{"index2", " ", "-", " ", "index1"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"troughIndex", " ", "=", " ", 
+            RowBox[{
+             RowBox[{"IntegerPart", "[", 
+              RowBox[{"(", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{
+                  RowBox[{"(", "indexWaveLength", ")"}], "/", "2"}], ")"}], 
+                "*", "1.0"}], ")"}], "]"}], " ", "+", " ", "index1"}]}], ";", 
+           
+           RowBox[{
+            RowBox[{"troughsAndTime", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{"i", "-", "1"}], ",", "1"}], "]"}], "]"}], " ", "=", 
+            "  ", 
+            RowBox[{"time", "[", 
+             RowBox[{"[", "troughIndex", "]"}], "]"}]}], ";", 
+           RowBox[{
+            RowBox[{"troughsAndTime", "[", 
+             RowBox[{"[", 
+              RowBox[{
+               RowBox[{"i", "-", "1"}], ",", "2"}], "]"}], "]"}], " ", "=", 
+            " ", 
+            RowBox[{"value", "[", 
+             RowBox[{"[", "troughIndex", "]"}], "]"}]}]}], ",", 
+          "\[IndentingNewLine]", " ", "Null"}], "]"}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<peaksAndTime = \>\"", ",", " ", "peaksAndTime"}], "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Number of troughs = \>\"", ",", " ", 
+      RowBox[{"Length", "[", "troughsAndTime", "]"}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<troughsAndTime = \>\"", ",", " ", "troughsAndTime"}], "]"}],
+     ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<startTime = peaksAndTime[[startingPeakIndex,1]] = \>\"", ",", 
+      RowBox[{"startTime", " ", "=", " ", 
+       RowBox[{"peaksAndTime", "[", 
+        RowBox[{"[", 
+         RowBox[{"startingPeakIndex", ",", "1"}], "]"}], "]"}]}]}], "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<endTime = time[[length]] = \>\"", ",", " ", 
+      RowBox[{"endTime", " ", "=", " ", 
+       RowBox[{"troughsAndTime", "[", 
+        RowBox[{"[", 
+         RowBox[{
+          RowBox[{"Length", "[", "troughsAndTime", "]"}], ",", "1"}], "]"}], 
+        "]"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"records", " ", "=", " ", 
+     RowBox[{"Length", "[", "peaksAndTime", "]"}]}]}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"analyzeWaveProperties", "[", 
+   RowBox[{"peaksAndTime_", ",", " ", "troughsAndTime_"}], "]"}], " ", ":=", 
+  " ", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<Compute wave properties\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"(*", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"peaksAndTime", "[", 
+          RowBox[{"[", 
+           RowBox[{"startingPeakIndex", ",", "2"}], "]"}], "]"}], " ", ">", 
+         " ", "0"}], ",", 
+        RowBox[{"equalibriumSign", " ", "=", " ", 
+         RowBox[{"-", "1"}]}], ",", 
+        RowBox[{"equalibriumSign", " ", "=", " ", "1"}]}], "]"}], ";"}], 
+     "*)"}], "\[IndentingNewLine]", 
+    RowBox[{"equilibriumSign", " ", "=", " ", "1"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<projectedEquilibrium \
+=(\[TildeTilde]\[CapitalOmega][[startingPeakIndex,2]]+ \
+troughsAndTime[[1,2]])/2 = \>\"", ",", " ", 
+      RowBox[{"projectedEquilibrium", "=", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"peaksAndTime", "[", 
+            RowBox[{"[", 
+             RowBox[{"startingPeakIndex", ",", "2"}], "]"}], "]"}], "+", 
+           RowBox[{"troughsAndTime", "[", 
+            RowBox[{"[", 
+             RowBox[{"1", ",", "2"}], "]"}], "]"}]}], ")"}], "/", "2"}], "*", 
+        " ", "equilibriumSign"}]}]}], "]"}], ";", " ", "\[IndentingNewLine]", 
+    
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<angleAmplitude = PeaksAndTime[[startingPeakIndex,2]] - \
+projectedEquilibrium = \>\"", ",", " ", 
+      RowBox[{"angleAmplitude", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"peaksAndTime", "[", 
+         RowBox[{"[", 
+          RowBox[{"startingPeakIndex", ",", "2"}], "]"}], "]"}], "-", " ", 
+        "projectedEquilibrium"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<period = peaksAndTime[[startingPeakIndex + \
+1,1]]\!\(\*StyleBox[\"-\",FontSize->12]\) peaksAndTime[[startingPeakIndex,1]] \
+= \>\"", ",", 
+      RowBox[{"period", " ", "=", 
+       RowBox[{
+        RowBox[{"peaksAndTime", "[", 
+         RowBox[{"[", 
+          RowBox[{
+           RowBox[{"startingPeakIndex", "+", "1"}], ",", "1"}], "]"}], "]"}], 
+        "-", 
+        RowBox[{"peaksAndTime", "[", 
+         RowBox[{"[", 
+          RowBox[{"startingPeakIndex", ",", "1"}], "]"}], "]"}]}]}]}], "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<distanceAmplitude = convertDegreesToRadians[angleAmplitude] * \
+leverArmAxisToPendulumMassCenter = \>\"", ",", " ", 
+      RowBox[{"distanceAmplitude", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"convertDegreesToRadians", "[", "angleAmplitude", "]"}], " ", 
+        "*", " ", "leverArmAxisToPendulumMassCenter"}]}], ",", " ", 
+      "\"\< meters\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<YComponentVelocity = (1/2)distanceAmplitude/(period/4) = \>\"", ",",
+       " ", 
+      RowBox[{"YComponentVelocity", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], 
+        RowBox[{"distanceAmplitude", "/", 
+         RowBox[{"(", 
+          RowBox[{"period", "/", "4"}], ")"}]}]}]}], ",", " ", 
+      "\"\< meters per second\>\""}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<energy = (1/2)(2/5)pendulumMass * YComponentVelocity^2 = \>\"", ",",
+       " ", 
+      RowBox[{"energy", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], 
+        RowBox[{"(", 
+         RowBox[{"2", "/", "5"}], ")"}], "pendulumMass", " ", "*", " ", 
+        RowBox[{"YComponentVelocity", "^", "2"}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<dampingCoefficient = \
+peaksAndTime[[startingPeakIndex,2]]\!\(\*StyleBox[\"-\",FontSize->12]\) \
+peaksAndTime[[startingPeakIndex + 1,2]] = \>\"", ",", " ", 
+      RowBox[{"dampingCoefficient", " ", "=", 
+       RowBox[{
+        RowBox[{"peaksAndTime", "[", 
+         RowBox[{"[", 
+          RowBox[{"startingPeakIndex", ",", "2"}], "]"}], "]"}], 
+        StyleBox["-",
+         FontSize->12], " ", 
+        RowBox[{"peaksAndTime", "[", 
+         RowBox[{"[", 
+          RowBox[{
+           RowBox[{"startingPeakIndex", " ", "+", " ", "1"}], ",", "2"}], 
+          "]"}], "]"}]}]}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"computeNonWaveStatistics", "[", "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<computeNonWaveStatistics\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<[1.7] pendulumMassMomentOfInertia = 2 \
+pendulumMass(leverArmAxisToPendulumMassCenter + (2/5)pendulumMassRadius)^2 = \
+\>\"", ",", " ", 
+      RowBox[{"pendulumMassMomentOfInertia", " ", "=", " ", 
+       RowBox[{"2", " ", "pendulumMass", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"leverArmAxisToPendulumMassCenter", " ", "+", " ", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"2", "/", "5"}], ")"}], "pendulumMassRadius"}]}], ")"}], 
+         "^", "2"}]}]}]}], " ", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<[1.6] torsionBandTorque = (4 Pi^2 pendulumMassMomentOfInertia) / \
+testCase2Period^2 = \>\"", ",", " ", 
+      RowBox[{"torsionBandTorque", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"4", " ", 
+          RowBox[{"Pi", "^", "2"}], " ", "pendulumMassMomentOfInertia"}], 
+         ")"}], " ", "/", " ", 
+        RowBox[{"period", "^", "2"}]}]}]}], " ", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<averageTestSphereMass = (testSphere1Mass + testSphere2Mass)/2  = \>\
+\"", ",", " ", 
+      RowBox[{"averageTestSphereMass", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"testSphere1Mass", " ", "+", " ", "testSphere2Mass"}], ")"}],
+         "/", "2"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<[1.1] gForce = (G averageTestSphereMass * \
+pendulumMass)/towerAssemblyCenterDistancetoPendulumMassCenterXAxis^2 = \>\"", 
+      ",", " ", 
+      RowBox[{"gForce", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+         "G", " ", "averageTestSphereMass", " ", "*", " ", "pendulumMass"}], 
+         ")"}], "/", 
+        RowBox[{
+        "towerAssemblyCenterDistancetoPendulumMassCenterXAxis", "^", 
+         "2"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<gravitationalTorque = 2 gForce * leverArmAxisToPendulumMassCenter = \
+\>\"", ",", " ", 
+      RowBox[{"gravitationalTorque", " ", "=", " ", 
+       RowBox[{
+       "2", " ", "gForce", " ", "*", " ", 
+        "leverArmAxisToPendulumMassCenter"}]}]}], "]"}], ";"}], 
+   "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"computeMean", "[", 
+    RowBox[{
+    "timeValueDataSet_", ",", " ", "startTime_", ",", " ", "endTime_"}], 
+    "]"}], ":=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "\"\<computeMean\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Print", "[", "\"\<Compute Mean of Time Value Data Set\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{"\"\<length = Length[timeValueDataSet]-1 = \>\"", ",", " ", 
+       RowBox[{"length", " ", "=", " ", 
+        RowBox[{"Length", "[", "timeValueDataSet", "]"}]}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+     "Print", "[", "\"\<Separate time and angle from data set\>\"", "]"}], 
+     ";", "\[IndentingNewLine]", 
+     RowBox[{"angle", "=", " ", 
+      RowBox[{"Table", "[", 
+       RowBox[{"0", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"time", " ", "=", " ", 
+      RowBox[{"Table", "[", 
+       RowBox[{"0", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "length"}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ",", 
+       RowBox[{"i", "\[LessEqual]", "length"}], ",", 
+       RowBox[{"i", "++"}], ",", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"if", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"timeValueDataSet", "[", 
+             RowBox[{"[", 
+              RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], " ", "\[Equal]", 
+            " ", "startTime"}], ",", 
+           RowBox[{"startTimeIndex", " ", "=", " ", "i"}], ",", "Null"}], 
+          "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"time", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+          RowBox[{"timeValueDataSet", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"angle", "[", 
+           RowBox[{"[", "i", "]"}], "]"}], " ", "=", 
+          RowBox[{"timeValueDataSet", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", " ", "2"}], "]"}], "]"}]}], ";"}], 
+        "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Mean", "[", "angle", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"computeVirtualTestSphereMass", "[", "angleDisplacement_", "]"}], 
+   " ", ":=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "\"\<computeVirtualMass\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{
+      "\"\<From [1.8] torsionConstant = K = \!\(\*FractionBox[\(\(8\)\(\\\ \)\
+\*SuperscriptBox[\(\[Pi]\), \(2\)] \(pendulumMassMomentOfInertia\)\(\\\ \)\), \
+\(2 \*SuperscriptBox[\(period\), \(2\)]\)]\) = \>\"", ",", " ", 
+       RowBox[{"torsionConstant", " ", "=", " ", 
+        FractionBox[
+         RowBox[{"8", " ", 
+          SuperscriptBox["\[Pi]", "2"], "pendulumMassMomentOfInertia", " "}], 
+         
+         RowBox[{"2", 
+          SuperscriptBox["period", "2"]}]]}]}], "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{
+      "\"\<From [1.4] GConstantEstimate = \
+\!\(\*FractionBox[\(\(torsionConstant\)\(\\\ \)\(angleDisplacement\)\(\\\ \
+\)\), \(2  averageTestSphereMass\\\ pendulumMass\)]\) = \>\"", ",", " ", 
+       RowBox[{"GConstantEstimate", " ", "=", " ", 
+        FractionBox[
+         RowBox[{"torsionConstant", " ", "angleDisplacement", " "}], 
+         RowBox[{"2", "averageTestSphereMass", " ", "pendulumMass"}]]}]}], 
+      "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"Print", "[", 
+      RowBox[{
+      "\"\<From [1.4] virtualTestSphereMass = \
+\!\(\*FractionBox[\(\(torsionConstant\)\(\\\ \)\(angleDisplacement\)\(\\\ \
+\)\), \(2  G\\\ pendulumMass\)]\) = \>\"", ",", " ", 
+       RowBox[{"virtualTestSphereMass", " ", "=", " ", 
+        FractionBox[
+         RowBox[{"torsionConstant", " ", "angleDisplacement", " "}], 
+         RowBox[{"2", "G", " ", "pendulumMass"}]]}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "virtualTestSphereMass"}], "\[IndentingNewLine]", 
+    "}"}]}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"copyTimeCoordinates", "[", 
+   RowBox[{"timeDataSet1_", ",", "timeDataSet2_"}], "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<copyTimeCoordinates\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Copy Time Coordinates\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<length1 = Length[timeValueDataSet1]-1 = \>\"", ",", " ", 
+      RowBox[{"length1", " ", "=", " ", 
+       RowBox[{"Length", "[", "timeDataSet1", "]"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<length2 = Length[timeValueDataSet2]-1 = \>\"", ",", " ", 
+      RowBox[{"length2", " ", "=", " ", 
+       RowBox[{"Length", "[", "timeDataSet2", "]"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Determine shortest data set\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"length1", " ", ">", " ", "length2"}], ",", " ", 
+      RowBox[{
+       RowBox[{"length", " ", "=", "length2"}], ";", " ", 
+       RowBox[{"sourceDataSet", " ", "=", " ", "timeDataSet2"}], ";", 
+       RowBox[{"targetDataSet", " ", "=", " ", "timeDataSet1"}], ";"}], ",", 
+      " ", 
+      RowBox[{
+       RowBox[{"length", " ", "=", " ", "length1"}], ";", 
+       RowBox[{"sourceDataSet", " ", "=", " ", "timeDataSet1"}], ";", 
+       RowBox[{"targetDataSet", " ", "=", " ", "timeDataSet2"}], ";"}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"outputSourceDataSet", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"outputTargetDataSet", " ", "=", " ", 
+     RowBox[{"Table", "[", 
+      RowBox[{"0", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"i", ",", "length"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"j", ",", " ", "2"}], "}"}]}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<Copy Time\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"For", "[", 
+     RowBox[{
+      RowBox[{"i", "=", "1"}], ",", 
+      RowBox[{"i", "\[LessEqual]", "length"}], ",", 
+      RowBox[{"i", "++"}], ",", 
+      RowBox[{"{", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"outputTargetDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"sourceDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"outputTargetDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "2"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"targetDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "2"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"outputSourceDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "1"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"sourceDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "1"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"outputSourceDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "2"}], "]"}], "]"}], " ", "=", 
+         RowBox[{"sourceDataSet", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", " ", "2"}], "]"}], "]"}]}], ";"}], 
+       "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "]"}], ";", 
+    "\[IndentingNewLine]", "length"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"averageAsALinearModel", "[", "dataSet_", "]"}], " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<averageAsALinearModel\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Clear", "[", "t", "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"model", " ", "=", " ", 
+     RowBox[{"LinearModelFit", "[", 
+      RowBox[{"dataSet", ",", " ", "t", ",", " ", "t"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"f2Model", "=", 
+     RowBox[{"model", "[", "\"\<BestFit\>\"", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"coefficientResult", " ", "=", 
+     RowBox[{"CoefficientList", "[", 
+      RowBox[{"f2Model", ",", " ", "t"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"slope", " ", "=", " ", 
+     RowBox[{"coefficientResult", "[", 
+      RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+    "f2Model"}], "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"averageAsALinearModelAndPlot", "[", 
+   RowBox[{"dataSet_", ",", " ", "startTime_", ",", " ", "endTime_"}], "]"}], 
+  " ", ":=", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<averageAsALinearModelAndPlot\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", "\"\<*************\>\"", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"dataSetPlot", " ", "=", " ", 
+     RowBox[{"ListPlot", "[", 
+      RowBox[{"dataSet", ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"startTime", ",", "endTime"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"Full", ",", "Full"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotLabels", "\[Rule]", 
+        RowBox[{"{", "\"\<source\>\"", "}"}]}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", "Green", "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    
+    RowBox[{"model", " ", "=", " ", 
+     RowBox[{"averageAsALinearModel", "[", "dataSet", "]"}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"regressionPlot", " ", "=", 
+     RowBox[{"Plot", "[", 
+      RowBox[{"model", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", " ", "startTime", ",", " ", "endTime"}], "}"}], ",", 
+       RowBox[{"PlotRange", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"startTime", ",", "endTime"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"Full", ",", "Full"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"PlotStyle", "\[Rule]", 
+        RowBox[{"{", "Blue", "}"}]}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"g1", "=", 
+     RowBox[{"Show", "[", 
+      RowBox[{"dataSetPlot", ",", " ", "regressionPlot"}], "]"}]}], ";", 
+    "\[IndentingNewLine]", "g1"}], "\[IndentingNewLine]", 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"YInerceptVSXYAnalysis", "[", 
+   RowBox[{
+   "anglePeak_", ",", " ", "anglePeakTime_", ",", " ", "angleFirstTrough_", 
+    ",", " ", "angleFirstTroughTime_", ",", "angleSecondTrough_", ",", " ", 
+    "angleSecondTroughTime_", ",", " ", "yPeak_", ",", " ", "yPeakTime_", ",",
+     " ", "yFirstTrough_", ",", " ", "yFirstTroughTime_", ",", " ", 
+    "ySecondTrough_", ",", " ", "ySecondTroughTime_"}], "]"}], " ", ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"{", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<XY Period = \>\"", ",", 
+      RowBox[{"XYPeriod", " ", "=", " ", 
+       RowBox[{"(", 
+        RowBox[{
+        "angleSecondTroughTime", " ", "-", " ", "angleFirstTroughTime"}], 
+        ")"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"angleAvgTrough", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"angleFirstTrough", " ", "+", " ", "angleSecondTrough"}], 
+       ")"}], "/", "2"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"XYMomentOfInertia", " ", "=", " ", 
+     RowBox[{"2", " ", "pendulumMass", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"leverArmAxisToPendulumMassCenter", "^", "2"}], " ", "+", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"2", "/", "5"}], ")"}], 
+         RowBox[{"pendulumMassRadius", "^", "2"}]}]}], ")"}]}]}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<XYAngleAmp = (anglePeak - angleAvgTrough)/2 = \>\"", ",", " ", 
+      RowBox[{"XYAngleAmp", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"anglePeak", " ", "-", " ", "angleAvgTrough"}], ")"}], "/", 
+        "2"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<XYAmp = leverArmAxisToPendulumMassCenter * XYAngleAmp = \>\"", ",", 
+      " ", 
+      RowBox[{"XYAmp", " ", "=", " ", 
+       RowBox[{
+       "leverArmAxisToPendulumMassCenter", " ", "*", "XYAngleAmp"}]}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<XYAssociatedChangeInX = leverArmAxisToPendulumMassCenter \
+Sin[XYAngleAmp] = \>\"", ",", " ", 
+      RowBox[{"XYAssociatedChangeInX", " ", "=", " ", 
+       RowBox[{"XYAmp", " ", 
+        RowBox[{"Sin", "[", "XYAngleAmp", "]"}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<XYAssociatedChangeInY = (XYAmpl^2 - XYAssociatedChangeInX^2)^.5 = \
+\>\"", ",", " ", 
+      RowBox[{"XYAssociatedChangeInY", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"XYAmp", "^", "2"}], " ", "-", " ", 
+          RowBox[{"XYAssociatedChangeInX", "^", "2"}]}], ")"}], "^", 
+        ".5"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<XYKineticEnergyXYAMP = \>\"", ",", " ", 
+      RowBox[{"XYKineticEnergyXYAmp", " ", "=", " ", 
+       RowBox[{"pendulumMass", " ", 
+        RowBox[{
+         RowBox[{"XYAmp", "^", "2"}], "/", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+             "angleSecondTroughTime", " ", "-", " ", "angleFirstTroughTime"}],
+              ")"}], "/", "2"}], ")"}], "^", "2"}]}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<XYKineticEnergydY = \>\"", ",", " ", 
+      RowBox[{"XYKineticEnergydY", " ", "=", " ", 
+       RowBox[{"pendulumMass", " ", 
+        RowBox[{
+         RowBox[{"XYAssociatedChangeInY", "^", "2"}], "/", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+             "angleSecondTroughTime", " ", "-", " ", "angleFirstTroughTime"}],
+              ")"}], "/", "2"}], ")"}], "^", "2"}]}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<XYKineticEnergy = \>\"", ",", " ", 
+      RowBox[{"XYKineticEnergy", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "/", "2"}], ")"}], " ", "XYMomentOfInertia", " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"XYAngleAmp", "^", "2"}], "/", 
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{
+              "angleSecondTroughTime", " ", "-", " ", 
+               "angleFirstTroughTime"}], ")"}], "/", "2"}], ")"}], "^", 
+           "2"}]}], ")"}]}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Y Period = \>\"", ",", " ", 
+      RowBox[{"YPeriod", " ", "=", 
+       RowBox[{"(", 
+        RowBox[{"ySecondTroughTime", " ", "-", " ", "yFirstTroughTime"}], 
+        ")"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"yAvgTrough", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"yFirstTrough", " ", "+", " ", "ySecondTrough"}], ")"}], "/", 
+      "2"}]}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<yAmp = (yPeak - yAvgTrough)/2 = \>\"", ",", " ", 
+      RowBox[{"yAmp", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"yPeak", " ", "-", " ", "yAvgTrough"}], ")"}], "/", 
+        "2"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<yAssociatedChangeInHeight = ribbonLength -(ribbonLength^2 -((yPeak \
+- yAvgTrough)/2)^2)^.5 = \>\"", ",", " ", 
+      RowBox[{"yAssociatedChangeInHeight", " ", "=", " ", 
+       RowBox[{"ribbonLength", " ", "-", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"ribbonLength", "^", "2"}], " ", "-", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"(", 
+               RowBox[{"yPeak", " ", "-", " ", "yAvgTrough"}], ")"}], "/", 
+              "2"}], ")"}], "^", "2"}]}], ")"}], "^", ".5"}]}]}]}], "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<YKineticEnergy = \>\"", ",", " ", 
+      RowBox[{"YKineticEnergy", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "pendulumMass"}], ")"}], " ", 
+        RowBox[{
+         RowBox[{"yAmp", "^", "2"}], "/", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ySecondTroughTime", " ", "-", " ", "yFirstTroughTime"}],
+              ")"}], "/", "2"}], ")"}], "^", "2"}]}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<YKineticEnergyUsingHeight = \>\"", ",", " ", 
+      RowBox[{"YKineticEnergyUsingHeight", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", "pendulumMass"}], ")"}], " ", 
+        RowBox[{
+         RowBox[{"yAssociatedChangeInHeight", "^", "2"}], "/", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"ySecondTroughTime", " ", "-", " ", "yFirstTroughTime"}],
+              ")"}], "/", "2"}], ")"}], "^", "2"}]}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<YPotentialEnergyDueToGravity = \>\"", ",", " ", 
+      RowBox[{"YPotentialEnergyDueToGravity", " ", "=", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"2", " ", "pendulumMass"}], ")"}], "gEarthsSurface", " ", 
+        "yAssociatedChangeInHeight"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+    
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<Y VS XY Phase Relationship = \>\"", ",", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"yFirstTroughTime", "/", "angleFirstTroughTime"}], ")"}], 
+       RowBox[{"(", 
+        RowBox[{"YPeriod", "/", "XYPeriod"}], ")"}], " ", "1.0"}]}], "]"}], 
+    ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<EnergyRatio = YKineticEnergy/XYKineticEnergy = \>\"", ",", " ", 
+      RowBox[{"EnergyRatio", " ", "=", " ", 
+       RowBox[{"YKineticEnergy", "/", "XYKineticEnergy"}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{"\"\<EnergyRatio^.5/Pi = \>\"", ",", " ", 
+      RowBox[{
+       RowBox[{"EnergyRatio", "^", ".5"}], "/", "Pi"}]}], " ", "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<EnergyRatio2 = YKineticEnergyUsingHeight/XYKineticEnergy = \>\"", 
+      ",", " ", 
+      RowBox[{"EnergyRatio2", " ", "=", " ", 
+       RowBox[{"YKineticEnergyUsingHeight", "/", "XYKineticEnergy"}]}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<dzVSdyRatio = yAssociatedChangeInHeight/XYAssociatedChangeInY = \
+\>\"", ",", " ", 
+      RowBox[{"yAssociatedChangeInHeight", "/", "XYAssociatedChangeInY"}]}], 
+     "]"}], ";", "\[IndentingNewLine]", 
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<yAmpVSdyRatio = yAmp/XYAssociatedChangeInY/Pi = \>\"", ",", " ", 
+      RowBox[{
+       RowBox[{"yAmp", "/", "XYAssociatedChangeInY"}], "/", "Pi"}]}], "]"}], 
+    ";", "\[IndentingNewLine]", "EnergyRatio"}], "\[IndentingNewLine]", 
+   "}"}]}]}], "Input",
+ CellChangeTimes->{{3.856888204429906*^9, 3.8568882080089407`*^9}, {
+   3.856974111216322*^9, 3.8569741660438023`*^9}, 3.85697421217721*^9, {
+   3.8569742596929092`*^9, 3.8569744108867893`*^9}, {3.8569745700598717`*^9, 
+   3.856974588869853*^9}, {3.8569759960662937`*^9, 3.8569760000695343`*^9}, {
+   3.857027627066581*^9, 3.857027641954589*^9}, {3.8570288542668858`*^9, 
+   3.8570288712970333`*^9}, {3.8570292492416067`*^9, 3.85702926164887*^9}, {
+   3.8570296286807127`*^9, 3.857029630466745*^9}, {3.8570518748439493`*^9, 
+   3.857051920480115*^9}, {3.857062068814638*^9, 3.8570620718995028`*^9}, {
+   3.8570765045040817`*^9, 3.85707650662227*^9}, {3.8570765532268*^9, 
+   3.8570765560327253`*^9}, {3.8571367391531563`*^9, 
+   3.8571369209322357`*^9}, {3.857137110719119*^9, 3.857137133226556*^9}, {
+   3.857137174301284*^9, 3.8571372267978897`*^9}, {3.857137408071549*^9, 
+   3.8571375194732656`*^9}, 3.8571377103190393`*^9, {3.857138075542883*^9, 
+   3.857138078363215*^9}, {3.857138857479919*^9, 3.8571388682437067`*^9}, 
+   3.857139132099763*^9, {3.857139800026918*^9, 3.857139815641679*^9}, {
+   3.85714132762949*^9, 3.8571413359100113`*^9}, {3.857141413769166*^9, 
+   3.857141453138855*^9}, {3.857141527902701*^9, 3.85714155943073*^9}, {
+   3.857141629187477*^9, 3.857141960571932*^9}, {3.857142073318008*^9, 
+   3.857142103348291*^9}, {3.8571422449895287`*^9, 3.8571422725157843`*^9}, 
+   3.8571423945982513`*^9, {3.8571424490669394`*^9, 3.857142449576675*^9}, {
+   3.857142975550102*^9, 3.857142998265266*^9}, {3.85714318982246*^9, 
+   3.8571432410777884`*^9}, {3.857143378274458*^9, 3.857143379320901*^9}, {
+   3.857149130101403*^9, 3.857149144552451*^9}, {3.857149181856365*^9, 
+   3.857149184164792*^9}, {3.857151819779809*^9, 3.8571519096958103`*^9}, {
+   3.857151957579722*^9, 3.8571519862877493`*^9}, {3.857152025548957*^9, 
+   3.857152063218143*^9}, {3.85715209912684*^9, 3.857152139944378*^9}, {
+   3.8571521869568567`*^9, 3.8571522041428432`*^9}, {3.857152240361064*^9, 
+   3.857152423136754*^9}, {3.8571526136048613`*^9, 3.857152623411003*^9}, {
+   3.85716322719683*^9, 3.857163230246889*^9}, {3.857163730281466*^9, 
+   3.857163733138748*^9}, {3.857163962632395*^9, 3.857163964038294*^9}, {
+   3.85716400658956*^9, 3.857164017670249*^9}, {3.857164391532058*^9, 
+   3.857164391898316*^9}, {3.8572113279924707`*^9, 3.857211335273061*^9}, {
+   3.857211386149662*^9, 3.8572114479022217`*^9}, {3.857211491052061*^9, 
+   3.857211547386223*^9}, {3.857211589216856*^9, 3.857211609583818*^9}, {
+   3.8572116474355583`*^9, 3.857211657546196*^9}, {3.857211738459873*^9, 
+   3.857211770229705*^9}, {3.857211938204789*^9, 3.857212001781934*^9}, {
+   3.857212039492915*^9, 3.857212071464171*^9}, {3.857212116526972*^9, 
+   3.857212123743926*^9}, {3.8572122086561327`*^9, 3.857212256090711*^9}, {
+   3.857212309179007*^9, 3.857212322275037*^9}, {3.857226503089198*^9, 
+   3.857226511644924*^9}, {3.857226544870398*^9, 3.857226572502089*^9}, {
+   3.8572291723592987`*^9, 3.8572291779970627`*^9}, {3.857229211711928*^9, 
+   3.857229213432136*^9}, {3.857463946846298*^9, 3.8574639677950697`*^9}, {
+   3.857467948953936*^9, 3.857468009624898*^9}, {3.857472793557542*^9, 
+   3.8574727946442547`*^9}, {3.85748539178366*^9, 3.8574854349535303`*^9}, {
+   3.8574855652559547`*^9, 3.857485586134824*^9}, {3.857487500094103*^9, 
+   3.857487689216702*^9}, {3.8574879396893387`*^9, 3.857487941644568*^9}, {
+   3.85755184237435*^9, 3.857551842898477*^9}, {3.857552743894878*^9, 
+   3.857552761907351*^9}, {3.857552824580851*^9, 3.857552860323207*^9}, {
+   3.857553625139002*^9, 3.857553631909314*^9}, {3.857553853743424*^9, 
+   3.857554023380341*^9}, {3.8575541929472837`*^9, 3.857554197016884*^9}, {
+   3.857554569980871*^9, 3.857554604646385*^9}, {3.857554652198392*^9, 
+   3.857554655193225*^9}, {3.857554695360182*^9, 3.857554695754005*^9}, {
+   3.8575547534128838`*^9, 3.857554753570552*^9}, {3.857554801619658*^9, 
+   3.8575548018741083`*^9}, {3.857554876829543*^9, 3.8575548896224527`*^9}, {
+   3.85755499282551*^9, 3.857555004065349*^9}, {3.857555226346963*^9, 
+   3.857555236445126*^9}, {3.857555333301753*^9, 3.857555368035598*^9}, {
+   3.857555633675498*^9, 3.857555645273932*^9}, {3.857555710688352*^9, 
+   3.857555732612854*^9}, {3.85755591616813*^9, 3.857555916734871*^9}, {
+   3.857556132699798*^9, 3.857556133269595*^9}, {3.8575562719007*^9, 
+   3.857556301412079*^9}, {3.857556363051955*^9, 3.857556364315646*^9}, {
+   3.857573704537981*^9, 3.8575737348106403`*^9}, {3.85757438060266*^9, 
+   3.857574381089507*^9}, {3.857574411849072*^9, 3.8575744354870157`*^9}, {
+   3.8576359936192617`*^9, 3.8576361456129913`*^9}, {3.857636480314249*^9, 
+   3.857636489594763*^9}, {3.857636578123653*^9, 3.857636578402604*^9}, {
+   3.857636995274899*^9, 3.8576370428835*^9}, {3.857637154081107*^9, 
+   3.8576372220733013`*^9}, {3.8576462139527807`*^9, 3.857646243322647*^9}, {
+   3.857653644554804*^9, 3.857653671414104*^9}, {3.857653736667119*^9, 
+   3.857653759195018*^9}, {3.85765379345359*^9, 3.857653961077186*^9}, {
+   3.857654231865506*^9, 3.8576542367856607`*^9}, {3.857654321901816*^9, 
+   3.857654324811998*^9}, {3.85765437044763*^9, 3.857654708277173*^9}, {
+   3.857654796873207*^9, 3.8576548163903427`*^9}, {3.857654858393498*^9, 
+   3.857654859167598*^9}, {3.8576549086459618`*^9, 3.8576549246504107`*^9}, {
+   3.857654983745264*^9, 3.857655001316496*^9}, 3.857655499061482*^9, {
+   3.857655846672526*^9, 3.8576558469088163`*^9}, {3.857655947283951*^9, 
+   3.857655954983757*^9}, {3.857656222080413*^9, 3.857656249803289*^9}, {
+   3.857656767328512*^9, 3.8576567675510893`*^9}, {3.857657723704569*^9, 
+   3.857657842025696*^9}, {3.857657887608541*^9, 3.857657893602971*^9}, {
+   3.857657933909655*^9, 3.8576580363497877`*^9}, {3.857658305547451*^9, 
+   3.8576583240491743`*^9}, {3.8576583555248013`*^9, 3.85765847288312*^9}, {
+   3.857658517325674*^9, 3.857658631736424*^9}, {3.857727152197159*^9, 
+   3.857727180474415*^9}, {3.8577273336556892`*^9, 3.857727340827526*^9}, {
+   3.857727374789876*^9, 3.857727402512661*^9}, {3.857727438931897*^9, 
+   3.8577274399902277`*^9}, {3.857727632651999*^9, 3.857727749493353*^9}, {
+   3.85772790385312*^9, 3.8577279608103323`*^9}, {3.8577280096928053`*^9, 
+   3.857728035306034*^9}, {3.857728106246975*^9, 3.857728248205748*^9}, 
+   3.857728525785678*^9, {3.8577286772200127`*^9, 3.857728682303933*^9}, {
+   3.857729164244102*^9, 3.857729197897213*^9}, {3.857729257062064*^9, 
+   3.857729257503724*^9}, {3.857729317151896*^9, 3.8577294586396627`*^9}, {
+   3.857729498551076*^9, 3.857729580125519*^9}, {3.857730946626904*^9, 
+   3.8577309574237022`*^9}, {3.857731026748008*^9, 3.857731028155732*^9}, {
+   3.857731079370844*^9, 3.857731092817095*^9}, {3.857731131794919*^9, 
+   3.857731190313478*^9}, {3.8577317523770638`*^9, 3.85773175334663*^9}, {
+   3.857731783485744*^9, 3.857731903901417*^9}, {3.857732007545862*^9, 
+   3.857732014313895*^9}, {3.857732083948635*^9, 3.857732100551959*^9}, {
+   3.857732258935893*^9, 3.857732261135825*^9}, {3.857732310335535*^9, 
+   3.857732339999466*^9}, {3.857745138253899*^9, 3.85774515362849*^9}, {
+   3.857745937366372*^9, 3.857745943445416*^9}, {3.85774618679688*^9, 
+   3.8577461880564632`*^9}, {3.857746328248234*^9, 3.857746329112481*^9}, {
+   3.8577465566948977`*^9, 3.857746558007077*^9}, {3.857746663306851*^9, 
+   3.857746669384576*^9}, {3.8577477877799673`*^9, 3.85774780965166*^9}, {
+   3.857807180862308*^9, 3.857807317731694*^9}, {3.857807356672653*^9, 
+   3.857807357389633*^9}, {3.857807407811569*^9, 3.8578074544191227`*^9}, {
+   3.857807518355146*^9, 3.8578075859326677`*^9}, {3.857807636234859*^9, 
+   3.857807697598652*^9}, {3.857807747494557*^9, 3.857807772675169*^9}, {
+   3.857807833294351*^9, 3.857807870913892*^9}, {3.857810762235114*^9, 
+   3.857810762821958*^9}, {3.8579081225397177`*^9, 3.857908224420868*^9}, {
+   3.857908414331345*^9, 3.857908455475556*^9}, {3.857908490793496*^9, 
+   3.857908492969425*^9}, {3.8579085487318583`*^9, 3.857908645486177*^9}, {
+   3.857925509924631*^9, 3.8579255283114443`*^9}, {3.8579255711538982`*^9, 
+   3.857925580253772*^9}, {3.85792574805549*^9, 3.857925770944422*^9}, {
+   3.857925822104495*^9, 3.85792583222123*^9}, {3.857925923589745*^9, 
+   3.857925926348201*^9}, {3.857984216514668*^9, 3.8579842173530207`*^9}, {
+   3.857984288492285*^9, 3.8579843302529583`*^9}, {3.857984518530348*^9, 
+   3.857984557981127*^9}, {3.857984593767733*^9, 3.857984608979355*^9}, {
+   3.857984642454287*^9, 3.8579846454773607`*^9}, {3.857984677779001*^9, 
+   3.8579848439501667`*^9}, {3.8579848772831097`*^9, 3.857984882214014*^9}, {
+   3.857984913194652*^9, 3.857985066653314*^9}, {3.8579855644669657`*^9, 
+   3.857985575943302*^9}, {3.857994563803776*^9, 3.857994667237938*^9}, 
+   3.857994793551743*^9, {3.8579948313046513`*^9, 3.857994867123311*^9}, {
+   3.857994915512849*^9, 3.857994921261428*^9}, {3.857995060920027*^9, 
+   3.857995235049994*^9}, {3.857995288119781*^9, 3.857995341793931*^9}, 
+   3.857995372393605*^9, {3.857995445373004*^9, 3.857995593727466*^9}, {
+   3.858078556418633*^9, 3.858078559388647*^9}, {3.858078589859212*^9, 
+   3.858078607045602*^9}, {3.8581774710911903`*^9, 3.8581774776731167`*^9}, {
+   3.858177594007957*^9, 3.858177600513245*^9}, {3.858177643903537*^9, 
+   3.858177650080619*^9}, {3.85817834574303*^9, 3.858178391459627*^9}, {
+   3.858178424063952*^9, 3.8581784836502028`*^9}, {3.858178630041444*^9, 
+   3.858178633336474*^9}, {3.85817867377985*^9, 3.858178694222268*^9}, {
+   3.858178809341505*^9, 3.858178810649705*^9}, {3.8582420560075197`*^9, 
+   3.858242064413974*^9}, {3.8582423744491673`*^9, 3.858242453630454*^9}, {
+   3.858524991485712*^9, 3.858524992023588*^9}, {3.8585262544373617`*^9, 
+   3.8585262994684353`*^9}, {3.858526336101594*^9, 3.8585264012511587`*^9}, {
+   3.858526906434811*^9, 3.8585269066990767`*^9}, {3.85860411537882*^9, 
+   3.858604402879579*^9}, {3.858604446744606*^9, 3.858604568816033*^9}, {
+   3.858604599307623*^9, 3.858604619303895*^9}, {3.8586046509452343`*^9, 
+   3.8586047512998457`*^9}, {3.858604789582775*^9, 3.858604879528789*^9}, {
+   3.858604914776346*^9, 3.858604968269277*^9}, {3.8586051514354267`*^9, 
+   3.858605164117866*^9}, {3.8586052094481287`*^9, 3.858605209958376*^9}, {
+   3.858605322478746*^9, 3.8586053264522943`*^9}, {3.8586053636797647`*^9, 
+   3.85860542025528*^9}, {3.858605453583222*^9, 3.858605472813484*^9}, {
+   3.8586055164156027`*^9, 3.858605536962789*^9}, {3.858605575004074*^9, 
+   3.858605695121831*^9}, {3.858757956271644*^9, 3.858757973584786*^9}, {
+   3.858758039284433*^9, 3.85875804863883*^9}, {3.858758083555469*^9, 
+   3.858758083769146*^9}, {3.8587581985301123`*^9, 3.858758199618945*^9}, {
+   3.858758237269231*^9, 3.858758315771666*^9}, {3.858758370911407*^9, 
+   3.858758371089005*^9}, {3.858758418562314*^9, 3.858758540173388*^9}, {
+   3.858758583129925*^9, 3.858758637567602*^9}, {3.8587586898190107`*^9, 
+   3.8587587969964533`*^9}, {3.858758847540991*^9, 3.85875886697155*^9}, {
+   3.858758912577715*^9, 3.858759012245578*^9}, {3.8588746867204943`*^9, 
+   3.8588747285009937`*^9}, {3.858944877476261*^9, 3.858944896489648*^9}, {
+   3.858956479137681*^9, 3.858956491848959*^9}, {3.8589583713644953`*^9, 
+   3.858958434681684*^9}, {3.858958485546726*^9, 3.858958486282357*^9}, {
+   3.859388903721732*^9, 3.859388904181871*^9}, {3.859388941445978*^9, 
+   3.859388949852641*^9}, 3.8594675649627943`*^9, {3.859467766322495*^9, 
+   3.859467796750947*^9}, {3.859467898128105*^9, 3.859467923277319*^9}, 
+   3.8594679687380247`*^9, {3.859468008363537*^9, 3.85946804618475*^9}, 
+   3.859468336713954*^9, {3.85946838210536*^9, 3.859468390462599*^9}, {
+   3.859468436668818*^9, 3.8594684390998373`*^9}, {3.859468481318861*^9, 
+   3.859468481433976*^9}, {3.859468921099317*^9, 3.8594691527980127`*^9}, {
+   3.859469186588572*^9, 3.8594692525851517`*^9}, {3.8594693154193497`*^9, 
+   3.8594693213075533`*^9}, {3.85946947868944*^9, 3.859469507117034*^9}, {
+   3.859469587329494*^9, 3.859469592543247*^9}, {3.859469623605049*^9, 
+   3.859469693248577*^9}, {3.859470061296131*^9, 3.859470094969655*^9}, {
+   3.859470144938518*^9, 3.859470199701322*^9}, {3.859470253877236*^9, 
+   3.859470277700382*^9}, {3.859471485991641*^9, 3.859471538229631*^9}, {
+   3.85947157498105*^9, 3.8594715943992157`*^9}, {3.85947177933832*^9, 
+   3.8594717885058937`*^9}, {3.859472039927204*^9, 3.8594720461808043`*^9}, {
+   3.859472136509152*^9, 3.8594721610910387`*^9}, {3.85947225233902*^9, 
+   3.859472263169415*^9}, {3.859472300365198*^9, 3.859472303545027*^9}, {
+   3.859472393650619*^9, 3.859472397911705*^9}, {3.859472428876658*^9, 
+   3.859472450787096*^9}, {3.859472482542869*^9, 3.8594727151987658`*^9}, {
+   3.859472745958138*^9, 3.859472922289658*^9}, {3.859472986177264*^9, 
+   3.859472986634406*^9}, {3.859473070235434*^9, 3.859473110818699*^9}, {
+   3.859474390776967*^9, 3.859474413994176*^9}, 3.85947456057908*^9, {
+   3.859475231847271*^9, 3.859475232338079*^9}, {3.859475348869956*^9, 
+   3.85947535232028*^9}, {3.859476427165312*^9, 3.859476435342145*^9}, {
+   3.859476479831602*^9, 3.859476500307149*^9}, {3.859476531841708*^9, 
+   3.8594765349370832`*^9}, {3.859476719210578*^9, 3.859476757343872*^9}, {
+   3.859476842975473*^9, 3.859476887458804*^9}, {3.859536347163637*^9, 
+   3.859536366664845*^9}, 3.859536488081896*^9, {3.859536550725523*^9, 
+   3.859536562520858*^9}, {3.859536773966414*^9, 3.859536774708156*^9}, {
+   3.859537051776175*^9, 3.8595371135618067`*^9}, {3.8595380704434977`*^9, 
+   3.859538080542027*^9}, {3.859538205130146*^9, 3.8595382369905024`*^9}, {
+   3.859538271442499*^9, 3.8595383005546637`*^9}, {3.859538335438987*^9, 
+   3.859538395413327*^9}, {3.859538454877873*^9, 3.8595384573389797`*^9}, {
+   3.859538514494624*^9, 3.859538526851722*^9}, {3.85953860639178*^9, 
+   3.859538633769066*^9}, {3.85953868011436*^9, 3.8595387255666857`*^9}, {
+   3.859547458140347*^9, 3.859547458705017*^9}, {3.8595475228304977`*^9, 
+   3.859547538650137*^9}, {3.859547581297284*^9, 3.859547581688525*^9}, {
+   3.8595477136545343`*^9, 3.859547732762438*^9}, {3.8595479236616173`*^9, 
+   3.859547924259063*^9}, 3.859548400954217*^9, 3.859554087053412*^9, {
+   3.859554742807336*^9, 3.859554743018252*^9}, 3.859555129503826*^9, 
+   3.859721677147431*^9, {3.859733276728256*^9, 3.859733308997024*^9}, {
+   3.8597333601140614`*^9, 3.859733501002952*^9}, {3.859733552478038*^9, 
+   3.859733612221047*^9}, {3.859733649530514*^9, 3.859733772821589*^9}, {
+   3.859733809092314*^9, 3.85973381900272*^9}, {3.859733975523746*^9, 
+   3.8597340168393297`*^9}, {3.859734054380844*^9, 3.859734057865409*^9}, {
+   3.85973440016158*^9, 3.859734503168796*^9}, {3.859734564350761*^9, 
+   3.8597345745346413`*^9}, {3.8597350432971573`*^9, 3.859735060099715*^9}, 
+   3.859735172843877*^9, {3.859735267947042*^9, 3.859735269700664*^9}, {
+   3.8597353855960217`*^9, 3.8597354000660343`*^9}, {3.859810577060931*^9, 
+   3.859810580833254*^9}, {3.8598106543682528`*^9, 3.859810739616588*^9}, {
+   3.859810781205439*^9, 3.859810781657002*^9}, {3.859810837807941*^9, 
+   3.85981088793217*^9}, {3.859811000267548*^9, 3.859811023605268*^9}, {
+   3.859811099120295*^9, 3.8598111030462303`*^9}, {3.8598133538915777`*^9, 
+   3.859813354881361*^9}, {3.859813928091391*^9, 3.859813942513983*^9}, {
+   3.859816087823688*^9, 3.8598160906337748`*^9}, {3.859886861491054*^9, 
+   3.859886915007831*^9}, {3.859887020966814*^9, 3.859887038379573*^9}, {
+   3.8598921515837317`*^9, 3.859892153236804*^9}, {3.859906819765706*^9, 
+   3.8599068268231287`*^9}, {3.859906878211896*^9, 3.859906878879081*^9}, {
+   3.8599070078284197`*^9, 3.859907008673005*^9}, {3.859907042036599*^9, 
+   3.8599070445919123`*^9}, {3.859907359369707*^9, 3.859907365966928*^9}, {
+   3.859907815996484*^9, 3.859907830115168*^9}, {3.859908325455208*^9, 
+   3.85990835837949*^9}, {3.859908578921795*^9, 3.859908624095551*^9}, {
+   3.859908735024147*^9, 3.859908742552701*^9}, 3.859909416991622*^9, {
+   3.859912700130508*^9, 3.85991270804815*^9}, {3.859969101917573*^9, 
+   3.859969109367159*^9}, {3.8599779809406347`*^9, 3.8599779942927513`*^9}, {
+   3.859979285579513*^9, 3.8599793405063877`*^9}, {3.8599794022620487`*^9, 
+   3.8599794301305513`*^9}, {3.859982370382472*^9, 3.85998240288791*^9}, {
+   3.8599824360392027`*^9, 3.85998243931635*^9}, {3.8599824878549623`*^9, 
+   3.85998249722749*^9}, {3.860146049665169*^9, 3.860146065344817*^9}, {
+   3.8602299378417807`*^9, 3.860229947782878*^9}, {3.860838349129086*^9, 
+   3.860838352364153*^9}, {3.860838491473637*^9, 3.86083849249267*^9}, {
+   3.860838598244403*^9, 3.860838598630698*^9}, {3.8608386801445913`*^9, 
+   3.8608386829571953`*^9}, {3.860838756613534*^9, 3.860838757036903*^9}, {
+   3.8608393392309437`*^9, 3.860839341725129*^9}, {3.86083958983484*^9, 
+   3.8608396007737427`*^9}, {3.860840024850806*^9, 3.860840041588992*^9}, {
+   3.860840533933569*^9, 3.860840536619524*^9}, {3.860841017694784*^9, 
+   3.8608410300386744`*^9}, {3.860841158277676*^9, 3.8608411650817137`*^9}, {
+   3.860841606598781*^9, 3.860841629883892*^9}, {3.860841806326027*^9, 
+   3.860841806508072*^9}, 3.8613541624355*^9, {3.861705380846678*^9, 
+   3.861705381348776*^9}, {3.861705643210033*^9, 3.8617056559694767`*^9}, {
+   3.861706069384515*^9, 3.861706161705225*^9}, {3.8617906681557693`*^9, 
+   3.861790695711877*^9}, {3.8617908300546207`*^9, 3.8617908461192513`*^9}, {
+   3.861791015908781*^9, 3.8617911050492687`*^9}, {3.861792260350046*^9, 
+   3.8617922624066973`*^9}, {3.862320821585433*^9, 3.862320844810111*^9}, {
+   3.86273916407262*^9, 3.86273917805098*^9}, {3.862739252923911*^9, 
+   3.8627392596976967`*^9}, {3.862739295397171*^9, 3.862739295824898*^9}, {
+   3.862739327044936*^9, 3.8627393288527107`*^9}, {3.862739363127514*^9, 
+   3.862739387985054*^9}, {3.862739545335734*^9, 3.862739547889739*^9}, {
+   3.862739646028372*^9, 3.862739700936282*^9}, {3.8627397887046137`*^9, 
+   3.862739792181797*^9}, {3.8627398379257717`*^9, 3.862739840766972*^9}, {
+   3.8640597266974173`*^9, 3.864059829073821*^9}, {3.864060010312613*^9, 
+   3.8640600244059258`*^9}},ExpressionUUID->"d81af0e6-edad-451e-b7d1-\
+05bbd7ab9a12"]
+},
+WindowSize->{808, 744},
+WindowMargins->{{Automatic, 0}, {-38, Automatic}},
+FrontEndVersion->"12.0 for Mac OS X x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 89340, 1955, 11034, "Input",ExpressionUUID->"d81af0e6-edad-451e-b7d1-05bbd7ab9a12"]
+}
+]
+*)
+
